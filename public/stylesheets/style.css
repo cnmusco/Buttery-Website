@@ -70,7 +70,7 @@
 {
 	float: left;
 	width: 900px;
-	background: #FFF url(two-fixed-background.gif) repeat-y 100% 0;
+	background: #FFF;
 }
 
 #content
