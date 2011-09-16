@@ -65,6 +65,7 @@ GEM
     tzinfo (0.3.28)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
