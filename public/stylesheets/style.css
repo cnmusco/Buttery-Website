@@ -57,12 +57,14 @@
     position:absolute;
     top:120; 
     float: left;
-    left:150;
     background-color: #E5EECC;
     display:none;
-    /*margin:0 0 0 -1px; 
-    padding:0; 
-    list-style:none;*/
+}
+
+#invalid_login
+{
+    color: red;
+    display: none;
 }
 
 #content-container
