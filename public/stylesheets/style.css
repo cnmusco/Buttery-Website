@@ -52,6 +52,19 @@
 
 #navigation li button:hover { background: #783; }
 
+.login
+{
+    position:absolute;
+    top:120; 
+    float: left;
+    left:150;
+    background-color: #E5EECC;
+    display:none;
+    /*margin:0 0 0 -1px; 
+    padding:0; 
+    list-style:none;*/
+}
+
 #content-container
 {
 	float: left;

@@ -15,9 +15,19 @@
 <div id="navigation-container">
     <div id="navigation">
                 <ul>
-                        <li><button>Home</button</li>
-                        <li><button>Ordering</button></li>
-                        <li><button>Log In</button></li>
+                        <li><button id="home">Home</button</li>
+                        <li><button id="ordering">Ordering</button></li>
+                        <li><button id="log_in">Log In</button></li>
+                            <div class="login" id="log_in_menu">
+                                <p>Login Information</p>
+                                <form>
+                                <table>
+                                    <tr><td>Enter your NetId: <td/><td><input type="text" id="netid" /></td></tr>
+                                    <tr><td>Password: <td/><td><input type="password" id="pwd" /></td>
+                                </table>
+                                </form>
+                                <button id="login_button">Log In</button>
+                            </div>
                 </ul>
         </div>
 </div>
@@ -45,4 +55,6 @@
 		</div>
 	</div>
 </div>
+
+
 </html>
