@@ -60,7 +60,11 @@ function buttons()
     
     $("#sign_up_button").click(function()
     {
-        if($("#email").val() && $("#pwd").val())
+        if(yale_address_checker())
+        {
+            $("#invalid_login2").show()
+        }
+        else if($("#email").val() && $("#pwd").val())
         {
             $("#sign_up_menu").slideUp('fast', function(){});
         }
@@ -69,4 +73,10 @@ function buttons()
             $("#invalid_login1").show();
         }
     });
+}
+
+function yale_address_checker()
+{
+    
+    return 0;
 }

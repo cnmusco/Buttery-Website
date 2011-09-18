@@ -61,7 +61,7 @@
     display:none;
 }
 
-#invalid_login
+.invalid_login
 {
     color: red;
     display: none;
