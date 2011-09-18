@@ -50,6 +50,7 @@ function buttons()
             if($("#sign_up_menu").css("display")=="none")
             {
                 $("#invalid_login1").hide();
+                $("#invalid_login2").hide();
                 $("#sign_up_menu").slideDown('fast', function(){});
             }
             else
@@ -60,13 +61,17 @@ function buttons()
     
     $("#sign_up_button").click(function()
     {
-        if(yale_address_checker())
+        $("#invalid_login1").hide();
+        $("#invalid_login2").hide();
+        
+        if(sign_up_validator())
         {
             $("#invalid_login2").show()
         }
-        else if($("#email").val() && $("#pwd").val())
+        else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val())
         {
             $("#sign_up_menu").slideUp('fast', function(){});
+            alert("valid signup");
         }
         else
         {
@@ -75,8 +80,30 @@ function buttons()
     });
 }
 
-function yale_address_checker()
+function sign_up_validator()
 {
+    //passwords match?
+    if($("#pwd1").val() != $("#pwd0").val())
+    {
+        return 1;
+    }
     
-    return 0;
+    //valid yale email address
+    var email=$("#email1").val();
+    var flag1=0;
+    for(var i=0; i<email.length; i++)
+    {
+        var letter=email.charAt(i);
+
+        if(flag1 && letter=='@')
+        {
+            return !email.substr(i)=="@yale.edu";
+        }
+        else if(letter=='.')
+        {
+            flag1=1;
+        }
+    }
+    
+    return 1;
 }
