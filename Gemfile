@@ -5,6 +5,7 @@ gem 'rails', '3.0.7'
 gem "jquery-rails"
 gem "mysql"
 gem "taps"
+gem 'rake', '0.8.7'
 
 
 

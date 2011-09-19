@@ -4,14 +4,12 @@
 
 <h3>Grill Items</h3>
 <table border="0">
+    <% @menus.each do |menu| %>   
     <tr>
-        <td>Burgers</td>
-        <td>YES</td>
+        <td><%= menu.food_item %></td>
+        <td><%= menu.in_stock %></td>
     </tr>
-    <tr>
-        <td>Quesedillas</td>
-        <td>YES</td>
-    </tr>
+    <%end%>
 </table>
 
 &nbsp
@@ -41,3 +39,4 @@
         <td>YES</td>
     </tr>
 </table>
+
