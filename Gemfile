@@ -3,8 +3,8 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.7'
 
 gem "jquery-rails"
-#gem "mysql"
-gem "taps"
+#gem "mysql", '2.8.1'
+#gem "taps", '0.3.23'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
