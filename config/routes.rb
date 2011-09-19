@@ -1,4 +1,10 @@
 Buttery::Application.routes.draw do
+  resources :users
+
+  resources :parents
+
+  resources :ingredients
+
   resources :menus
 
   # The priority is based upon order of creation:

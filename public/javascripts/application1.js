@@ -28,7 +28,7 @@ function buttons()
     
     $("#login_button").click(function()
     {
-        if($("#email").val() && $("#pwd").val())
+        if($("#username").val() && $("#pwd").val())
         {
             $("#log_in_menu").slideUp('fast', function(){});
         }
@@ -68,7 +68,7 @@ function buttons()
         {
             $("#invalid_login2").show()
         }
-        else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val())
+        else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val() && $("#username1").val())
         {
             $("#sign_up_menu").slideUp('fast', function(){});
             alert("valid signup");
