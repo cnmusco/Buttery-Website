@@ -52,6 +52,21 @@
 
 #navigation li button:hover { background: #783; }
 
+.login
+{
+    position:absolute;
+    top:120; 
+    float: left;
+    background-color: #E5EECC;
+    display:none;
+}
+
+.invalid_login
+{
+    color: red;
+    display: none;
+}
+
 #content-container
 {
 	float: left;
