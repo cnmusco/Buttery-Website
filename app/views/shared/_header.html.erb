@@ -1,0 +1,14 @@
+<%- style = nil if local_assigns[:style].nil? %>
+<%- js = nil if local_assigns[:js].nil? %>
+
+<%- content_for :head do %>
+	<title><%= title + " :: BlueFusion" %></title>
+	<%- unless style.nil? %>
+		<%= stylesheet_link_tag style %>
+	<%- end %>
+	<%- unless js.nil? %>
+		<%- js.each do |tag| %>
+			<%= javascript_include_tag tag %>
+		<%- end %>
+	<%- end %>
+<%- end %>

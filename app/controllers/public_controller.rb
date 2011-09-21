@@ -1,4 +1,5 @@
 class PublicController < ApplicationController
-    def menu
+    def show_menu
+        @menus=Menu.all
     end
 end

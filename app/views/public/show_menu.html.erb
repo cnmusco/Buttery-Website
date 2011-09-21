@@ -1,0 +1,42 @@
+<!-- NOTE TO SELF:  HARDCOPY ITEMS NOW BUT EVENTUALLY CALL DB TO AUTOMATICALLY INSERT-->
+<!-- NOTE TO SELF:  ALSO, ADD GREEN YELLOW, AND RED BUTTONS-->
+
+
+<h3>Grill Items</h3>
+<table border="0">
+    <% @menus.each do |menu| %>   
+    <tr>
+        <td><%= menu.food_item %></td>
+        <td><%= menu.in_stock %></td>
+    </tr>
+    <%end%>
+</table>
+
+&nbsp
+
+<h3>Frozen Items</h3>
+<table border="0">
+    <tr>
+        <td>Hot Pockets</td>
+        <td>YES</td>
+    </tr>
+    <tr>
+        <td>Dino Nuggets</td>
+        <td>NO</td>
+    </tr>
+</table>
+
+&nbsp
+
+<h3>Other</h3>
+<table border="0">
+    <tr>
+        <td>Candy</td>
+        <td>NO</td>
+    </tr>
+    <tr>
+        <td>Soda</td>
+        <td>YES</td>
+    </tr>
+</table>
+
