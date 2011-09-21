@@ -12,16 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.label :id %><br />
+    <%= f.text_field :id %>
   </div>
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label :ingredient_name %><br />
+    <%= f.text_field :ingredient_name %>
   </div>
   <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <%= f.label :amount_in_stock %><br />
+    <%= f.text_field :amount_in_stock %>
+  </div>
+  <div class="field">
+    <%= f.label :unit_of_stock %><br />
+    <%= f.text_field :unit_of_stock %>
   </div>
   <div class="actions">
     <%= f.submit %>

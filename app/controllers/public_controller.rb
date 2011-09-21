@@ -1,5 +1,6 @@
 class PublicController < ApplicationController
     def show_menu
-        @menus=Menu.all
+        @classes=Parent.find(:all, :order=>'class_of_food')
+        @parents=Parent.all
     end
 end

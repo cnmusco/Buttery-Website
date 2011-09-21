@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Title</th>
-    <th>Content</th>
+    <th>Parent name</th>
+    <th>Class of food</th>
+    <th>Rgb</th>
     <th></th>
     <th></th>
     <th></th>
@@ -12,9 +12,9 @@
 
 <% @parents.each do |parent| %>
   <tr>
-    <td><%= parent.name %></td>
-    <td><%= parent.title %></td>
-    <td><%= parent.content %></td>
+    <td><%= parent.parent_name %></td>
+    <td><%= parent.class_of_food %></td>
+    <td><%= parent.rgb %></td>
     <td><%= link_to 'Show', parent %></td>
     <td><%= link_to 'Edit', edit_parent_path(parent) %></td>
     <td><%= link_to 'Destroy', parent, :confirm => 'Are you sure?', :method => :delete %></td>

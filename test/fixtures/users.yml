@@ -1,11 +1,15 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  title: MyString
-  content: MyText
+  id: 1
+  user_name: MyString
+  email_address: MyString
+  pwd: MyString
+  banned: 1
 
 two:
-  name: MyString
-  title: MyString
-  content: MyText
+  id: 1
+  user_name: MyString
+  email_address: MyString
+  pwd: MyString
+  banned: 1

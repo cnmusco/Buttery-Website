@@ -1,4 +1,7 @@
 Buttery::Application.routes.draw do
+
+  resources :food_types
+
   resources :users
 
   resources :parents

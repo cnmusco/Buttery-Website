@@ -2,38 +2,20 @@
 <!-- NOTE TO SELF:  ALSO, ADD GREEN YELLOW, AND RED BUTTONS-->
 
 
-<h3>Grill Items</h3>
-<table border="0">
-    <% @menus.each do |parent| %>   
-    <tr>
-        <td><%= parent.item_name %></td>
-        <td><%= parent.parent_name %></td>
-    </tr>
-    <%end%>
-</table>
-
-&nbsp
-
-<h3>Micorwave Items</h3>
-<table border="0">
-    
-</table>
-
-&nbsp
-
-<h3>Frozen Items</h3>
-<table border="0">
-    <tr>
-        
-    </tr>
-</table>
-
-&nbsp
-
-<h3>Other</h3>
-<table border="0">
-    <tr>
-        
-    </tr>
-</table>
-
+<% clas="" %>
+<% @classes.each do |cla| %> 
+    <% if clas!=cla.class_of_food %>
+        <% clas=cla.class_of_food %>
+        <h3><%= clas %></h3>
+        <table border="0">
+            <% @parents.each do |parent| %>
+                <% if parent.class_of_food==clas %>
+                    <tr>
+                        <td><%= parent.parent_name %></td>
+                        <td><%= parent.rgb %></td>
+                    </tr>
+                <%end%>
+            <%end%>
+        </table>
+    <% end %>
+<% end%>
