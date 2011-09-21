@@ -1,8 +1,8 @@
 class ParentsController < ApplicationController
   # GET /parents
   # GET /parents.xml
-  def index
-    @parents = Parent.all
+  def show_menu
+    @parents = Parents.where(:class => "grill")
 
     respond_to do |format|
       format.html # index.html.erb

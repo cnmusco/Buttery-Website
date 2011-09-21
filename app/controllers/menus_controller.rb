@@ -1,7 +1,7 @@
 class MenusController < ApplicationController
   # GET /menus
   # GET /menus.xml
-  def index
+  def in
     @menus = Menu.all
 
     respond_to do |format|
