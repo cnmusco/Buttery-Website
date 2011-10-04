@@ -7,6 +7,17 @@ $(document).ready(function()
 
 function buttons()
 {
+    $("#worker_view").click(function()
+    {
+        window.location = "/worker/update_inventory"
+    });
+    
+    $("#home").click(function()
+    {
+        window.location = "/home"
+    });
+    
+    
     $("#log_in").click(function()
     {
         //If the other menu is showing, hide it before showing this one

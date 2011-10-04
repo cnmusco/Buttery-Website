@@ -1,0 +1,14 @@
+<h3>Worker Home</h3>
+<table>
+<tr><td><div id="orders">Orders</div></td><td>&nbsp</td><td> <div id="up_inv">Update Inventory</div></td></tr>
+</table>
+<div>&nbsp</div>
+<div id=body_of_inv>
+    <table>
+        <% @ingredients.each do |ing| %>
+            <tr> <td> <%= ing.ingredient_name %> </td><td>&nbsp</td>
+            <td> <%= ing.amount_in_stock %> </td>
+            <td> <%= ing.unit_of_stock %></td></tr>
+        <%end%>
+    </table>
+</div>
