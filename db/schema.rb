@@ -10,12 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110921043304) do
+ActiveRecord::Schema.define(:version => 20111003225940) do
+
+  create_table "food_makeups", :force => true do |t|
+    t.integer  "food"
+    t.integer  "ingredient"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ingredients", :force => true do |t|
     t.string   "ingredient_name"
     t.integer  "amount_in_stock"
     t.string   "unit_of_stock"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "makeups", :force => true do |t|
+    t.integer  "vital"
+    t.integer  "food"
+    t.integer  "ingredient"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

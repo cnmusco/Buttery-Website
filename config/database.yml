@@ -2,7 +2,7 @@
 development:
   adapter: mysql
   encoding: utf8
-  database: pierson_buttery1
+  database: pierson_buttery4
   pool: 5
   username: root
   password: password
@@ -15,7 +15,7 @@ development:
 test:
   adapter: mysql
   encoding: utf8
-  database: pierson_buttery1
+  database: pierson_buttery4
   pool: 5
   username: root
   password: password

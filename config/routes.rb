@@ -1,14 +1,11 @@
 Buttery::Application.routes.draw do
 
-  resources :food_types
 
+  resources :makeups
   resources :users
-
   resources :parents
-
   resources :ingredients
 
-  resources :menus
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
