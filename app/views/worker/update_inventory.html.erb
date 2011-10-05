@@ -1,9 +1,9 @@
-<h3>Worker Home</h3>
+
 <table>
-<tr><td><div id="orders">Orders</div></td><td>&nbsp</td><td> <div id="up_inv">Update Inventory</div></td></tr>
+<tr><td><div class="up_inv">Update Inventory</div></td><td>&nbsp</td><td><div class="orders">Orders</div> </td></tr>
 </table>
 <div>&nbsp</div>
-<div id=body_of_inv>
+<div>
     <table>
         <% @ingredients.each do |ing| %>
             <tr> <td> <%= ing.ingredient_name %> </td><td>&nbsp</td>

@@ -67,6 +67,28 @@
     display: none;
 }
 
+.orders
+{
+    padding: 10px 53px;
+    background: #DCDCDC;
+}
+.orders:hover
+{
+    padding: 10px 53px;
+    background: #87CEEB;
+}
+
+.up_inv
+{
+    padding: 10px 20px;
+    background: #DCDCDC;
+}
+.up_inv:hover
+{
+    padding: 10px 20px;
+    background: #87CEEB;
+}
+
 #content-container
 {
 	float: left;
