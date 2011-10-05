@@ -89,12 +89,20 @@ function buttons()
         }
     });
     
-    //functions for adding, subtracting and emptying inventroy
+    //functions for adding, subtracting and emptying inventroy 
+    //from worker inv page
     $(".add_item").click(function()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
         $(ais).html(parseInt($(ais).html(), 10)+1+'');
+        $.ajax({
+            type: "POST",
+            url: "add_inv",
+            data: ({id: ing_id}),
+            dataType: 'script'
+        });
+        
     });
     $(".sub_item").click(function()
     {
@@ -102,13 +110,24 @@ function buttons()
         var ais="#ais"+ing_id;
         if(parseInt($(ais).html(), 10) >0)
             $(ais).html(parseInt($(ais).html(), 10)-1+'');
+        $.ajax({
+            type: "POST",
+            url: "sub_inv",
+            data: ({id: ing_id}),
+            dataType: 'script'
+        });
     });
     $(".empty_item").click(function()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
-        if(parseInt($(ais).html(), 10) >0)
-            $(ais).html(0+'');
+        $(ais).html(0+'');
+        $.ajax({
+            type: "POST",
+            url: "empty_inv",
+            data: ({id: ing_id}),
+            dataType: 'script'
+        });
     });
 }
 

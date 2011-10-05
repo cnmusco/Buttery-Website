@@ -89,6 +89,39 @@
     background: #87CEEB;
 }
 
+
+.add_item
+{
+    padding: 10px 25px;
+    background: #DCDCDC;
+}
+.sub_item
+{
+    padding: 10px 25px;
+    background: #DCDCDC;
+}
+.empty_item
+{
+    padding: 10px 25px;
+    background: #DCDCDC;
+}
+
+.add_item:hover
+{
+    padding: 10px 25px;
+    background: #87CEEB;
+}
+.sub_item:hover
+{
+    padding: 10px 25px;
+    background: #87CEEB;
+}
+.empty_item:hover
+{
+    padding: 10px 25px;
+    background: #87CEEB;
+}
+
 #content-container
 {
 	float: left;

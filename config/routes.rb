@@ -59,6 +59,9 @@ Buttery::Application.routes.draw do
    root :to => "public#show_menu"
    match 'home' => "public#show_menu"
    match 'worker/update_inventory' => 'worker#update_inventory'
+   post 'worker/add_inv'
+   post 'worker/sub_inv'
+   post 'worker/empty_inv'
 
   # See how all your routes lay out with "rake routes"
 
