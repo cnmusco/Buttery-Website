@@ -88,6 +88,28 @@ function buttons()
             $("#invalid_login1").show();
         }
     });
+    
+    //functions for adding, subtracting and emptying inventroy
+    $(".add_item").click(function()
+    {
+        ing_id=this.id;
+        var ais="#ais"+ing_id;
+        $(ais).html(parseInt($(ais).html(), 10)+1+'');
+    });
+    $(".sub_item").click(function()
+    {
+        ing_id=this.id;
+        var ais="#ais"+ing_id;
+        if(parseInt($(ais).html(), 10) >0)
+            $(ais).html(parseInt($(ais).html(), 10)-1+'');
+    });
+    $(".empty_item").click(function()
+    {
+        ing_id=this.id;
+        var ais="#ais"+ing_id;
+        if(parseInt($(ais).html(), 10) >0)
+            $(ais).html(0+'');
+    });
 }
 
 function sign_up_validator()
