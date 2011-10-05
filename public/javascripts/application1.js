@@ -7,16 +7,27 @@ $(document).ready(function()
 
 function buttons()
 {
+    //button link chnages
     $("#worker_view").click(function()
     {
         window.location = "/worker/update_inventory"
     });
-    
     $("#home").click(function()
     {
         window.location = "/home"
-    });    
+    });
+    $("#up_inv").click(function()
+    {
+        window.location = "/worker/update_inventory"
+    });   
+    $("#new_stuff").click(function()
+    {
+        window.location = "/worker/manage_menu"
+    });
     
+    
+    
+    //log in and sign up buttons
     $("#log_in").click(function()
     {
         //If the other menu is showing, hide it before showing this one
@@ -88,6 +99,8 @@ function buttons()
             $("#invalid_login1").show();
         }
     });
+    
+    
     
     //functions for adding, subtracting and emptying inventroy 
     //from worker inv page

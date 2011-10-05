@@ -17,4 +17,9 @@ class WorkerController < ApplicationController
     def empty_inv
         Ingredient.find(params[:id]).update_attributes(:amount_in_stock=>0)
     end
+    
+    #controler for add_items
+    def add_items
+        @ings=Ingredient.find(:all, :order=>'ingredient_name')
+    end
 end

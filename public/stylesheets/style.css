@@ -67,25 +67,35 @@
     display: none;
 }
 
-.orders
+#orders
 {
     padding: 10px 53px;
     background: #DCDCDC;
 }
-.orders:hover
+#orders:hover
 {
     padding: 10px 53px;
     background: #87CEEB;
 }
 
-.up_inv
+#up_inv
 {
     padding: 10px 20px;
     background: #DCDCDC;
 }
-.up_inv:hover
+#up_inv:hover
 {
     padding: 10px 20px;
+    background: #87CEEB;
+}
+#new_stuff
+{
+    padding: 10px 29px;
+    background: #DCDCDC;
+}
+#new_stuff:hover
+{
+    padding: 10px 29px;
     background: #87CEEB;
 }
 
@@ -121,6 +131,20 @@
     padding: 10px 25px;
     background: #87CEEB;
 }
+
+.new_item
+{
+    padding: 7px 5px;
+    background: #DCDCDC;
+}
+.new_item:hover
+{
+    padding: 7px 5px;
+    background: #87CEEB;
+}
+
+
+
 
 #content-container
 {
