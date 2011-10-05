@@ -8,7 +8,10 @@
         <% @ingredients.each do |ing| %>
             <tr> <td> <%= ing.ingredient_name %> </td><td>&nbsp</td>
             <td> <%= ing.amount_in_stock %> </td>
-            <td> <%= ing.unit_of_stock %></td></tr>
+            <td> <%= ing.unit_of_stock %></td>
+            <td><button id=plus_<%=ing.id%>> + </button> </td>
+            <td><button id=minus_<%=ing.id%>> - </button> </td>
+            <td><button id=empty_<%=ing.id%>> Empty </button> </td></tr>
         <%end%>
     </table>
 </div>

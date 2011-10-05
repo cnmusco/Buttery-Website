@@ -15,8 +15,7 @@ function buttons()
     $("#home").click(function()
     {
         window.location = "/home"
-    });
-    
+    });    
     
     $("#log_in").click(function()
     {
