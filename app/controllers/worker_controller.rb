@@ -21,5 +21,12 @@ class WorkerController < ApplicationController
     #controler for add_items
     def add_items
         @ings=Ingredient.find(:all, :order=>'ingredient_name')
+        @classes=Parent.find(:all, :order=>'class_of_food')
+    end
+    def add_ing
+        Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit])
+    end
+    def add_itm
+        
     end
 end

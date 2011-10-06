@@ -124,8 +124,7 @@ function buttons()
         $.ajax({
             type: "POST",
             url: "add_inv",
-            data: ({id: ing_id}),
-            dataType: 'script'
+            data: ({id: ing_id})
         });
         
     });
@@ -138,8 +137,7 @@ function buttons()
         $.ajax({
             type: "POST",
             url: "sub_inv",
-            data: ({id: ing_id}),
-            dataType: 'script'
+            data: ({id: ing_id})
         });
     });
     $(".empty_item").click(function()
@@ -150,10 +148,69 @@ function buttons()
         $.ajax({
             type: "POST",
             url: "empty_inv",
-            data: ({id: ing_id}),
-            dataType: 'script'
+            data: ({id: ing_id})
         });
     });
+    
+    
+    //Buttons for Menu Manager
+    $("#nmi_submit").click(function()
+    {
+        var num_ings=parseInt($("#hidden_num_of_ings").text(), 10);
+        var ings=new Array(), vits=new Array;
+        var name, clas, error=0, empty=0;
+        if(!(name=$("#nmi_name").val()))
+            alert("Enter A Name");
+        else
+        {
+            for(var i=1; i<=num_ings; i++)
+            {
+                ings[i]=(!!$("#nmi_ing_"+i+":checkbox:checked").val());
+                vits[i]=(!!$("#nmi_ing_"+i+"_vital:checkbox:checked").val());
+                if(!((ings[i] && vits[i]) || !vits[i]))
+                    error=1;
+                if(ings[i])
+                    empty++;
+            }
+            if(error)
+                alert("An Ingredient Cannot Be Vital If It Is Not Included");
+            else if(!empty)
+                alert(name + " needs ingredients");
+            else
+            {
+                $.ajax({
+                    type: "POST",
+                    url: "add_itm",
+                    data: ({
+                        name: name,
+                        clas: clas,
+                        ings: ings,
+                        vits: vits})
+                });
+            }
+        }
+    });
+    $("#ni_submit").click(function()
+    {
+        var name, quant, unit;
+        if((name=$("#ni_name").val()) && (quant=$("#ni_amount").val()) && parseInt(quant)==quant && (unit=$("#ni_unit").val()))
+        {
+            $.ajax({
+                type: "POST",
+                url: "add_ing",
+                data: ({
+                    name: name,
+                    amount: quant,
+                    unit: unit})
+            });
+            
+            $("#ni_name").val("");
+            $("#ni_amount").val("");
+            $("#ni_unit").val("");
+            alert(name + " have been added to the inventory");
+        }
+    });
+    
 }
 
 function sign_up_validator()

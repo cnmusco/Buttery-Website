@@ -4,15 +4,29 @@
         <td> <button id="new_stuff">Manage Menu</button> </td> </tr>
 </table>
 
-<h3> Create a New Menu Item </h3>
+<h2>&nbsp</h2>
+
+<h2> Create a New Menu Item </h2>
 <table>
     <tr> <table><tr><td><p>Name of New Item: </p></td><td><input id=nmi_name type=text> </td></tr></table></tr>
+    <tr><td><p>Select a Class</td>
+        <td> <select id="add_class">
+        <% clas="" %>
+        <% @classes.each do |cla| %> 
+            <% if clas!=cla.class_of_food %>
+                <% clas=cla.class_of_food %>
+                <option value=<%= clas %>> <%= clas %> </option>
+            <%end%>
+        <%end%>
+    </select></td></tr>
     <tr> <td><p> Select The Ingredients Involved with the Item</p></td></tr>
     <table>
         <tr> <th>Check Ingredients</th> <th>Check if Ingredient Is Required To Make Item</th> </tr>
+        <%@counter=0%>
         <% @ings.each do |ing| %>
             <tr><td> <input id=nmi_ing_<%= ing.id %> type=checkbox>  <%= ing.ingredient_name %></input> </td>
                 <td> <input id=nmi_ing_<%= ing.id %>_vital type=checkbox></input> </td></tr>
+            <%@counter=@counter+1%>
         <% end %>
     </table>
     <tr><td><button id=nmi_submit>Add Item</button></td></tr>
@@ -20,10 +34,11 @@
 
 <h2>&nbsp</h2>
 
-<h3> Add a New Ingredient </h3>
+<h2> Add a New Ingredient </h2>
 <table>
     <tr> <td><p>Name of Ingredient: </p></td><td><input id=ni_name type=text> </td></tr>
     <tr> <td><p>Initial Quantity: </p></td><td><input id=ni_amount type=text> </td></tr>
     <tr> <td><p>Unit of Measurement: </p></td><td><input id=ni_unit type=text> </td></tr>
     <tr><td><button id=ni_submit>Add Ingredient</button></td></tr>
 </table>
+<div id=hidden_num_of_ings> <%= @counter %> </div>

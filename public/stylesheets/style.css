@@ -52,6 +52,11 @@
 
 #navigation li button:hover { background: #87CEEB; }
 
+#hidden_num_of_ings
+{
+    display:none;
+}
+
 .login
 {
     position:absolute;
