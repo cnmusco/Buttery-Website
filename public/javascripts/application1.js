@@ -10,19 +10,31 @@ function buttons()
     //button link chnages
     $("#worker_view").click(function()
     {
-        window.location = "/worker/update_inventory"
+        var str=window.location.href;
+        var y=new RegExp("/worker");
+        if(!(str.match(y)))
+            window.location = "/worker/update_inventory"
     });
     $("#home").click(function()
     {
-        window.location = "/home"
+        var str=window.location.href;
+        var y=new RegExp("/home");
+        if(!(str.match(y)))
+            window.location = "/home"
     });
     $("#up_inv").click(function()
     {
-        window.location = "/worker/update_inventory"
+        var str=window.location.href;
+        var y=new RegExp("/worker/update_inventory");
+        if(!(str.match(y)))
+            window.location = "/worker/update_inventory"
     });   
     $("#new_stuff").click(function()
     {
-        window.location = "/worker/manage_menu"
+        var str=window.location.href;
+        var y=new RegExp("/worker/manage_menu");
+        if(!(str.match(y)))
+            window.location = "/worker/manage_menu"
     });
     
     
