@@ -24,7 +24,8 @@ class WorkerController < ApplicationController
         @classes=Parent.find(:all, :order=>'class_of_food')
     end
     def add_ing
-        Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit])
+        id_new=Ingredient.last.id
+        Ingredient.create(:id=>id_new+1, :ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit])
     end
     def add_itm
         
