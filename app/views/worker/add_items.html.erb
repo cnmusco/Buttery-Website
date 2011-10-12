@@ -43,5 +43,37 @@
     <tr> <td><p>Unit of Measurement: </p></td><td><input id=ni_unit type=text> </td></tr>
     <tr><td><button id=ni_submit>Add Ingredient</button></td></tr>
 </table>
+
+<h2>&nbsp</h2>
+
+<h2> Edit/Delete A Menu Item </h2>
+
+<% current_item=@menu_items.first %>
+<table>
+    <tr><td>Current Item: </td><td> <%= current_item.parent_name %> </td></tr> 
+                <tr><td>&nbsp</td></tr>
+    <tr><th> Remove Ingredients: </th></tr>
+    <% @makeups.each do |mkup| %>
+        <% if mkup.food == current_item.id %>
+            <% @ing_id.each do |ing1| %>
+                <% if ing1.id==mkup.ingredient %>
+                    <tr><td> <%= ing1.ingredient_name %></td>
+                        <td> <input id=edit_ing_<%= ing1.id %> type=checkbox> </input>  </td></tr>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+    <tr><td>&nbsp</td></tr>
+    
+    <tr><th> Add Ingredients </th></tr>
+</table>
+
+<select id="edit_item">
+    <% @menu_items.each do |men| %>
+        <option value=<%= men.parent_name %>> <%= men.parent_name %> </option>
+    <%end%>
+</select>
+
+
 <div id=hidden_num_of_ings> <%= @counter %> </div>
 <div id=hidden_id_of_ings> <% @ing_id.each do |ing| %> <%=ing.id%> <%end%></div>
