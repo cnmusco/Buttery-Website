@@ -157,6 +157,9 @@ function buttons()
     $("#nmi_submit").click(function()
     {
         var num_ings=parseInt($("#hidden_num_of_ings").text(), 10);
+        var ids=new Array();
+        var clas=$("#add_class").val();
+        ids=$("#hidden_id_of_ings").text().split("  ");
         var ings=new Array(), vits=new Array;
         var name, clas, error=0, empty=0;
         if(!(name=$("#nmi_name").val()))
@@ -165,8 +168,9 @@ function buttons()
         {
             for(var i=1; i<=num_ings; i++)
             {
-                ings[i]=(!!$("#nmi_ing_"+i+":checkbox:checked").val());
-                vits[i]=(!!$("#nmi_ing_"+i+"_vital:checkbox:checked").val());
+                var j=parseInt(ids[i], 10);
+                ings[i]=(!!$("#nmi_ing_"+j+":checkbox:checked").val());
+                vits[i]=(!!$("#nmi_ing_"+j+"_vital:checkbox:checked").val());
                 if(!((ings[i] && vits[i]) || !vits[i]))
                     error=1;
                 if(ings[i])
@@ -178,15 +182,44 @@ function buttons()
                 alert(name + " needs ingredients");
             else
             {
+                var ing_send=new Array();
+                var vit_send=new Array();
+                var count=0, last_val=1;
+                for(var i=1; i<=num_ings; i++)
+                {
+                    var val=parseInt(ids[i], 10);
+                    if(ings[i])
+                    {
+                        ing_send[count++]=val;
+                        if(vits[i])
+                            vit_send[val]=1;
+                        else
+                            vit_send[val]=0;
+                        last_val=val;
+                    }
+                }
+                for(var i=0; i<last_val; i++)
+                {
+                    if(vit_send[i]!=1)
+                        vit_send[i]=0;
+                }
                 $.ajax({
                     type: "POST",
                     url: "add_itm",
                     data: ({
                         name: name,
                         clas: clas,
-                        ings: ings,
-                        vits: vits})
+                        ings: ing_send.join(';'),
+                        vits: vit_send.join(';')})
                 });
+                $("#nmi_name").val("")
+                for(var i=1; i<=num_ings; i++)
+                {
+                    var j=parseInt(ids[i], 10);
+                    $("#nmi_ing_"+j+":checkbox").removeAttr('checked');
+                    $("#nmi_ing_"+j+"_vital:checkbox").removeAttr('checked');
+                }
+                alert("The " + name + " has been added to the inventory");
             }
         }
     });

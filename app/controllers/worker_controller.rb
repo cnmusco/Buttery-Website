@@ -21,13 +21,32 @@ class WorkerController < ApplicationController
     #controler for add_items
     def add_items
         @ings=Ingredient.find(:all, :order=>'ingredient_name')
+        @ing_id=Ingredient.find(:all, :order=>'id')
         @classes=Parent.find(:all, :order=>'class_of_food')
     end
     def add_ing
-        id_new=Ingredient.last.id
-        Ingredient.create(:id=>id_new+1, :ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit])
+        Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit])
     end
     def add_itm
-        
+        Parent.create(:parent_name => params[:name], :class_of_food => params[:clas])
+        id=Parent.last.id
+        vit=params[:vits]
+        vits=Array.new
+        i=0
+        vit.split(';').each do |a|
+            if a!= ''
+                vits[i]=Integer(a)
+            end
+            i+=1
+        end
+        i=0
+        ings=Array.new
+        params[:ings].split(';').each do |a|
+            ings[i]=Integer(a)
+            i+=1
+        end
+        ings.each do |ing|
+            Makeup.create(:vital => vits[ing], :ingredient => ing, :food=>id)
+        end
     end
 end

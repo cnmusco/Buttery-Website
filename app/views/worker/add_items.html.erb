@@ -42,3 +42,4 @@
     <tr><td><button id=ni_submit>Add Ingredient</button></td></tr>
 </table>
 <div id=hidden_num_of_ings> <%= @counter %> </div>
+<div id=hidden_id_of_ings> <% @ing_id.each do |ing| %> <%=ing.id%> <%end%></div>
