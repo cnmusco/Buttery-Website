@@ -159,6 +159,8 @@ function buttons()
         var num_ings=parseInt($("#hidden_num_of_ings").text(), 10);
         var ids=new Array();
         var clas=$("#add_class").val();
+        if(clas=="other")
+            clas=$("#nmi_new_class").val();
         ids=$("#hidden_id_of_ings").text().split("  ");
         var ings=new Array(), vits=new Array;
         var name, clas, error=0, empty=0;
@@ -219,9 +221,17 @@ function buttons()
                     $("#nmi_ing_"+j+":checkbox").removeAttr('checked');
                     $("#nmi_ing_"+j+"_vital:checkbox").removeAttr('checked');
                 }
+                $("#nmi_new_class").val("");
                 alert("The " + name + " has been added to the inventory");
             }
         }
+    });
+    $("#add_class").change(function()
+    {
+        if($("#add_class").val()=="other")
+            $("#nmi_new_class").show();
+        else
+            $("#nmi_new_class").hide();
     });
     $("#ni_submit").click(function()
     {
