@@ -254,6 +254,11 @@ function buttons()
         }
     });
     
+    $("#edit_item").change(function()
+    {
+        edit_remove($("#edit_item").val());
+    });
+    
 }
 
 function sign_up_validator()
@@ -282,4 +287,21 @@ function sign_up_validator()
     }
     
     return 1;
+}
+
+//function updates the edit/remove section of the menu manger
+function edit_remove(cur_itm)
+{
+    $.ajax({
+        type: "POST",
+        url: "add_ing_to_itm",
+        data: ({current_item: cur_itm}),
+        //dataType: "text",
+        success: function(data)
+                {
+                    $("#all").html(data)
+                }
+    });
+   // <tr><td> ing1.ingredient_name </td>
+     //   <td> <input id=remove ing1.id  type=checkbox> </input>  </td></tr>
 }

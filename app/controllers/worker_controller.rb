@@ -51,4 +51,18 @@ class WorkerController < ApplicationController
             Makeup.create(:vital => vits[ing], :ingredient => ing, :food=>id)
         end
     end
+    
+    #controllers for viewing of ingredients in edit_parent
+    def add_ing_to_itm
+        @current_item=params[:current_item]
+        if @current_item==-2
+            @current_item=Parent.first.id
+        end
+        
+        @ings=Ingredient.find(:all, :order=>'ingredient_name')
+        @ing_id=Ingredient.find(:all, :order=>'id')
+        @classes=Parent.find(:all, :order=>'class_of_food')
+        @menu_items=Parent.all
+        @makeups=Makeup.all
+    end
 end
