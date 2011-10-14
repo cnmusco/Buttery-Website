@@ -28,6 +28,14 @@ class WorkerController < ApplicationController
     end
     def add_ing
         Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit])
+        
+        #globals for view
+        @current_item=Parent.first.id
+        @ings=Ingredient.find(:all, :order=>'ingredient_name')
+        @ing_id=Ingredient.find(:all, :order=>'id')
+        @classes=Parent.find(:all, :order=>'class_of_food')
+        @menu_items=Parent.all
+        @makeups=Makeup.all
     end
     def add_itm
         Parent.create(:parent_name => params[:name], :class_of_food => params[:clas])
@@ -50,6 +58,14 @@ class WorkerController < ApplicationController
         ings.each do |ing|
             Makeup.create(:vital => vits[ing], :ingredient => ing, :food=>id)
         end
+        
+        #globals for view
+        @current_item=Parent.first.id
+        @ings=Ingredient.find(:all, :order=>'ingredient_name')
+        @ing_id=Ingredient.find(:all, :order=>'id')
+        @classes=Parent.find(:all, :order=>'class_of_food')
+        @menu_items=Parent.all
+        @makeups=Makeup.all
     end
     
     #controllers for viewing of ingredients in edit_parent
@@ -59,6 +75,24 @@ class WorkerController < ApplicationController
             @current_item=Parent.first.id
         end
         
+        @ings=Ingredient.find(:all, :order=>'ingredient_name')
+        @ing_id=Ingredient.find(:all, :order=>'id')
+        @classes=Parent.find(:all, :order=>'class_of_food')
+        @menu_items=Parent.all
+        @makeups=Makeup.all
+    end
+    
+    def delete_itm
+        num = Integer(params[:id])
+        Parent.find(num).destroy
+        Makeup.all.each do |mkup|
+            if mkup.food==num
+                Makeup.find(mkup.id).destroy
+            end
+        end
+        
+        #globals for view
+        @current_item=Parent.first.id
         @ings=Ingredient.find(:all, :order=>'ingredient_name')
         @ing_id=Ingredient.find(:all, :order=>'id')
         @classes=Parent.find(:all, :order=>'class_of_food')

@@ -212,7 +212,11 @@ function buttons()
                         name: name,
                         clas: clas,
                         ings: ing_send.join(';'),
-                        vits: vit_send.join(';')})
+                        vits: vit_send.join(';')}),
+                        success: function(data)
+                                {
+                                    $("#all").html(data)
+                                }
                 });
                 $("#nmi_name").val("")
                 for(var i=1; i<=num_ings; i++)
@@ -244,12 +248,13 @@ function buttons()
                 data: ({
                     name: name,
                     amount: quant,
-                    unit: unit})
+                    unit: unit}),
+                    success: function(data)
+                            {
+                                $("#all").html(data)
+                            }
             });
             
-            $("#ni_name").val("");
-            $("#ni_amount").val("");
-            $("#ni_unit").val("");
             alert(name + " have been added to the inventory");
         }
     });
@@ -259,6 +264,27 @@ function buttons()
         edit_remove($("#edit_item").val());
     });
     
+    
+    //buttons for edit and delete menu items
+    $("#update_menu_button").click(function()
+    {
+        alert("hi");
+    });
+    $("#delete_menu_button").click(function()
+    {
+        if(confirm("Are You Sure You Want To Delete This Item?"))
+        {
+            $.ajax({
+                type: "POST",
+                url: "delete_itm",
+                data: ({id: $("#edit_item").val()}),
+                success: function(data)
+                    {
+                        $("#all").html(data)
+                    }
+            });
+        }
+    });
 }
 
 function sign_up_validator()
@@ -296,12 +322,9 @@ function edit_remove(cur_itm)
         type: "POST",
         url: "add_ing_to_itm",
         data: ({current_item: cur_itm}),
-        //dataType: "text",
         success: function(data)
                 {
                     $("#all").html(data)
                 }
     });
-   // <tr><td> ing1.ingredient_name </td>
-     //   <td> <input id=remove ing1.id  type=checkbox> </input>  </td></tr>
 }

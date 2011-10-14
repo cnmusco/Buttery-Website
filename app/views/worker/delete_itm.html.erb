@@ -1,4 +1,4 @@
-<table> 
+<table>
     <tr><td> <button id="up_inv">Update Inventory</button> </td> <td>&nbsp</td>
         <td> <button id="orders">Orders</button> </td><td>&nbsp</td>
         <td> <button id="new_stuff">Manage Menu</button> </td> </tr>
@@ -55,7 +55,7 @@
                 <option 
                     <% if men.id==Integer(@current_item) %>
                         <%= ' selected="selected"' %>
-                    <%end%>
+                    <%end%> 
                     value=<%= men.id %>>
                     <%= men.parent_name %> </option>
             <%end%>

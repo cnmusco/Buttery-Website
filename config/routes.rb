@@ -66,7 +66,7 @@ Buttery::Application.routes.draw do
    post 'worker/empty_inv'
    post 'worker/add_itm'
    post 'worker/add_ing'
-   
+   post 'worker/delete_itm'
    post 'worker/add_ing_to_itm'
 
   # See how all your routes lay out with "rake routes"
