@@ -51,54 +51,14 @@
 <table>
     <tr><td>Current Item: </td><td> 
             <select id="edit_item">
+                <option value=0> </option>
             <% @menu_items.each do |men| %>
-                <option 
-                    <% if men.id==Integer(@current_item) %>
-                        <%= ' selected="selected"' %>
-                    <%end%> 
-                    value=<%= men.id %>>
-                    <%= men.parent_name %> </option>
+                <option value=<%= men.id %>> <%= men.parent_name %> </option>
             <%end%>
 </select> </td></tr>
-<tr><th> Remove Ingredients: </th></tr>
-     <%@makeups.each do |mkup| %>
-         <%if mkup.food == Integer(@current_item) %>
-             <%@ings.each do |ing1| %>
-                 <%if ing1.id==mkup.ingredient %>
-                     <tr><td> <%= ing1.ingredient_name%> </td>
-                        <td> <input id=remove_ing_<%=ing1.id%>  type=checkbox> </input>  </td></tr>
-                 <%end%>
-             <%end%>
-         <%end%>
-    <%end%>
-    
-<tr><td>&nbsp</td></tr>
 
-<tr><th> Add Ingredients: </th><th> Included/Vital </th></tr>
-    <% all_ings=Array.new %>
-     <% @ings.each do |ing1| %>
-         <% all_ings.push(ing1) %>
-     <% end %>
-
-     <% @makeups.each do |mkup| %>
-         <% if mkup.food == Integer(@current_item) %>
-             <% @ings.each do |ing1| %>
-                     <% if ing1.id==mkup.ingredient %>
-                         <% all_ings.delete(ing1) %>
-                     <% end %>
-                 <% end %>
-         <% end %>
-     <% end %>
-     <% all_ings.each do |ing| %>
-       <tr><td> <%= ing.ingredient_name %>  </td><td> 
-            <input id=add_ing_<%= ing.id %>  type=checkbox> </input>
-            <input id=add_ing_<%= ing.id %>_vital type=checkbox> </input> </td></tr>
-    <% end %>
-<tr><td>&nbsp</td></tr>
+    <tr><td>&nbsp</td></tr>
 </table>
-
-<button id=update_menu_button>Save Changes</button> 
-<button id=delete_menu_button>Delete Item</button>
 
 
 <div id=hidden_num_of_ings> <%= @counter %> </div>

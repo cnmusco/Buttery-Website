@@ -268,7 +268,64 @@ function buttons()
     //buttons for edit and delete menu items
     $("#update_menu_button").click(function()
     {
-        alert("hi");
+        var ings_to_be_removed=new Array();
+        var ings_to_be_added=new Array();
+        var vits_to_be_added=new Array();
+        
+        var ids=$("#hidden_id_of_ings").text().split("  ");
+        var num_ings=parseInt($("#hidden_num_of_ings").text(), 10);
+        var error=0;
+        
+        for(var i=1; i<=num_ings; i++)
+        {
+            cur_id=parseInt(ids[i], 10);
+            var remove="#remove_ing_" + cur_id;
+            var add="#add_ing_" + cur_id;
+            var add_vit="#add_ing_" + cur_id + "_vital";
+            
+            //go through the remove
+            if($(remove).attr('checked'))
+                ings_to_be_removed.push(cur_id);
+            
+            //go through the additions
+            if($(add).attr('checked'))
+            {
+                ings_to_be_added.push(cur_id);
+                if($(add_vit).attr('checked'))
+                    vits_to_be_added[cur_id]=1;
+            }
+            else if($(add_vit).attr('checked'))
+                error=1;
+        }
+        for(var i=0; i<parseInt(ids[num_ings], 10); i++)
+        {
+            if(!vits_to_be_added[i])
+                vits_to_be_added[i]=0;
+        }
+        
+        if(error)
+            alert("An Ingredient Cannot Be Vital if it is Not Included");
+        else if(ings_to_be_removed.length===0 && ings_to_be_added.length===0)
+        {
+            alert("You Have Not Made Any Changes");
+        }
+        else
+        {
+            //update the item
+            $.ajax({
+                type: "POST",
+                url: "update_ing_from_itm",
+                data: ({
+                    parent: $("#edit_item").val(),
+                    remove: ings_to_be_removed.join(';'),
+                    add: ings_to_be_added.join(';'),
+                    vits: vits_to_be_added.join(';')}),
+                    success: function(data)
+                            {
+                                $("#all").html(data)
+                            }
+            });
+        }
     });
     $("#delete_menu_button").click(function()
     {

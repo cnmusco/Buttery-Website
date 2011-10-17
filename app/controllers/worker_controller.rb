@@ -99,4 +99,33 @@ class WorkerController < ApplicationController
         @menu_items=Parent.all
         @makeups=Makeup.all
     end
+    
+    #controller for updating the ingredients in an item item
+    def update_ing_from_itm
+        #remove ingredients from item
+        params[:remove].split(';').each do |ings|
+            Makeup.all.each do |mkup|
+                if mkup.food==Integer(params[:parent]) && mkup.ingredient==Integer(ings)
+                    Makeup.find(mkup.id).destroy
+                end
+            end
+        end
+        
+        #add ingredients to ingredient
+        vits = Array.new
+        params[:vits].split(';').each do |a|
+            vits.push(Integer(a))
+        end
+        
+        params[:add].split(';').each do |ings|
+            Makeup.create(:vital => vits[Integer(ings)], :food => Integer(params[:parent]), :ingredient => Integer(ings))
+        end
+        
+        #globals for view
+        @ings=Ingredient.find(:all, :order=>'ingredient_name')
+        @ing_id=Ingredient.find(:all, :order=>'id')
+        @classes=Parent.find(:all, :order=>'class_of_food')
+        @menu_items=Parent.all
+        @makeups=Makeup.all
+    end
 end
