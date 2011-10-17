@@ -297,7 +297,7 @@ function buttons()
             else if($(add_vit).attr('checked'))
                 error=1;
         }
-        for(var i=0; i<parseInt(ids[num_ings], 10); i++)
+        for(var i=0; i<=parseInt(ids[num_ings], 10); i++)
         {
             if(!vits_to_be_added[i])
                 vits_to_be_added[i]=0;

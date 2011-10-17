@@ -70,9 +70,16 @@
 {
     position:absolute;
     top:120; 
-    float: left;
     background-color: #E5EECC;
     display:none;
+}
+#log_in_menu
+{
+    margin-left:165;
+}
+#sign_up_menu
+{
+    margin-left:225;
 }
 
 .invalid_login
