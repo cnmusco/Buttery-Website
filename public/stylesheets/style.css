@@ -194,6 +194,10 @@
     background: #DCDCDC;
     width: 125px;
 }
+#public_items_0
+{
+    text-decoration: line-through;
+}
 #public_items_0:hover
 {
     background: #FF4500;
