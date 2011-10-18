@@ -6,6 +6,7 @@
 
 <h2>&nbsp</h2>
 
+<div class="mmleft">
 <h2> Create a New Menu Item </h2>
 <table>
     <tr> <table><tr><td><p>Name of New Item: </p></td><td><input id=nmi_name type=text> </td></tr></table></tr>
@@ -23,7 +24,7 @@
     <tr><input id=nmi_new_class type=text></tr>
     <tr> <td><p> Select The Ingredients Involved with the Item</p></td></tr>
     <table>
-        <tr> <th>Check Ingredients</th> <th>Is Ingredient Required To Make Item</th> </tr>
+        <tr> <th>Check Ingredients</th> <th>Check Vital Ingredients</th> </tr>
         <%@counter=0%>
         <% @ings.each do |ing| %>
             <tr><td> <input id=nmi_ing_<%= ing.id %> type=checkbox>  <%= ing.ingredient_name %></input> </td>
@@ -33,9 +34,9 @@
     </table>
     <tr><td><button id=nmi_submit>Add Item</button></td></tr>
 </table>
+</div>
 
-<h2>&nbsp</h2>
-
+<div class="mmright">
 <h2> Add a New Ingredient </h2>
 <table>
     <tr> <td><p>Name of Ingredient: </p></td><td><input id=ni_name type=text> </td></tr>
@@ -99,7 +100,7 @@
 
 <button id=update_menu_button>Save Changes</button> 
 <button id=delete_menu_button>Delete Item</button>
-
+</div>
 
 <div id=hidden_num_of_ings> <%= @counter %> </div>
 <div id=hidden_id_of_ings> <% @ing_id.each do |ing| %> <%=ing.id%> <%end%></div>

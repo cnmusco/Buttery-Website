@@ -163,7 +163,15 @@
     padding: 7px 5px;
     background: #87CEEB;
 }
-
+.mmleft
+{
+    float:left;
+}
+.mmright
+{
+    float:left;
+    margin-left:20px
+}
 
 
 .classes

@@ -25,6 +25,7 @@ class WorkerController < ApplicationController
         @classes=Parent.find(:all, :order=>'class_of_food')
         @menu_items=Parent.all
         @makeups=Makeup.all
+        @current_item=Parent.first.id
     end
     def add_ing
         Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit])
@@ -122,6 +123,7 @@ class WorkerController < ApplicationController
         end
         
         #globals for view
+        @current_item=params[:parent]
         @ings=Ingredient.find(:all, :order=>'ingredient_name')
         @ing_id=Ingredient.find(:all, :order=>'id')
         @classes=Parent.find(:all, :order=>'class_of_food')
