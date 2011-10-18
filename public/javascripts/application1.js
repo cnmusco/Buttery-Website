@@ -345,7 +345,7 @@ function buttons()
     
     $(".item_names_public").click(function()
     {
-        var val="#pub_ings_" + event.target.id;
+        var val="#pub_ings_" + event.target.name;
         $(val).toggle();
     });
 }

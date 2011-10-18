@@ -186,9 +186,17 @@
     background: #DCDCDC;
     width: 125px;
 }
-.item_names_public:hover
+#public_items_0:hover
 {
-    background: #87CEEB;
+    background: #FF4500;
+}
+#public_items_1:hover
+{
+    background: #FFD700;
+}
+#public_items_2:hover
+{
+    background: #7CFC00;
 }
 .pub_ing_0
 {
