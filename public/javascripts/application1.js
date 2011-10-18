@@ -342,6 +342,12 @@ function buttons()
             });
         }
     });
+    
+    $(".item_names_public").click(function()
+    {
+        var val="#pub_ings_" + event.target.id;
+        $(val).toggle();
+    });
 }
 
 function sign_up_validator()

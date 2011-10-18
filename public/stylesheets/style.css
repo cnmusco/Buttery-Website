@@ -164,6 +164,15 @@
     background: #87CEEB;
 }
 
+.classes
+{
+    float:left;
+    padding:5px 25px;
+}
+.hidden_ings_pub
+{
+    display:none;
+}
 
 
 
