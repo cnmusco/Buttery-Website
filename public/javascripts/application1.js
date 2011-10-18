@@ -7,6 +7,39 @@ $(document).ready(function()
 
 function buttons()
 {
+    //button link chnages
+    $("#worker_view").click(function()
+    {
+        var str=window.location.href;
+        var y=new RegExp("/worker");
+        if(!(str.match(y)))
+            window.location = "/worker/update_inventory"
+    });
+    $("#home").click(function()
+    {
+        var str=window.location.href;
+        var y=new RegExp("/home");
+        if(!(str.match(y)))
+            window.location = "/home"
+    });
+    $("#up_inv").click(function()
+    {
+        var str=window.location.href;
+        var y=new RegExp("/worker/update_inventory");
+        if(!(str.match(y)))
+            window.location = "/worker/update_inventory"
+    });   
+    $("#new_stuff").click(function()
+    {
+        var str=window.location.href;
+        var y=new RegExp("/worker/manage_menu");
+        if(!(str.match(y)))
+            window.location = "/worker/manage_menu"
+    });
+    
+    
+    
+    //log in and sign up buttons
     $("#log_in").click(function()
     {
         //If the other menu is showing, hide it before showing this one
@@ -39,24 +72,24 @@ function buttons()
     });
     
     
-     $("#sign_up_butt").click(function()
+    $("#sign_up_butt").click(function()
+    {
+        //If the other menu is showing, hide it before showing this one
+        if($("#log_in_menu").css("display")!="none")
         {
-            //If the other menu is showing, hide it before showing this one
-            if($("#log_in_menu").css("display")!="none")
-            {
-                $("#log_in_menu").hide();
-            }
-            
-            if($("#sign_up_menu").css("display")=="none")
-            {
-                $("#invalid_login1").hide();
-                $("#invalid_login2").hide();
-                $("#sign_up_menu").slideDown('fast', function(){});
-            }
-            else
-            {
-                $("#sign_up_menu").slideUp('fast', function(){});
-            }
+            $("#log_in_menu").hide();
+        }
+        
+        if($("#sign_up_menu").css("display")=="none")
+        {
+            $("#invalid_login1").hide();
+            $("#invalid_login2").hide();
+            $("#sign_up_menu").slideDown('fast', function(){});
+        }
+        else
+        {
+            $("#sign_up_menu").slideUp('fast', function(){});
+        }
     });
     
     $("#sign_up_button").click(function()
@@ -77,6 +110,243 @@ function buttons()
         {
             $("#invalid_login1").show();
         }
+    });
+    
+    
+    
+    //functions for adding, subtracting and emptying inventroy 
+    //from worker inv page
+    $(".add_item").click(function()
+    {
+        ing_id=this.id;
+        var ais="#ais"+ing_id;
+        $(ais).html(parseInt($(ais).html(), 10)+1+'');
+        $.ajax({
+            type: "POST",
+            url: "add_inv",
+            data: ({id: ing_id})
+        });
+        
+    });
+    $(".sub_item").click(function()
+    {
+        ing_id=this.id;
+        var ais="#ais"+ing_id;
+        if(parseInt($(ais).html(), 10) >0)
+            $(ais).html(parseInt($(ais).html(), 10)-1+'');
+        $.ajax({
+            type: "POST",
+            url: "sub_inv",
+            data: ({id: ing_id})
+        });
+    });
+    $(".empty_item").click(function()
+    {
+        ing_id=this.id;
+        var ais="#ais"+ing_id;
+        $(ais).html(0+'');
+        $.ajax({
+            type: "POST",
+            url: "empty_inv",
+            data: ({id: ing_id})
+        });
+    });
+    
+    
+    //Buttons for Menu Manager
+    $("#nmi_submit").click(function()
+    {
+        var num_ings=parseInt($("#hidden_num_of_ings").text(), 10);
+        var ids=new Array();
+        var clas=$("#add_class").val();
+        if(clas=="other")
+            clas=$("#nmi_new_class").val();
+        ids=$("#hidden_id_of_ings").text().split("  ");
+        var ings=new Array(), vits=new Array;
+        var name, clas, error=0, empty=0;
+        if(!(name=$("#nmi_name").val()))
+            alert("Enter A Name");
+        else
+        {
+            for(var i=1; i<=num_ings; i++)
+            {
+                var j=parseInt(ids[i], 10);
+                ings[i]=(!!$("#nmi_ing_"+j+":checkbox:checked").val());
+                vits[i]=(!!$("#nmi_ing_"+j+"_vital:checkbox:checked").val());
+                if(!((ings[i] && vits[i]) || !vits[i]))
+                    error=1;
+                if(ings[i])
+                    empty++;
+            }
+            if(error)
+                alert("An Ingredient Cannot Be Vital If It Is Not Included");
+            else if(!empty)
+                alert(name + " needs ingredients");
+            else
+            {
+                var ing_send=new Array();
+                var vit_send=new Array();
+                var count=0, last_val=1;
+                for(var i=1; i<=num_ings; i++)
+                {
+                    var val=parseInt(ids[i], 10);
+                    if(ings[i])
+                    {
+                        ing_send[count++]=val;
+                        if(vits[i])
+                            vit_send[val]=1;
+                        else
+                            vit_send[val]=0;
+                        last_val=val;
+                    }
+                }
+                for(var i=0; i<last_val; i++)
+                {
+                    if(vit_send[i]!=1)
+                        vit_send[i]=0;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "add_itm",
+                    data: ({
+                        name: name,
+                        clas: clas,
+                        ings: ing_send.join(';'),
+                        vits: vit_send.join(';')}),
+                        success: function(data)
+                                {
+                                    $("#all").html(data)
+                                }
+                });
+                $("#nmi_name").val("")
+                for(var i=1; i<=num_ings; i++)
+                {
+                    var j=parseInt(ids[i], 10);
+                    $("#nmi_ing_"+j+":checkbox").removeAttr('checked');
+                    $("#nmi_ing_"+j+"_vital:checkbox").removeAttr('checked');
+                }
+                $("#nmi_new_class").val("");
+                alert("The " + name + " has been added to the inventory");
+            }
+        }
+    });
+    $("#add_class").change(function()
+    {
+        if($("#add_class").val()=="other")
+            $("#nmi_new_class").show();
+        else
+            $("#nmi_new_class").hide();
+    });
+    $("#ni_submit").click(function()
+    {
+        var name, quant, unit;
+        if((name=$("#ni_name").val()) && (quant=$("#ni_amount").val()) && parseInt(quant)==quant && (unit=$("#ni_unit").val()))
+        {
+            $.ajax({
+                type: "POST",
+                url: "add_ing",
+                data: ({
+                    name: name,
+                    amount: quant,
+                    unit: unit}),
+                    success: function(data)
+                            {
+                                $("#all").html(data)
+                            }
+            });
+            
+            alert(name + " have been added to the inventory");
+        }
+    });
+    
+    $("#edit_item").change(function()
+    {
+        edit_remove($("#edit_item").val());
+    });
+    
+    
+    //buttons for edit and delete menu items
+    $("#update_menu_button").click(function()
+    {
+        var ings_to_be_removed=new Array();
+        var ings_to_be_added=new Array();
+        var vits_to_be_added=new Array();
+        
+        var ids=$("#hidden_id_of_ings").text().split("  ");
+        var num_ings=parseInt($("#hidden_num_of_ings").text(), 10);
+        var error=0;
+        
+        for(var i=1; i<=num_ings; i++)
+        {
+            cur_id=parseInt(ids[i], 10);
+            var remove="#remove_ing_" + cur_id;
+            var add="#add_ing_" + cur_id;
+            var add_vit="#add_ing_" + cur_id + "_vital";
+            
+            //go through the remove
+            if($(remove).attr('checked'))
+                ings_to_be_removed.push(cur_id);
+            
+            //go through the additions
+            if($(add).attr('checked'))
+            {
+                ings_to_be_added.push(cur_id);
+                if($(add_vit).attr('checked'))
+                    vits_to_be_added[cur_id]=1;
+            }
+            else if($(add_vit).attr('checked'))
+                error=1;
+        }
+        for(var i=0; i<=parseInt(ids[num_ings], 10); i++)
+        {
+            if(!vits_to_be_added[i])
+                vits_to_be_added[i]=0;
+        }
+        
+        if(error)
+            alert("An Ingredient Cannot Be Vital if it is Not Included");
+        else if(ings_to_be_removed.length===0 && ings_to_be_added.length===0)
+        {
+            alert("You Have Not Made Any Changes");
+        }
+        else
+        {
+            //update the item
+            $.ajax({
+                type: "POST",
+                url: "update_ing_from_itm",
+                data: ({
+                    parent: $("#edit_item").val(),
+                    remove: ings_to_be_removed.join(';'),
+                    add: ings_to_be_added.join(';'),
+                    vits: vits_to_be_added.join(';')}),
+                    success: function(data)
+                            {
+                                $("#all").html(data)
+                            }
+            });
+        }
+    });
+    $("#delete_menu_button").click(function()
+    {
+        if(confirm("Are You Sure You Want To Delete This Item?"))
+        {
+            $.ajax({
+                type: "POST",
+                url: "delete_itm",
+                data: ({id: $("#edit_item").val()}),
+                success: function(data)
+                    {
+                        $("#all").html(data)
+                    }
+            });
+        }
+    });
+    
+    $(".item_names_public").click(function()
+    {
+        var val="#pub_ings_" + event.target.name;
+        $(val).toggle();
     });
 }
 
@@ -106,4 +376,18 @@ function sign_up_validator()
     }
     
     return 1;
+}
+
+//function updates the edit/remove section of the menu manger
+function edit_remove(cur_itm)
+{
+    $.ajax({
+        type: "POST",
+        url: "add_ing_to_itm",
+        data: ({current_item: cur_itm}),
+        success: function(data)
+                {
+                    $("#all").html(data)
+                }
+    });
 }

@@ -1,11 +1,13 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  name: MyString
-  title: MyString
-  content: MyText
+  id: 1
+  ingredient_name: MyString
+  amount_in_stock: 1
+  unit_of_stock: MyString
 
 two:
-  name: MyString
-  title: MyString
-  content: MyText
+  id: 1
+  ingredient_name: MyString
+  amount_in_stock: 1
+  unit_of_stock: MyString

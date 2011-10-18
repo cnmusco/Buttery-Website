@@ -10,36 +10,72 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110919235033) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "name"
     t.string   "title"
     t.text     "content"
+=======
+ActiveRecord::Schema.define(:version => 20111003225940) do
+
+  create_table "food_makeups", :force => true do |t|
+    t.integer  "food"
+    t.integer  "ingredient"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "ingredients", :force => true do |t|
+    t.string   "ingredient_name"
+    t.integer  "amount_in_stock"
+    t.string   "unit_of_stock"
+>>>>>>> 225cb5948677fa2102141b52a983227f09d0fb9e
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+<<<<<<< HEAD
   create_table "menus", :force => true do |t|
     t.string   "name"
     t.string   "title"
     t.text     "content"
+=======
+  create_table "makeups", :force => true do |t|
+    t.integer  "vital"
+    t.integer  "food"
+    t.integer  "ingredient"
+>>>>>>> 225cb5948677fa2102141b52a983227f09d0fb9e
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "parents", :force => true do |t|
+<<<<<<< HEAD
     t.string   "name"
     t.string   "title"
     t.text     "content"
+=======
+    t.string   "parent_name"
+    t.string   "class_of_food"
+    t.integer  "rgb"
+>>>>>>> 225cb5948677fa2102141b52a983227f09d0fb9e
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
+<<<<<<< HEAD
     t.string   "name"
     t.string   "title"
     t.text     "content"
+=======
+    t.string   "user_name"
+    t.string   "email_address"
+    t.string   "pwd"
+    t.integer  "banned"
+>>>>>>> 225cb5948677fa2102141b52a983227f09d0fb9e
     t.datetime "created_at"
     t.datetime "updated_at"
   end

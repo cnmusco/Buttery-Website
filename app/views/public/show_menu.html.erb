@@ -1,39 +1,43 @@
-<!-- NOTE TO SELF:  HARDCOPY ITEMS NOW BUT EVENTUALLY CALL DB TO AUTOMATICALLY INSERT-->
-<!-- NOTE TO SELF:  ALSO, ADD GREEN YELLOW, AND RED BUTTONS-->
+<h3>See What's In Stock and Place an Order</h3>
+<table cellspacing=0><tr><td> <div>Current Price: $</div> </td><td> <div id="public_price"> 0.00 </div> </td></tr></table>
 
 
-<h3>Grill Items</h3>
-<table border="0">
-    <% @menus.each do |parent| %>   
-    <tr>
-        <td><%= parent.item_name %></td>
-        <td><%= parent.parent_name %></td>
-    </tr>
-    <%end%>
-</table>
-
-&nbsp
-
-<h3>Micorwave Items</h3>
-<table border="0">
-    
-</table>
-
-&nbsp
-
-<h3>Frozen Items</h3>
-<table border="0">
-    <tr>
-        
-    </tr>
-</table>
-
-&nbsp
-
-<h3>Other</h3>
-<table border="0">
-    <tr>
-        
-    </tr>
-</table>
-
+<% clas="" %>
+<% @classes.each do |cla| %> 
+    <% if clas!=cla.class_of_food %>
+        <% clas=cla.class_of_food %>
+        <div class="classes">
+            <h3><%= clas %></h3>
+            <% @parents.each do |parent| %>
+                <% if parent.class_of_food==clas %>
+                    <button class="item_names_public" name=<%= parent.id %> id=public_items_<%= parent.rgb %>
+                                <% if parent.rgb==0 %>
+                                    <%= ' disabled="disabled"'%>
+                                <%end%>
+                                > <%= parent.parent_name %></button>
+                    <% if parent.rgb!=0 %>
+                        <table class="hidden_ings_pub" id=pub_ings_<%= parent.id %>>
+                            <% @makeups.each do |mkup| %>
+                                <% if mkup.food==parent.id %>
+                                    <tr><td> <div class=pub_ing_<%=@ings[mkup.ingredient].amount_in_stock %>> <%= @ings[mkup.ingredient].ingredient_name%> </td>
+                                     <td> <select id="ing_multiplier_<%= parent.id %>">
+                                    <% if @ings[mkup.ingredient].amount_in_stock!=0 %>
+                                            <% if mkup.vital==0 %>
+                                                <option value=0> 0 </option>
+                                            <%end%>
+                                            <option value=1> 1</option>
+                                            <option value=2> 2</option>
+                                            <option value=3> 3</option>
+                                    <%else%>
+                                        <option value=1> Out Of Stock </option>
+                                    <%end%>
+                                    </select></td></tr>
+                                <%end%>
+                            <%end%>
+                        </table>
+                    <%end%></br>
+                <%end%>
+            <%end%>
+        </div>
+    <% end %>
+<% end%>

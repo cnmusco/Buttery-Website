@@ -1,0 +1,20 @@
+
+<table class="worker_buttons">
+    <tr><td> <button id="up_inv">Update Inventory</button> </td> <td>&nbsp</td>
+        <td> <button id="orders">Orders</button> </td><td>&nbsp</td>
+        <td> <button id="new_stuff">Manage Menu</button> </td> </tr>
+</table>
+<div>&nbsp</div>
+<div>
+    <table>
+        <% @ingredients.each do |ing| %>
+            <tr> <td> <%= ing.ingredient_name %> </td><td>&nbsp</td>
+            <td> <div id=ais<%=ing.id%>> <%= ing.amount_in_stock %> </div> </td>
+            <td> <%= ing.unit_of_stock %> </td>
+            <td>&nbsp</td>
+            <td><button class=add_item id=<%=ing.id%>> + </button> </td>
+            <td><button class=sub_item id=<%=ing.id%>> - </button> </td>
+            <td><button class=empty_item id=<%=ing.id%>> Out Of Stock </button> </td></tr>
+        <%end%>
+    </table>
+</div>

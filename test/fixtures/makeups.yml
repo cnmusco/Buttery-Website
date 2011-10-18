@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  vital: 1
+  food: 1
+  ingredient: 1
+
+two:
+  vital: 1
+  food: 1
+  ingredient: 1

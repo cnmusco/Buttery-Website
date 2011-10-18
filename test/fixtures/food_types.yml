@@ -2,10 +2,10 @@
 
 one:
   parent_name: MyString
-  class_of_food: MyString
+  class: MyString
   rgb: 1
 
 two:
   parent_name: MyString
-  class_of_food: MyString
+  class: MyString
   rgb: 1

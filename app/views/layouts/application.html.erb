@@ -4,6 +4,7 @@
 <%=javascript_include_tag :defaults, "application1"%>
 </head>
 
+<div id="all">
 <div id="head-container">
 	<div id="header">
 		<h1>
@@ -15,7 +16,7 @@
 <div id="navigation-container">
     <div id="navigation">
                 <ul>
-                        <li><button id="home">Home</button</li>
+                        <li><button id="home">Home</button></li>
                         <li><button id="worker_view">Worker View</button></li>
                         <li><button id="log_in">Log In</button></li>
                             <div class="login" id="log_in_menu">
@@ -54,14 +55,7 @@
 			<div id="content">
                                 <%=yield%>
 			</div>
-			<div id="aside">
-				<h3>
-					About the Buttery
-				</h3>
-				<p>
-					Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan.
-				</p>
-			</div>
+			
 		</div>
 	</div>
 	<div id="footer-container">
@@ -70,6 +64,6 @@
 		</div>
 	</div>
 </div>
-
+</div>
 
 </html>

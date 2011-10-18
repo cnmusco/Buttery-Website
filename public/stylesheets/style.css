@@ -52,13 +52,34 @@
 
 #navigation li button:hover { background: #87CEEB; }
 
+#hidden_num_of_ings
+{
+    display:none;
+}
+#hidden_id_of_ings
+{
+    display:none;
+}
+#nmi_new_class
+{
+    display:none;
+}
+
+
 .login
 {
     position:absolute;
     top:120; 
-    float: left;
     background-color: #E5EECC;
     display:none;
+}
+#log_in_menu
+{
+    margin-left:165;
+}
+#sign_up_menu
+{
+    margin-left:225;
 }
 
 .invalid_login
@@ -66,6 +87,141 @@
     color: red;
     display: none;
 }
+
+#orders
+{
+    padding: 10px 53px;
+    background: #DCDCDC;
+}
+#orders:hover
+{
+    padding: 10px 53px;
+    background: #87CEEB;
+}
+
+#up_inv
+{
+    padding: 10px 20px;
+    background: #DCDCDC;
+}
+#up_inv:hover
+{
+    padding: 10px 20px;
+    background: #87CEEB;
+}
+#new_stuff
+{
+    padding: 10px 29px;
+    background: #DCDCDC;
+}
+#new_stuff:hover
+{
+    padding: 10px 29px;
+    background: #87CEEB;
+}
+
+
+.add_item
+{
+    padding: 10px 25px;
+    background: #DCDCDC;
+}
+.sub_item
+{
+    padding: 10px 25px;
+    background: #DCDCDC;
+}
+.empty_item
+{
+    padding: 10px 25px;
+    background: #DCDCDC;
+}
+
+.add_item:hover
+{
+    padding: 10px 25px;
+    background: #87CEEB;
+}
+.sub_item:hover
+{
+    padding: 10px 25px;
+    background: #87CEEB;
+}
+.empty_item:hover
+{
+    padding: 10px 25px;
+    background: #87CEEB;
+}
+
+.new_item
+{
+    padding: 7px 5px;
+    background: #DCDCDC;
+}
+.new_item:hover
+{
+    padding: 7px 5px;
+    background: #87CEEB;
+}
+.mmleft
+{
+    float:left;
+}
+.mmright
+{
+    float:left;
+    margin-left:20px
+}
+
+
+.classes
+{
+    float:left;
+    padding:5px 25px;
+}
+.public_price
+{
+    float:left;
+}
+.hidden_ings_pub
+{
+    display:none;
+}
+.item_names_public
+{
+    padding: 7px;
+    margin: 7px;
+    background: #DCDCDC;
+    width: 125px;
+}
+#public_items_0
+{
+    text-decoration: line-through;
+}
+#public_items_0:hover
+{
+    background: #FF4500;
+}
+#public_items_1:hover
+{
+    background: #FFD700;
+}
+#public_items_2:hover
+{
+    background: #7CFC00;
+}
+.pub_ing_0
+{
+    text-decoration: line-through;
+    color: red;
+}
+
+
+.worker_buttons
+{
+    margin: 0 auto;
+}
+
 
 #content-container
 {
@@ -92,7 +248,7 @@
 {
 	clear: left;
 	float: left;
-	width: 560px;
+	width: 900px;
 	padding: 20px 0;
 	margin: 0 0 0 30px;
 	display: inline;
@@ -100,16 +256,6 @@
 
 #content h2 { margin: 0; }
 
-#aside
-{
-	float: right;
-	width: 240px;
-	padding: 20px 0;
-	margin: 0 20px 0 0;
-	display: inline;
-}
-
-#aside h3 { margin: 0; }
 
 #footer-container
 {

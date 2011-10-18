@@ -2,7 +2,7 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: pierson_buttery
+  database: pierson_buttery4
   pool: 5
   username: root
   password: password
@@ -21,7 +21,6 @@ test:
     password: password
     socket:  /tmp/mysql.sock
     timeout: 5000
-
 
 production:
     adapter: mysql2
