@@ -164,16 +164,43 @@
     background: #87CEEB;
 }
 
+
+
 .classes
 {
     float:left;
     padding:5px 25px;
 }
+.public_price
+{
+    float:left;
+}
 .hidden_ings_pub
 {
     display:none;
 }
+.item_names_public
+{
+    padding: 7px;
+    margin: 7px;
+    background: #DCDCDC;
+    width: 125px;
+}
+.item_names_public:hover
+{
+    background: #87CEEB;
+}
+.pub_ing_0
+{
+    text-decoration: line-through;
+    color: red;
+}
 
+
+.worker_buttons
+{
+    margin: 0 auto;
+}
 
 
 #content-container

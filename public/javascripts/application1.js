@@ -72,24 +72,24 @@ function buttons()
     });
     
     
-     $("#sign_up_butt").click(function()
+    $("#sign_up_butt").click(function()
+    {
+        //If the other menu is showing, hide it before showing this one
+        if($("#log_in_menu").css("display")!="none")
         {
-            //If the other menu is showing, hide it before showing this one
-            if($("#log_in_menu").css("display")!="none")
-            {
-                $("#log_in_menu").hide();
-            }
-            
-            if($("#sign_up_menu").css("display")=="none")
-            {
-                $("#invalid_login1").hide();
-                $("#invalid_login2").hide();
-                $("#sign_up_menu").slideDown('fast', function(){});
-            }
-            else
-            {
-                $("#sign_up_menu").slideUp('fast', function(){});
-            }
+            $("#log_in_menu").hide();
+        }
+        
+        if($("#sign_up_menu").css("display")=="none")
+        {
+            $("#invalid_login1").hide();
+            $("#invalid_login2").hide();
+            $("#sign_up_menu").slideDown('fast', function(){});
+        }
+        else
+        {
+            $("#sign_up_menu").slideUp('fast', function(){});
+        }
     });
     
     $("#sign_up_button").click(function()
