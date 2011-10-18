@@ -1,6 +1,5 @@
 <h3>See What's In Stock and Place an Order</h3>
 
-<table><tr><td> 
     <% clas="" %>
     <% @classes.each do |cla| %> 
         <% if clas!=cla.class_of_food %>
@@ -50,5 +49,4 @@
             </div>
         <% end %>
     <% end%>
-</td></tr>
-<tr><td> <button id="submit_order">Submit Order</button> </td></tr></table>
+<button id="submit_order">Submit Order</button>
