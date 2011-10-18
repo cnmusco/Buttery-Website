@@ -35,5 +35,12 @@ class PublicController < ApplicationController
 
         @classes=Parent.find(:all, :order=>'class_of_food')
         @parents=Parent.all
+        @makeups=Makeup.find(:all, :order=>'vital DESC')
+        
+        #create array of ings with id as hash
+        @ings=Array.new
+        Ingredient.all.each do |ing|
+            @ings[ing.id]=ing
+        end
     end
 end

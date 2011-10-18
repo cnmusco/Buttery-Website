@@ -4,15 +4,26 @@
     <% if clas!=cla.class_of_food %>
         <% clas=cla.class_of_food %>
         <h3><%= clas %></h3>
-        <table border="0">
-            <% @parents.each do |parent| %>
-                <% if parent.class_of_food==clas %>
-                    <tr>
-                        <td><%= parent.parent_name %></td>
-                        <td><%= parent.rgb %></td>
-                    </tr>
-                <%end%>
+        <% @parents.each do |parent| %>
+            <% if parent.class_of_food==clas %>
+                <div class="item_names"> <%= parent.parent_name %>
+                <%= parent.rgb %></div>
+                <div class="hidden_ings" id=pub_inngs_<%= parent.id %>>
+                    <% @makeups.each do |mkup| %>
+                        <% if mkup.food==parent.id %>
+                            <%= @ings[mkup.ingredient].ingredient_name %>
+                                <select id="ing_multiplier_<%= parent.id %>">
+                                    <% if mkup.vital==0 %>
+                                        <option value=0> 0 </option>
+                                    <%end%>
+                                    <option value=1> 1</option>
+                                    <option value=2> 2</option>
+                                    <option value=3> 3</option>
+                                </select>
+                        <%end%>
+                    <%end%>
+                </div>
             <%end%>
-        </table>
+        <%end%>
     <% end %>
 <% end%>
