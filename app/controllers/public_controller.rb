@@ -34,7 +34,7 @@ class PublicController < ApplicationController
         end
 
         @classes=Parent.find(:all, :order=>'class_of_food')
-        @parents=Parent.all
+        @parents=Parent.find(:all, :order=>'rgb DESC')
         @makeups=Makeup.find(:all, :order=>'vital DESC')
         
         #create array of ings with id as hash
