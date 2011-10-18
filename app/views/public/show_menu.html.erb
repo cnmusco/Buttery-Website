@@ -1,6 +1,4 @@
 <h3>See What's In Stock and Place an Order</h3>
-<table cellspacing=0><tr><td> <div>Current Price: $</div> </td><td> <div id="public_price"> 0.00 </div> </td></tr></table>
-
 
 <% clas="" %>
 <% @classes.each do |cla| %> 
@@ -16,23 +14,33 @@
                                 <%end%>
                                 > <%= parent.parent_name %></button>
                     <% if parent.rgb!=0 %>
+                        <% empties=Array.new %>
                         <table class="hidden_ings_pub" id=pub_ings_<%= parent.id %>>
+                            <tr><th> Item </th> <th> Servings </th></tr>
                             <% @makeups.each do |mkup| %>
                                 <% if mkup.food==parent.id %>
-                                    <tr><td> <div class=pub_ing_<%=@ings[mkup.ingredient].amount_in_stock %>> <%= @ings[mkup.ingredient].ingredient_name%> </td>
-                                     <td> <select id="ing_multiplier_<%= parent.id %>">
                                     <% if @ings[mkup.ingredient].amount_in_stock!=0 %>
+                                        <tr><td> <div class=pub_ing_<%=@ings[mkup.ingredient].amount_in_stock %>> <%= @ings[mkup.ingredient].ingredient_name%> </div></td>
+                                         <td> <select id="ing_multiplier_<%= parent.id %>">
                                             <% if mkup.vital==0 %>
                                                 <option value=0> 0 </option>
                                             <%end%>
                                             <option value=1> 1</option>
-                                            <option value=2> 2</option>
-                                            <option value=3> 3</option>
+                                            <% if @ings[mkup.ingredient].amount_in_stock >1 %>
+                                                <option value=2> 2</option>
+                                            <%end%>
+                                            <% if @ings[mkup.ingredient].amount_in_stock >2 %>
+                                                <option value=3> 3</option>
+                                            <%end%>
+                                            </select></td></tr>
                                     <%else%>
-                                        <option value=1> Out Of Stock </option>
+                                        <% empties.push(@ings[mkup.ingredient]) %>
                                     <%end%>
-                                    </select></td></tr>
                                 <%end%>
+                            <%end%>
+                            <% empties.each do |ing| %>
+                                <tr><td> <div class=pub_ing_0> <%= ing.ingredient_name%> </div></td>
+                                         <td> Out Of Stock </td></tr>
                             <%end%>
                         </table>
                     <%end%></br>
@@ -41,3 +49,4 @@
         </div>
     <% end %>
 <% end%>
+<button id="submit_order">Submit Order</button>

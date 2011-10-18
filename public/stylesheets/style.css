@@ -215,6 +215,10 @@
     text-decoration: line-through;
     color: red;
 }
+#submit_order
+{
+    float:right;
+}
 
 
 .worker_buttons
