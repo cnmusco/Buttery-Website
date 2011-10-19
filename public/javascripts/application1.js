@@ -348,6 +348,33 @@ function buttons()
         var val="#pub_ings_" + event.target.name;
         $(val).toggle();
     });
+    
+    
+    //submit button on public page
+    $("#submit_order").click(function()
+    {
+        var order=new Array();
+        var last_parent='';
+        $('.pub_ings_in_itms').each(function()
+        {
+            if($(this).is(":visible"))
+            {
+                var parent=$(this).attr('id');
+                var value=$(this).val();
+                if(last_parent!=parent)
+                {
+                    var tmp=order.pop();
+                    if(tmp!=('|'+last_parent) && tmp)
+                        order.push(tmp);
+                    order.push('|'+parent);
+                }
+                if(value!=0)
+                    order.push($(this).attr('name')+':'+value);
+                last_parent=parent;
+            }
+        });
+        alert(order);
+    });
 }
 
 function sign_up_validator()
