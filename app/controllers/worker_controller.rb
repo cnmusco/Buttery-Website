@@ -7,7 +7,6 @@ class WorkerController < ApplicationController
     def add_inv
         tmp=Ingredient.find(params[:id]).amount_in_stock
         Ingredient.find(params[:id]).update_attributes(:amount_in_stock=>tmp+1)
-        Notifier.signup_email("mikenyy3@gmail.com").deliver
     end
     def sub_inv
         tmp=Ingredient.find(params[:id]).amount_in_stock
