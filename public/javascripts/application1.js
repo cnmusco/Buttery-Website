@@ -369,11 +369,11 @@ function buttons()
                     order.push('|'+parent);
                 }
                 if(value!=0)
-                    order.push($(this).attr('name')+':'+value);
+                    order.push(','+$(this).attr('name')+':'+value);
                 last_parent=parent;
             }
         });
-        alert(order);
+        alert(order.join('')); //NEED TO JOIN AND ADD TO DB
     });
 }
 

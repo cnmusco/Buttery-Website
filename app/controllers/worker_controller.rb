@@ -7,11 +7,21 @@ class WorkerController < ApplicationController
     def add_inv
         tmp=Ingredient.find(params[:id]).amount_in_stock
         Ingredient.find(params[:id]).update_attributes(:amount_in_stock=>tmp+1)
+        Notifier.signup_email("mikenyy3@gmail.com").deliver
     end
     def sub_inv
         tmp=Ingredient.find(params[:id]).amount_in_stock
         if tmp != 0
             Ingredient.find(params[:id]).update_attributes(:amount_in_stock=>tmp-1)
+            render :update do |page|
+                page<< "$('#ais'+ing_id).html('#{tmp}');"
+            end
+        else
+        #return javascript
+            render :update do |page|
+                page<< '$("#ais"+ing_id).html(0+"");'
+                page<< 'alert("The Ingredient Is Not Available");'
+            end
         end
     end
     def empty_inv
