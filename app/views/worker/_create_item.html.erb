@@ -1,0 +1,51 @@
+<div id=new_item>
+    <div class="mmleft">
+        <h2> Create a New Menu Item </h2>
+        <table>
+            <tr> <table><tr><td><p>Name of New Item: </p></td><td><input id=nmi_name type=text> </td></tr></table></tr>
+            <tr><td><p>Select a Class</td>
+                <td> <select id="add_class">
+                <% clas="" %>
+                <% @classes.each do |cla| %> 
+                    <% if clas!=cla.class_of_food %>
+                        <% clas=cla.class_of_food %>
+                        <option value=<%= clas %>> <%= clas %> </option>
+                    <%end%>
+                <%end%>
+                <option value=other> Other </option>
+            </select></td></tr>
+            <tr><input id=nmi_new_class type=text></tr>
+            <tr> <td><p> Select The Ingredients Involved with the Item</p></td></tr>
+            <table>
+                <tr> <th>Check Ingredients</th> <th>Check Vital Ingredients</th> </tr>
+                <%@counter=0%>
+                <% @ings.each do |ing| %>
+                    <tr><td> <input id=nmi_ing_<%= ing.id %> type=checkbox>  <%= ing.ingredient_name %></input> </td>
+                        <td> <input id=nmi_ing_<%= ing.id %>_vital type=checkbox></input> </td></tr>
+                    <%@counter=@counter+1%>
+                <% end %>
+            </table>
+            <tr><td><button id=nmi_submit>Add Item</button></td></tr>
+        </table>
+    </div>
+
+    <div class="mmright">
+        <h2> Add a New Ingredient </h2>
+        <table>
+            <tr> <td><p>Name of Ingredient: </p></td><td><input id=ni_name type=text> </td></tr>
+            <tr> <td><p>Initial Quantity: </p></td><td><input id=ni_amount type=text> </td></tr>
+            <tr> <td><p>Unit of Measurement: </p></td><td><input id=ni_unit type=text> </td></tr>
+            <tr><td><button id=ni_submit>Add Ingredient</button></td></tr>
+        </table>
+
+        <h2>&nbsp</h2>
+
+            <h2> Edit/Delete A Menu Item </h2>
+
+            <div id="edit_items">
+                <%= render "edit_item" %>
+            </div>
+            <button id=update_menu_button>Save Changes</button> 
+            <button id=delete_menu_button>Delete Item</button>
+    </div>
+</div>

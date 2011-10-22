@@ -120,7 +120,6 @@ function buttons()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
-        $(ais).html(parseInt($(ais).html(), 10)+1+'');
         $.ajax({
             type: "POST",
             url: "add_inv",
@@ -132,8 +131,6 @@ function buttons()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
-        if(parseInt($(ais).html(), 10) >0)
-            $(ais).html(parseInt($(ais).html(), 10)-1+'');
         $.ajax({
             type: "POST",
             url: "sub_inv",
@@ -207,15 +204,16 @@ function buttons()
                 }
                 $.ajax({
                     type: "POST",
-                    url: "add_itm",
+                    url: "add_items",
                     data: ({
                         name: name,
                         clas: clas,
                         ings: ing_send.join(';'),
+                        flag: 4,
                         vits: vit_send.join(';')}),
                         success: function(data)
                                 {
-                                    $("#all").html(data)
+                                    $("#edit_items").html(data);
                                 }
                 });
                 $("#nmi_name").val("")
@@ -244,18 +242,23 @@ function buttons()
         {
             $.ajax({
                 type: "POST",
-                url: "add_ing",
+                url: "add_items",
                 data: ({
                     name: name,
+                    flag: 5,
+                    current_item: $("#edit_item").val(),
                     amount: quant,
                     unit: unit}),
                     success: function(data)
                             {
-                                $("#all").html(data)
+                                $("#new_item").html(data);
                             }
             });
             
-            alert(name + " have been added to the inventory");
+            $("#ni_name").val('');
+            $("#ni_amount").val('');
+            $("#ni_unit").val('');
+            alert(name + " has been added to the inventory");
         }
     });
     
@@ -314,15 +317,17 @@ function buttons()
             //update the item
             $.ajax({
                 type: "POST",
-                url: "update_ing_from_itm",
+                url: "add_items",
                 data: ({
-                    parent: $("#edit_item").val(),
+                    flag: 2,
+                    current_item: $("#edit_item").val(),
                     remove: ings_to_be_removed.join(';'),
                     add: ings_to_be_added.join(';'),
                     vits: vits_to_be_added.join(';')}),
                     success: function(data)
                             {
-                                $("#all").html(data)
+                                $("#edit_items").html(data)
+                                alert($('#current_itm_'+$("#edit_item").val()).attr('class')+' was updated');
                             }
             });
         }
@@ -333,11 +338,13 @@ function buttons()
         {
             $.ajax({
                 type: "POST",
-                url: "delete_itm",
-                data: ({id: $("#edit_item").val()}),
+                url: "add_items",
+                data: ({current_item: $("#edit_item").val(),
+                        flag: 3}),
                 success: function(data)
                     {
-                        $("#all").html(data)
+                        alert($('#current_itm_'+$("#edit_item").val()).attr('class')+' was deleted');
+                        $("#edit_items").html(data)
                     }
             });
         }
@@ -410,11 +417,12 @@ function edit_remove(cur_itm)
 {
     $.ajax({
         type: "POST",
-        url: "add_ing_to_itm",
-        data: ({current_item: cur_itm}),
+        url: "add_items",
+        data: ({flag: 1,
+                current_item: cur_itm}),
         success: function(data)
                 {
-                    $("#all").html(data)
+                    $("#edit_items").html(data);
                 }
     });
 }
