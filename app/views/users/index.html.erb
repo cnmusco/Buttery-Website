@@ -2,11 +2,17 @@
 
 <table>
   <tr>
-    <th>Id</th>
-    <th>User name</th>
-    <th>Email address</th>
-    <th>Pwd</th>
-    <th>Banned</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Username</th>
+    <th>Hash</th>
+    <th>Password</th>
+    <th>Worker</th>
+    <th>Warnings</th>
+    <th>Online orders</th>
+    <th>Ban</th>
+    <th>Activated</th>
+    <th>Year</th>
     <th></th>
     <th></th>
     <th></th>
@@ -14,11 +20,17 @@
 
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.id %></td>
-    <td><%= user.user_name %></td>
-    <td><%= user.email_address %></td>
-    <td><%= user.pwd %></td>
-    <td><%= user.banned %></td>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.username %></td>
+    <td><%= user.hash %></td>
+    <td><%= user.password %></td>
+    <td><%= user.worker %></td>
+    <td><%= user.warnings %></td>
+    <td><%= user.online_orders %></td>
+    <td><%= user.ban %></td>
+    <td><%= user.activated %></td>
+    <td><%= user.year %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>

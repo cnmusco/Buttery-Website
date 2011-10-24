@@ -246,7 +246,7 @@ function buttons()
                 data: ({
                     name: name,
                     flag: 5,
-                    current_item: $("#edit_item").val(),
+                    current_item: $("#edit_item_changer").val(),
                     amount: quant,
                     unit: unit}),
                     success: function(data)
@@ -262,9 +262,9 @@ function buttons()
         }
     });
     
-    $("#edit_item").change(function()
+    $("#edit_item_changer").change(function()
     {
-        edit_remove($("#edit_item").val());
+        edit_remove($("#edit_item_changer").val());
     });
     
     
@@ -320,14 +320,14 @@ function buttons()
                 url: "add_items",
                 data: ({
                     flag: 2,
-                    current_item: $("#edit_item").val(),
+                    current_item: $("#edit_item_changer").val(),
                     remove: ings_to_be_removed.join(';'),
                     add: ings_to_be_added.join(';'),
                     vits: vits_to_be_added.join(';')}),
                     success: function(data)
                             {
                                 $("#edit_items").html(data)
-                                alert($('#current_itm_'+$("#edit_item").val()).attr('class')+' was updated');
+                                alert($('#current_itm_'+$("#edit_item_changer").val()).attr('class')+' was updated');
                             }
             });
         }
@@ -339,11 +339,11 @@ function buttons()
             $.ajax({
                 type: "POST",
                 url: "add_items",
-                data: ({current_item: $("#edit_item").val(),
+                data: ({current_item: $("#edit_item_changer").val(),
                         flag: 3}),
                 success: function(data)
                     {
-                        alert($('#current_itm_'+$("#edit_item").val()).attr('class')+' was deleted');
+                        alert($('#current_itm_'+$("#edit_item_changer").val()).attr('class')+' was deleted');
                         $("#edit_items").html(data)
                     }
             });

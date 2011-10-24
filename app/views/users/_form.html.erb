@@ -12,24 +12,48 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br />
-    <%= f.text_field :id %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :user_name %><br />
-    <%= f.text_field :user_name %>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :email_address %><br />
-    <%= f.text_field :email_address %>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
   </div>
   <div class="field">
-    <%= f.label :pwd %><br />
-    <%= f.text_field :pwd %>
+    <%= f.label :hash %><br />
+    <%= f.text_field :hash %>
   </div>
   <div class="field">
-    <%= f.label :banned %><br />
-    <%= f.text_field :banned %>
+    <%= f.label :password %><br />
+    <%= f.text_area :password %>
+  </div>
+  <div class="field">
+    <%= f.label :worker %><br />
+    <%= f.text_field :worker %>
+  </div>
+  <div class="field">
+    <%= f.label :warnings %><br />
+    <%= f.text_field :warnings %>
+  </div>
+  <div class="field">
+    <%= f.label :online_orders %><br />
+    <%= f.text_field :online_orders %>
+  </div>
+  <div class="field">
+    <%= f.label :ban %><br />
+    <%= f.text_field :ban %>
+  </div>
+  <div class="field">
+    <%= f.label :activated %><br />
+    <%= f.text_field :activated %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.text_field :year %>
   </div>
   <div class="actions">
     <%= f.submit %>
