@@ -1,8 +1,6 @@
 Buttery::Application.routes.draw do
 
 
-  resources :user1s
-
   resources :users
 
   resources :makeups
@@ -70,6 +68,8 @@ Buttery::Application.routes.draw do
    post 'worker/add_inv'
    post 'worker/sub_inv'
    post 'worker/empty_inv'
+   post 'user_accounts/signup'
+   post 'user_accounts/login'
 
   # See how all your routes lay out with "rake routes"
 

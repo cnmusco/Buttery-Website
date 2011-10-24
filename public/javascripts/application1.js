@@ -103,8 +103,21 @@ function buttons()
         }
         else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val() && $("#username1").val())
         {
+            $.ajax({
+            type: "POST",
+            url: "/user_accounts/signup",
+            data: ({email: $("#email1").val(),
+                    username: $("#username1").val(''),
+                    pwd: $("#pwd1").val('')}),
+            success: function(data)
+                {
+                    alert("valid signup");
+                    $("#email1").val('');
+                    $("#pwd0").val('');
+                    $("#pwd1").val('');
+                    $("#username1").val('');
+                }});
             $("#sign_up_menu").slideUp('fast', function(){});
-            alert("valid signup");
         }
         else
         {
