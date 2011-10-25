@@ -403,21 +403,6 @@ function buttons()
         });
         alert(order.join('')); //NEED TO JOIN AND ADD TO DB
     });
-    
-    
-    
-    //buton to activate account
-    $(".activation_button").click(function()
-    {
-        var vals=this.id.split('|')
-        alert(vals);
-        $.ajax({
-        type: "POST",
-        url: "/user_accounts/activation",
-        data: ({hash: vals[0],
-                username: vals[1]})
-        });
-    });
 }
 
 function sign_up_validator()
