@@ -84,6 +84,12 @@ function buttons()
         {
             $("#invalid_login1").hide();
             $("#invalid_login2").hide();
+            $("#invalid_login3").hide();
+            $("#invalid_login4").hide();
+            $('#email1').val('');
+            $('#pwd0').val('');
+            $('#pwd1').val('');
+            $('#username1').val('');
             $("#sign_up_menu").slideDown('fast', function(){});
         }
         else
@@ -96,10 +102,12 @@ function buttons()
     {
         $("#invalid_login1").hide();
         $("#invalid_login2").hide();
+        $("#invalid_login3").hide();
+        $("#invalid_login4").hide();
         
         if(sign_up_validator())
         {
-            $("#invalid_login2").show()
+            $("#invalid_login2").show();
         }
         else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val() && $("#username1").val())
         {
@@ -107,17 +115,9 @@ function buttons()
             type: "POST",
             url: "/user_accounts/signup",
             data: ({email: $("#email1").val(),
-                    username: $("#username1").val(''),
-                    pwd: $("#pwd1").val('')}),
-            success: function(data)
-                {
-                    alert("valid signup");
-                    $("#email1").val('');
-                    $("#pwd0").val('');
-                    $("#pwd1").val('');
-                    $("#username1").val('');
-                }});
-            $("#sign_up_menu").slideUp('fast', function(){});
+                    username: $("#username1").val(),
+                    pwd: $("#pwd1").val()})
+            });
         }
         else
         {

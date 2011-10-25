@@ -13,6 +13,10 @@
 }
 
 #header h1 { margin: 0; }
+#header div
+{
+    float:right;
+}
 
 #navigation-container
 {
@@ -80,6 +84,11 @@
 #sign_up_menu
 {
     margin-left:225;
+}
+#forgot_pwd
+{
+    size:50%;
+    float:right;
 }
 
 .invalid_login
@@ -215,9 +224,13 @@
     text-decoration: line-through;
     color: red;
 }
+#all_ing_0
+{
+    font-size:80%;
+}
 #submit_order
 {
-    margin-left: 750px
+    margin-left: 750px;
 }
 
 
