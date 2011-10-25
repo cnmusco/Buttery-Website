@@ -6,101 +6,10 @@
 
 <h2>&nbsp</h2>
 
-<div class="mmleft">
-<h2> Create a New Menu Item </h2>
-<table>
-    <tr> <table><tr><td><p>Name of New Item: </p></td><td><input id=nmi_name type=text> </td></tr></table></tr>
-    <tr><td><p>Select a Class</td>
-        <td> <select id="add_class">
-        <% clas="" %>
-        <% @classes.each do |cla| %> 
-            <% if clas!=cla.class_of_food %>
-                <% clas=cla.class_of_food %>
-                <option value=<%= clas %>> <%= clas %> </option>
-            <%end%>
-        <%end%>
-        <option value=other> Other </option>
-    </select></td></tr>
-    <tr><input id=nmi_new_class type=text></tr>
-    <tr> <td><p> Select The Ingredients Involved with the Item</p></td></tr>
-    <table>
-        <tr> <th>Check Ingredients</th> <th>Check Vital Ingredients</th> </tr>
-        <%@counter=0%>
-        <% @ings.each do |ing| %>
-            <tr><td> <input id=nmi_ing_<%= ing.id %> type=checkbox>  <%= ing.ingredient_name %></input> </td>
-                <td> <input id=nmi_ing_<%= ing.id %>_vital type=checkbox></input> </td></tr>
-            <%@counter=@counter+1%>
-        <% end %>
-    </table>
-    <tr><td><button id=nmi_submit>Add Item</button></td></tr>
-</table>
-</div>
 
-<div class="mmright">
-<h2> Add a New Ingredient </h2>
-<table>
-    <tr> <td><p>Name of Ingredient: </p></td><td><input id=ni_name type=text> </td></tr>
-    <tr> <td><p>Initial Quantity: </p></td><td><input id=ni_amount type=text> </td></tr>
-    <tr> <td><p>Unit of Measurement: </p></td><td><input id=ni_unit type=text> </td></tr>
-    <tr><td><button id=ni_submit>Add Ingredient</button></td></tr>
-</table>
+<%= render "create_item" %>
 
-<h2>&nbsp</h2>
 
-<h2> Edit/Delete A Menu Item </h2>
-
-<table>
-    <tr><td>Current Item: </td><td> 
-            <select id="edit_item">
-            <% @menu_items.each do |men| %>
-                <option 
-                    <% if men.id==Integer(@current_item) %>
-                        <%= ' selected="selected"' %>
-                    <%end%>
-                    value=<%= men.id %>>
-                    <%= men.parent_name %> </option>
-            <%end%>
-</select> </td></tr>
-<tr><th> Remove Ingredients: </th></tr>
-     <%@makeups.each do |mkup| %>
-         <%if mkup.food == Integer(@current_item) %>
-             <%@ings.each do |ing1| %>
-                 <%if ing1.id==mkup.ingredient %>
-                     <tr><td> <%= ing1.ingredient_name%> </td>
-                        <td> <input id=remove_ing_<%=ing1.id%>  type=checkbox> </input>  </td></tr>
-                 <%end%>
-             <%end%>
-         <%end%>
-    <%end%>
-    
-<tr><td>&nbsp</td></tr>
-
-<tr><th> Add Ingredients: </th><th> Included/Vital </th></tr>
-    <% all_ings=Array.new %>
-     <% @ings.each do |ing1| %>
-         <% all_ings.push(ing1) %>
-     <% end %>
-
-     <% @makeups.each do |mkup| %>
-         <% if mkup.food == Integer(@current_item) %>
-             <% @ings.each do |ing1| %>
-                     <% if ing1.id==mkup.ingredient %>
-                         <% all_ings.delete(ing1) %>
-                     <% end %>
-                 <% end %>
-         <% end %>
-     <% end %>
-     <% all_ings.each do |ing| %>
-       <tr><td> <%= ing.ingredient_name %>  </td><td> 
-            <input id=add_ing_<%= ing.id %>  type=checkbox> </input>
-            <input id=add_ing_<%= ing.id %>_vital type=checkbox> </input> </td></tr>
-    <% end %>
-<tr><td>&nbsp</td></tr>
-</table>
-
-<button id=update_menu_button>Save Changes</button> 
-<button id=delete_menu_button>Delete Item</button>
-</div>
 
 <div id=hidden_num_of_ings> <%= @counter %> </div>
 <div id=hidden_id_of_ings> <% @ing_id.each do |ing| %> <%=ing.id%> <%end%></div>

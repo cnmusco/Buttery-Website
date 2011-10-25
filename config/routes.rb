@@ -1,6 +1,8 @@
 Buttery::Application.routes.draw do
 
 
+  resources :users
+
   resources :makeups
   resources :users
   resources :parents
@@ -62,14 +64,13 @@ Buttery::Application.routes.draw do
    match 'worker/manage_menu' => 'worker#add_items'
    match 'worker/add_ing_to_itm' => 'worker#add_ing_to_itm'
    match 'worker/update_ing_from_itm' => 'worker#update_ing_from_itm'
+   match 'users_controls/activate_account/*username/*hash' => 'user_accounts#activation'
+   post 'worker/add_items'
    post 'worker/add_inv'
    post 'worker/sub_inv'
    post 'worker/empty_inv'
-   post 'worker/add_itm'
-   post 'worker/add_ing'
-   post 'worker/delete_itm'
-   post 'worker/add_ing_to_itm'
-   post 'worker/update_ing_from_itm'
+   post 'user_accounts/signup'
+   post 'user_accounts/login'
 
   # See how all your routes lay out with "rake routes"
 

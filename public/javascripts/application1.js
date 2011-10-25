@@ -51,6 +51,9 @@ function buttons()
         if($("#log_in_menu").css("display")=="none")
         {
             $("#invalid_login").hide();
+            $("#invalid_login5").hide();
+            $('#pwd').val('');
+            $('#username').val('');
             $("#log_in_menu").slideDown('fast', function(){});
         }
         else
@@ -63,7 +66,12 @@ function buttons()
     {
         if($("#username").val() && $("#pwd").val())
         {
-            $("#log_in_menu").slideUp('fast', function(){});
+            $.ajax({
+            type: "POST",
+            url: "/user_accounts/login",
+            data: ({username: $("#username").val(),
+                    pwd: $("#pwd").val()})
+            });
         }
         else
         {
@@ -84,6 +92,12 @@ function buttons()
         {
             $("#invalid_login1").hide();
             $("#invalid_login2").hide();
+            $("#invalid_login3").hide();
+            $("#invalid_login4").hide();
+            $('#email1').val('');
+            $('#pwd0').val('');
+            $('#pwd1').val('');
+            $('#username1').val('');
             $("#sign_up_menu").slideDown('fast', function(){});
         }
         else
@@ -96,15 +110,22 @@ function buttons()
     {
         $("#invalid_login1").hide();
         $("#invalid_login2").hide();
+        $("#invalid_login3").hide();
+        $("#invalid_login4").hide();
         
         if(sign_up_validator())
         {
-            $("#invalid_login2").show()
+            $("#invalid_login2").show();
         }
         else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val() && $("#username1").val())
         {
-            $("#sign_up_menu").slideUp('fast', function(){});
-            alert("valid signup");
+            $.ajax({
+            type: "POST",
+            url: "/user_accounts/signup",
+            data: ({email: $("#email1").val(),
+                    username: $("#username1").val(),
+                    pwd: $("#pwd1").val()})
+            });
         }
         else
         {
@@ -120,7 +141,6 @@ function buttons()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
-        $(ais).html(parseInt($(ais).html(), 10)+1+'');
         $.ajax({
             type: "POST",
             url: "add_inv",
@@ -132,8 +152,6 @@ function buttons()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
-        if(parseInt($(ais).html(), 10) >0)
-            $(ais).html(parseInt($(ais).html(), 10)-1+'');
         $.ajax({
             type: "POST",
             url: "sub_inv",
@@ -207,15 +225,16 @@ function buttons()
                 }
                 $.ajax({
                     type: "POST",
-                    url: "add_itm",
+                    url: "add_items",
                     data: ({
                         name: name,
                         clas: clas,
                         ings: ing_send.join(';'),
+                        flag: 4,
                         vits: vit_send.join(';')}),
                         success: function(data)
                                 {
-                                    $("#all").html(data)
+                                    $("#edit_items").html(data);
                                 }
                 });
                 $("#nmi_name").val("")
@@ -244,24 +263,29 @@ function buttons()
         {
             $.ajax({
                 type: "POST",
-                url: "add_ing",
+                url: "add_items",
                 data: ({
                     name: name,
+                    flag: 5,
+                    current_item: $("#edit_item_changer").val(),
                     amount: quant,
                     unit: unit}),
                     success: function(data)
                             {
-                                $("#all").html(data)
+                                $("#new_item").html(data);
                             }
             });
             
-            alert(name + " have been added to the inventory");
+            $("#ni_name").val('');
+            $("#ni_amount").val('');
+            $("#ni_unit").val('');
+            alert(name + " has been added to the inventory");
         }
     });
     
-    $("#edit_item").change(function()
+    $("#edit_item_changer").live('change', function()
     {
-        edit_remove($("#edit_item").val());
+        edit_remove($("#edit_item_changer").val());
     });
     
     
@@ -314,15 +338,17 @@ function buttons()
             //update the item
             $.ajax({
                 type: "POST",
-                url: "update_ing_from_itm",
+                url: "add_items",
                 data: ({
-                    parent: $("#edit_item").val(),
+                    flag: 2,
+                    current_item: $("#edit_item_changer").val(),
                     remove: ings_to_be_removed.join(';'),
                     add: ings_to_be_added.join(';'),
                     vits: vits_to_be_added.join(';')}),
                     success: function(data)
                             {
-                                $("#all").html(data)
+                                $("#edit_items").html(data)
+                                alert($('#current_itm_'+$("#edit_item_changer").val()).attr('class')+' was updated');
                             }
             });
         }
@@ -333,11 +359,13 @@ function buttons()
         {
             $.ajax({
                 type: "POST",
-                url: "delete_itm",
-                data: ({id: $("#edit_item").val()}),
+                url: "add_items",
+                data: ({current_item: $("#edit_item_changer").val(),
+                        flag: 3}),
                 success: function(data)
                     {
-                        $("#all").html(data)
+                        alert($('#current_itm_'+$("#edit_item_changer").val()).attr('class')+' was deleted');
+                        $("#edit_items").html(data)
                     }
             });
         }
@@ -369,11 +397,11 @@ function buttons()
                     order.push('|'+parent);
                 }
                 if(value!=0)
-                    order.push($(this).attr('name')+':'+value);
+                    order.push(','+$(this).attr('name')+':'+value);
                 last_parent=parent;
             }
         });
-        alert(order);
+        alert(order.join('')); //NEED TO JOIN AND ADD TO DB
     });
 }
 
@@ -410,11 +438,12 @@ function edit_remove(cur_itm)
 {
     $.ajax({
         type: "POST",
-        url: "add_ing_to_itm",
-        data: ({current_item: cur_itm}),
+        url: "add_items",
+        data: ({flag: 1,
+                current_item: cur_itm}),
         success: function(data)
                 {
-                    $("#all").html(data)
+                    $("#edit_items").html(data);
                 }
     });
 }
