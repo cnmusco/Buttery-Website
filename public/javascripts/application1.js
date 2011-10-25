@@ -283,7 +283,7 @@ function buttons()
         }
     });
     
-    $("#edit_item_changer").change(function()
+    $("#edit_item_changer").live('change', function()
     {
         edit_remove($("#edit_item_changer").val());
     });

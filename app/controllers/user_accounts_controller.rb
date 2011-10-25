@@ -3,7 +3,7 @@ class UserAccountsController < ApplicationController
     
     def signup
         user=User.where(:email => params[:email])[0]
-        
+                                                                    #CHECK FO CASE OF USERNAME ALREADY EXISTING
         #email is not in db
         if user==nil
             render :update do |page|

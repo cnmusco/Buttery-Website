@@ -4,7 +4,7 @@
             <% @menu_items.each do |men| %>
                 <option 
                     <% if men.id==Integer(@current_item) %>
-                        <%= ' selected=selected' %>
+                        selected=selected
                     <%end%>
                     value=<%= men.id %> id=current_itm_<%= men.id %> class=<%= men.parent_name %>>
                     <%= men.parent_name %> </option>
