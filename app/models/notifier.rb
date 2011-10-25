@@ -6,7 +6,7 @@ class Notifier < ActionMailer::Base
     mail( :to => user.email, 
           :subject => "Please Confirm Your Signup with the Buttery Web Site",
           :body => user.name+"\nPlease click the following link to confirm your signup\n"+
-                    user.hash)
+                    user.username +'/'+ user.hash)
           
   end
 end

@@ -41,14 +41,22 @@ class UserAccountsController < ApplicationController
     
     #controller for activation email
     def activation
+        user=User.where(:username => params[:username])[0]
         
+        if user==nil || Integer(user[:hash])!=Integer(params[:hash])
+            render :update do |page|
+                page<< "alert('Invalid Code');"
+            end
+        else
+            user.activated=1
+            user.save
+                            #TODO ALSO LOG USER IN
+        end
     end
     
     #controller for login
     def login
         user=User.where(:username => params[:username])[0]
-        #user=User.where(:username => 'mikenyy3')[0]
-        #user[:password]!=hash_pwd('foxalox2')
         
         #is the username valid?  is the password correct?
         if user==nil || user[:password]!=hash_pwd(params[:pwd])
