@@ -51,6 +51,9 @@ function buttons()
         if($("#log_in_menu").css("display")=="none")
         {
             $("#invalid_login").hide();
+            $("#invalid_login5").hide();
+            $('#pwd').val('');
+            $('#username').val('');
             $("#log_in_menu").slideDown('fast', function(){});
         }
         else
@@ -63,7 +66,12 @@ function buttons()
     {
         if($("#username").val() && $("#pwd").val())
         {
-            $("#log_in_menu").slideUp('fast', function(){});
+            $.ajax({
+            type: "POST",
+            url: "/user_accounts/login",
+            data: ({username: $("#username").val(),
+                    pwd: $("#pwd").val()})
+            });
         }
         else
         {

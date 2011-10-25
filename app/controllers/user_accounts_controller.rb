@@ -1,4 +1,6 @@
 class UserAccountsController < ApplicationController
+    include UserAccountsHelper
+    
     def signup
         user=User.where(:email => params[:email])[0]
         
@@ -16,19 +18,7 @@ class UserAccountsController < ApplicationController
         
         #otherwise, enter the data in the db and send the email to activate account
         else
-            word='tvoeczlkttaudibgdvis lkttaudibgdvis tvogdvis '
-            hashed_pwd=Array.new
-            word1=Array.new
-            word.each_byte do |b|
-                word1.push(b)
-            end
-            
-            i=0
-            params[:pwd].each_byte do |b|
-                hashed_pwd.push(b^word1[i])
-                i+=1
-            end
-            hashed_pwd*=''
+            hashed_pwd=hash_pwd(params[:pwd])
             
             render :update do |page|
                 page<< "$('#email1').val('');"
@@ -48,7 +38,36 @@ class UserAccountsController < ApplicationController
             user.save
         end
     end
-    def login
+    
+    #controller for activation email
+    def activation
         
+    end
+    
+    #controller for login
+    def login
+        user=User.where(:username => params[:username])[0]
+        #user=User.where(:username => 'mikenyy3')[0]
+        #user[:password]!=hash_pwd('foxalox2')
+        
+        #is the username valid?  is the password correct?
+        if user==nil || user[:password]!=hash_pwd(params[:pwd])
+            render :update do |page|
+                page<< '$("#invalid_login").show();'
+            end
+        #is the account active?
+        elsif user[:activated]==0
+            render :update do |page|
+                page<< '$("#invalid_login5").show();'
+            end
+            Notifier.signup_email(user).deliver
+            
+        #log the user in
+        else
+            render :update do |page|
+                page<< '$("#log_in_menu").slideUp("fast", function(){});'
+                page<< "alert('welcome back '+ '#{user[:name]}');"
+            end
+        end
     end
 end
