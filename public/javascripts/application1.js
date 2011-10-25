@@ -64,6 +64,8 @@ function buttons()
     
     $("#login_button").click(function()
     {
+        $("#invalid_login").hide();
+        $("#invalid_login5").hide();
         if($("#username").val() && $("#pwd").val())
         {
             $.ajax({
@@ -94,6 +96,7 @@ function buttons()
             $("#invalid_login2").hide();
             $("#invalid_login3").hide();
             $("#invalid_login4").hide();
+            $("#invalid_login6").hide();
             $('#email1').val('');
             $('#pwd0').val('');
             $('#pwd1').val('');
@@ -112,6 +115,7 @@ function buttons()
         $("#invalid_login2").hide();
         $("#invalid_login3").hide();
         $("#invalid_login4").hide();
+        $("#invalid_login6").hide();
         
         if(sign_up_validator())
         {

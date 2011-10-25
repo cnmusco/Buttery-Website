@@ -3,17 +3,31 @@ class UserAccountsController < ApplicationController
     
     def signup
         user=User.where(:email => params[:email])[0]
-                                                                    #CHECK FO CASE OF USERNAME ALREADY EXISTING
+        usernamae_flag=0
+        
+        #check and see if username is already in use
+        all_users=User.find(:all, :order=>'username DESC')
+        all_users.each do |usr|
+            break if usr[:username]==nil
+            if usr[:username]==params[:username]
+                usernamae_flag=1
+            end
+        end
+        
+        if usernamae_flag==1
+            render :update do |page|
+                page<< '$("#invalid_login3").show();'
+            end
         #email is not in db
-        if user==nil
+        elsif user==nil
             render :update do |page|
                 page<< '$("#invalid_login4").show();'
             end
-            
-        #if the user has been activated, they cannot re-signup
+        
+        #the email addres already has an active account
         elsif user[:activated]==1
             render :update do |page|
-                page<< '$("#invalid_login3").show();'
+                page<< '$("#invalid_login6").show();'
             end
         
         #otherwise, enter the data in the db and send the email to activate account
@@ -50,7 +64,7 @@ class UserAccountsController < ApplicationController
         else
             user.activated=1
             user.save
-                            #TODO ALSO LOG USER IN
+                                                        #TODO ALSO LOG USER IN
         end
     end
     
