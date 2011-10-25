@@ -43,13 +43,14 @@ class UserAccountsController < ApplicationController
                 page<< 'alert("Thank You For Signing Up.  An Email Will Be Sent Shortly.\nPlease Follow Its Instructions");'
             end
             
-            #send the email
-            Notifier.signup_email(user).deliver
             
             #update the db
             user.username=params[:username]
             user.password=hashed_pwd
             user.save
+            
+            #send the email
+            Notifier.signup_email(user).deliver
         end
     end
     
