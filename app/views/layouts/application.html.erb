@@ -11,7 +11,11 @@
 			Pierson Buttery
 		</h1>
                 <div id="welcome_line">
-                    log in to enable ordering
+                    <% if @current_user==nil %>
+                        log in to enable ordering
+                    <% else %>
+                        <%= 'hi, '+@current_user%>
+                    <%end%>
                 </div>
 	</div>
 </div>
