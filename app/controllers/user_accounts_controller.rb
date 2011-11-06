@@ -86,15 +86,18 @@ class UserAccountsController < ApplicationController
             Notifier.signup_email(user).deliver
             
         #log the user in
-        else        
-            session[:current_user_id] = user.id
-            session[:worker] = user.worker
-            
+        else
             render :update do |page|
-                page<< "alert('welcome back '+ '#{session[:current_user_id]}');"
                 page<< '$("#log_in_menu").slideUp("fast", function(){});'
                 page<< "alert('welcome back '+ '#{user[:name]}');"
             end
+            session[:current_user]=user
         end
+    end
+    
+    #logs the user out
+    def logout
+        #session[:current_user]=nil
+        redirect_to :root
     end
 end

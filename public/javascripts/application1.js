@@ -407,6 +407,8 @@ function buttons()
         });
         alert(order.join('')); //NEED TO JOIN AND ADD TO DB
     });
+    
+    
 }
 
 function sign_up_validator()

@@ -1,13 +1,11 @@
 class WorkerController < ApplicationController
     
-    before_filter :check_auth
-    
-    def check_auth
-        #redirect_to root_path if session[:worker!=1]
-        if session[:worker!=1]
-            render :update do |page|
-                page<< "alert('hi');"
-            end
+    before_filter :require_worker
+       
+    def require_worker
+        unless session[:current_user] && session[:current_user].worker==1
+        flash[:notice] = "UNAUTHORIZED ACCESS"
+            redirect_to :root
         end
     end
     

@@ -69,6 +69,10 @@
     display:none;
 }
 
+#nonworker_message
+{
+    color:red;
+}
 
 .login
 {
@@ -87,7 +91,6 @@
 }
 #forgot_pwd
 {
-    size:50%;
     float:right;
 }
 

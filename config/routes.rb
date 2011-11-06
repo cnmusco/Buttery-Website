@@ -71,6 +71,7 @@ Buttery::Application.routes.draw do
    post 'worker/empty_inv'
    post 'user_accounts/signup'
    post 'user_accounts/login'
+   post 'user_accounts/logout'
 
   # See how all your routes lay out with "rake routes"
 
