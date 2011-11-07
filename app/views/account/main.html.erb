@@ -1,0 +1,17 @@
+<div id="account_name>"><%=@user.name%> </div>
+<div id="account_username"><%=@user.username%></div>
+<div id="account_stats">
+    <div>Completed Orders: <%=@user.online_orders - @user.warnings%></div>
+    <% if @user.worker==1 %>
+        <div>Full Time Buttery Worker</div>
+    <%end%>
+</div>
+
+
+<h3>Change Password</h3>
+<table>
+    <tr><td>Old Password</td><td><input type="password" id="acc_old_pwd"/></td></tr>
+    <tr><td>New Password</td><td><input type="password" id="acc_new_pwd1"/></td></tr>
+    <tr><td>Retype New Password</td><td><input type="password" id="acc_new_pwd2"/></td></tr>
+</table>
+<button id="change_pwd">Change Password</button>

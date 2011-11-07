@@ -15,6 +15,13 @@ function buttons()
         if(!(str.match(y)))
             window.location = "/worker/update_inventory"
     });
+    $("#account_info").click(function()
+    {
+        var str=window.location.href;
+        var y=new RegExp("/account");
+        if(!(str.match(y)))
+            window.location = "/account"
+    });
     $("#home").click(function()
     {
         var str=window.location.href;
@@ -409,6 +416,23 @@ function buttons()
     });
     
     
+    //button for account manager
+    $("#change_pwd").click(function()
+    {
+        var old_pwd, new_pwd;
+        
+        //ensure that fields are correctly entered
+        if((old_pwd=$("#acc_old_pwd").val()) && (new_pwd=$("#acc_new_pwd1").val()) &&
+                    new_pwd==$("#acc_new_pwd2").val() && new_pwd!=old_pwd)
+        {
+            $.ajax({
+                type: "POST",
+                url: "account/change_pwd",
+                data: ({old_pwd: old_pwd,
+                        new_pwd: new_pwd})
+            });
+        }
+    });
 }
 
 function sign_up_validator()

@@ -4,7 +4,7 @@ class WorkerController < ApplicationController
        
     def require_worker
         unless session[:current_user] && session[:current_user].worker==1
-        flash[:notice] = "UNAUTHORIZED ACCESS"
+            flash[:notice] = "UNAUTHORIZED ACCESS"
             redirect_to :root
         end
     end
