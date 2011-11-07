@@ -17,10 +17,7 @@ function buttons()
     });
     $("#account_info").click(function()
     {
-        var str=window.location.href;
-        var y=new RegExp("/account");
-        if(!(str.match(y)))
-            window.location = "/account"
+        window.location = "/account"
     });
     $("#home").click(function()
     {
@@ -432,6 +429,32 @@ function buttons()
                         new_pwd: new_pwd})
             });
         }
+    });
+    
+    //reset password
+    $("#forgot_pwd").click(function()
+    {
+        var unm = $("#username").val();
+        if(!unm)
+            alert("Please Enter Your Username");
+        else
+        {
+            $.ajax({
+                type: "POST",
+                url: "account/reset_pwd",
+                data: ({username: unm})
+            });
+            alert("An Email Has Been Sent To You");
+        }
+    });
+    
+    //log out
+    $("#log_out").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/user_accounts/logout"
+                });
     });
 }
 

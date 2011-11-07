@@ -66,6 +66,7 @@ Buttery::Application.routes.draw do
    match 'worker/update_ing_from_itm' => 'worker#update_ing_from_itm'
    match 'users_controls/activate_account/*username/*hash' => 'user_accounts#activation'
    match 'account' => 'account#main'
+   match 'account_controller/new_pwd/*username/*hash' => 'account#new_pwd'
    post 'worker/add_items'
    post 'worker/add_inv'
    post 'worker/sub_inv'
@@ -74,6 +75,8 @@ Buttery::Application.routes.draw do
    post 'user_accounts/login'
    post 'user_accounts/logout'
    post 'account/change_pwd'
+   post 'account/reset_pwd'
+   post '/user_accounts/logout'
 
   # See how all your routes lay out with "rake routes"
 

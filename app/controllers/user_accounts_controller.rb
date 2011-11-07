@@ -65,7 +65,7 @@ class UserAccountsController < ApplicationController
         else
             user.activated=1
             user.save
-                                                        #TODO ALSO LOG USER IN
+            session[:current_user]=user
         end
     end
     
@@ -77,6 +77,11 @@ class UserAccountsController < ApplicationController
         if user==nil || user[:password]!=hash_pwd(params[:pwd])
             render :update do |page|
                 page<< '$("#invalid_login").show();'
+            end
+        #is the user banned
+        elsif user.ban==1
+            render :update do |page|
+                page<< '$("#invalid_login7").show();'
             end
         #is the account active?
         elsif user[:activated]==0
@@ -97,7 +102,7 @@ class UserAccountsController < ApplicationController
     
     #logs the user out
     def logout
-        #session[:current_user]=nil
         redirect_to :root
+        session[:current_user]=nil
     end
 end
