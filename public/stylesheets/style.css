@@ -131,6 +131,16 @@
     padding: 10px 29px;
     background: #87CEEB;
 }
+#restock
+{
+    padding: 10px 13px;
+    background: #DCDCDC;
+}
+#restock:hover
+{
+    padding: 10px 13px;
+    background: #87CEEB;
+}
 
 
 .add_item

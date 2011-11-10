@@ -266,8 +266,8 @@ function buttons()
     });
     $("#ni_submit").click(function()
     {
-        var name, quant, unit;
-        if((name=$("#ni_name").val()) && (quant=$("#ni_amount").val()) && parseInt(quant)==quant && (unit=$("#ni_unit").val()))
+        var name, quant, unit, thresh;
+        if((name=$("#ni_name").val()) && (quant=$("#ni_amount").val()) && parseInt(quant)==quant && (thresh=$("#ni_thresh").val()) && parseInt(thresh)==thresh&& (unit=$("#ni_unit").val()))
         {
             $.ajax({
                 type: "POST",
@@ -277,11 +277,12 @@ function buttons()
                     flag: 5,
                     current_item: $("#edit_item_changer").val(),
                     amount: quant,
-                    unit: unit}),
-                    success: function(data)
-                            {
-                                $("#new_item").html(data);
-                            }
+                    unit: unit,
+                    thresh: thresh}),
+                success: function(data)
+                        {
+                            $("#new_item").html(data);
+                        }
             });
             
             $("#ni_name").val('');
@@ -289,6 +290,8 @@ function buttons()
             $("#ni_unit").val('');
             alert(name + " has been added to the inventory");
         }
+        else
+            alert("Invalid Input");
     });
     
     $("#edit_item_changer").live('change', function()
@@ -454,6 +457,16 @@ function buttons()
         $.ajax({
                 type: "POST",
                 url: "/user_accounts/logout"
+                });
+    });
+    
+    
+    //send stocking email
+    $("#restock").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/worker/restock"
                 });
     });
 }

@@ -40,6 +40,30 @@ class WorkerController < ApplicationController
         Ingredient.find(params[:id]).update_attributes(:amount_in_stock=>0)
     end
     
+    
+    #send stocking email
+    def restock
+        ings=Ingredient.all
+        restock=Array.new()
+        ings.each do |ing|
+            if ing.threshold >= ing.amount_in_stock
+                restock.push(ing.ingredient_name)
+            end
+        end
+        
+        restock*=', '
+        
+        Notifier.stock_email(restock, 'michael.levine@yale.edu').deliver  #change address at some point
+        
+        #alert user that task has been completed
+        render :update do |page|
+            page<< 'alert("Resocking Email Has Been Sent");'
+        end
+    end
+    
+    
+    
+    
     #controler for menu manager
     def add_items
         if params[:flag]!=nil
@@ -93,7 +117,7 @@ class WorkerController < ApplicationController
                     Makeup.create(:vital => vits[ing], :ingredient => ing, :food=>id)
                 end
             elsif flag==5
-                Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit])
+                Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit], :threshold=>params[:thresh])
             end
         end
 

@@ -14,4 +14,10 @@ class Notifier < ActionMailer::Base
               :subject => "If You Have Lost Your Password, Please Click The Following Link",
               :body => "/account_controller/new_pwd/"+user.username+'/'+user.hash)
     end
+    
+    def stock_email(ings, address)        
+        mail( :to => address, 
+              :subject => "Stocking Email",
+              :body => "Please get the following items before your shift tomorrow: "+ings)
+    end
 end
