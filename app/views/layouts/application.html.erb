@@ -11,6 +11,15 @@
             <h1>
                     Pierson Buttery
             </h1>
+            <div id="log_in_display">
+                <%if session[:current_user]%>
+                    <%='hi, ' + session[:current_user].name%>
+                        <button id="account_info">Account Info</button>
+                        <button id="log_out">Log Out</button>
+                <%else%>
+                    Log In To Make An Order Online
+                <%end%>
+            </div>
 	</div>
 </div>
 
@@ -28,7 +37,7 @@
                                     <tr><td>password: <td/><td><input type="password" id="pwd" /></td>
                                 </table>
                                 </form>
-                                <button id="login_button">Log In</button><button id="log_out">Log Out</button><button id="forgot_pwd">Forgot Pasword</button>
+                                <button id="login_button">Log In</button><button id="forgot_pwd">Forgot Pasword</button>
                                 <div class="invalid_login" id="invalid_login">Invalid Username/Password</div>
                                 <div class="invalid_login" id="invalid_login5">Account Not Activated.</br>Activation Email Has Been Resent</div></div>
                         <li><button id="sign_up_butt">Sign Up</button></li>
@@ -50,7 +59,6 @@
                                 <div class="invalid_login" id="invalid_login6">This Email Address Already has an Active Account</div>
                                 <div class="invalid_login" id="invalid_login7">This Account Has Been Temporarily Deactivated.</br>Please Speak With Mike ASAP</div>
                             </div>
-                        <li><button id="account_info">Account Info</button></li>
                 </ul>
         </div>
 </div>

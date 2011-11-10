@@ -18,6 +18,7 @@ class Notifier < ActionMailer::Base
     def stock_email(ings, address)        
         mail( :to => address, 
               :subject => "Stocking Email",
-              :body => "Please get the following items before your shift tomorrow: "+ings)
+              :body => "Please get the following items before your shift tomorrow: 
+              "+ings)
     end
 end

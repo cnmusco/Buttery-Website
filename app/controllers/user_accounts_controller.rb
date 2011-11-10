@@ -94,6 +94,7 @@ class UserAccountsController < ApplicationController
         else
             render :update do |page|
                 page<< '$("#log_in_menu").slideUp("fast", function(){});'
+                page<< '$("#nonworker_message").text("");'
                 page<< "alert('welcome back '+ '#{user[:name]}');"
             end
             session[:current_user]=user
@@ -102,7 +103,10 @@ class UserAccountsController < ApplicationController
     
     #logs the user out
     def logout
-        redirect_to :root
+        render :update do |page|
+            page<< 'window.location = "/home";'
+        end
+        flash[:notice]='You Have Successfully Logged Out'
         session[:current_user]=nil
     end
 end
