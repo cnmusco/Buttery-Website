@@ -115,11 +115,7 @@ function buttons()
     
     $("#sign_up_button").click(function()
     {
-        $("#invalid_login1").hide();
-        $("#invalid_login2").hide();
-        $("#invalid_login3").hide();
-        $("#invalid_login4").hide();
-        $("#invalid_login6").hide();
+        $("#invalid_login_all").hide();
         
         if(sign_up_validator())
         {

@@ -14,8 +14,8 @@
             <div id="log_in_display">
                 <%if session[:current_user]%>
                     <%='hi, ' + session[:current_user].name%>
-                        <button id="account_info">Account Info</button>
-                        <button id="log_out">Log Out</button>
+                    <button id="account_info">Account Info</button>
+                    <button id="log_out">Log Out</button>
                 <%else%>
                     Log In To Make An Order Online
                 <%end%>
@@ -52,12 +52,14 @@
                                 </table>
                                 </form>
                                 <button id="sign_up_button">Sign Up</button> 
-                                <div class="invalid_login" id="invalid_login1">Invalid Entry</div>
-                                <div class="invalid_login" id="invalid_login2">Must Use Yale Email Address and Matching Passwords</div>
-                                <div class="invalid_login" id="invalid_login3">This Username is Unavailable</div>
-                                <div class="invalid_login" id="invalid_login4">You Have Entered an Invalid Yale Email </br>Address For A Student of Pierson</div>
-                                <div class="invalid_login" id="invalid_login6">This Email Address Already has an Active Account</div>
-                                <div class="invalid_login" id="invalid_login7">This Account Has Been Temporarily Deactivated.</br>Please Speak With Mike ASAP</div>
+                                <div id="invalid_login_all">
+                                    <div class="invalid_login" id="invalid_login1">Invalid Entry</div>
+                                    <div class="invalid_login" id="invalid_login2">Must Use Yale Email Address and Matching Passwords</div>
+                                    <div class="invalid_login" id="invalid_login3">This Username is Unavailable</div>
+                                    <div class="invalid_login" id="invalid_login4">You Have Entered an Invalid Yale Email </br>Address For A Student of Pierson</div>
+                                    <div class="invalid_login" id="invalid_login6">This Email Address Already has an Active Account</div>
+                                    <div class="invalid_login" id="invalid_login7">This Account Has Been Temporarily Deactivated.</br>Please Speak With Mike ASAP</div>
+                                </div>
                             </div>
                 </ul>
         </div>
