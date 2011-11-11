@@ -1,6 +1,15 @@
 class OrderController < ApplicationController
     
     before_filter :require_worker, :only=>[:view_order_queue]
+    rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+    
+    def record_not_found
+        render :update do |page|
+            page<< 'window.location="/worker/orders";'
+            page<< 'alert("The Order Has Already Been Cancelled");'
+        end
+    end
+    
     def require_worker
         unless session[:current_user] && session[:current_user].worker==1
             flash[:notice] = "UNAUTHORIZED ACCESS"
@@ -42,7 +51,8 @@ class OrderController < ApplicationController
             
             #start order
             if flag==0
-                Order.find(params[:id]).update_attributes(:started=>1)
+                ord=Order.find(params[:id])
+                ord.update_attributes(:started=>1)
             
             #finish order
             elsif flag==1

@@ -265,6 +265,19 @@
     border: 2px solid green;
 }
 
+#acc_orders
+{
+    float:left;
+}
+#acc_info
+{
+    float:left;
+    margin-right: 200px;
+}
+#acc_inividual_order
+{
+    margin-bottom: 25px;
+}
 
 
 .worker_buttons

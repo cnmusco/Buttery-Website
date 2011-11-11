@@ -10,7 +10,15 @@ class AccountController < ApplicationController
     end
     
     def main
-        @user=session[:current_user]
+        @user=User.find(session[:current_user].id)
+        @ords=Order.where(:user_id=>session[:current_user].id)
+        
+        ings=Ingredient.all
+        @ings=Array.new
+        ings.each do |ing|
+            @ings[ing.id]=ing
+        end
+        
     end
     
     def change_pwd
@@ -78,6 +86,23 @@ class AccountController < ApplicationController
             user.password=hash_pwd(@new_pwd)
             user.save
             session[:current_user]=user
+        end
+    end
+    
+    
+    #cancel an order
+    def cancel_order
+        ord=Order.find(params[:ord_id])
+        if ord && ord.started==0
+            ord.destroy
+            message='Order Cancelled'
+        #it is too late to cancel
+        else
+            message='It Is Too Late To Cancel'
+        end
+        render :update do |page|
+            page<< "alert('#{message}');"
+            page<< "window.location='/account';"
         end
     end
 end
