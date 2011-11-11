@@ -90,7 +90,7 @@ class OrderController < ApplicationController
         @orders=Array.new
         tmp=Array.new
         orders.each do |o|
-            if o.finished==1
+            if o.finished==0
                 @orders.push(o)
             else
                 tmp.push(o)
