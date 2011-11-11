@@ -13,7 +13,7 @@ function buttons()
         var str=window.location.href;
         var y=new RegExp("/worker");
         if(!(str.match(y)))
-            window.location = "/worker/update_inventory"
+            window.location = "/worker/orders"
     });
     $("#account_info").click(function()
     {
