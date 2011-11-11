@@ -1,0 +1,29 @@
+<% @orders.each do |ord| %>
+    <div id=order class=orders_<%=ord.started%>_<%=ord.finished%>>
+        <%= ord.name %>
+        <% ord1=ord.order.split('|') %>
+        <% ord1.delete_at(0) %>
+        <table border=1>
+            <% ord1.each do |o| %>
+                <%o=o.split(',')%>
+                <tr>
+                    <td><%= o.delete_at(0) %></td>
+                    <td><table>
+                        <% o.each do |o| %>
+                            <% o=o.split(':') %>
+                            <tr><td><%= @ings[Integer(o[0])].ingredient_name %><%=' x ' + o[1]%></td></tr>
+                        <%end%>
+                    </table></td>
+                </tr>
+            <%end%>
+        </table>
+        <%if ord.started==0 %>
+            <button class=order_is_cooking id=<%=ord.id%>>Begin Making</button>
+        <%elsif ord.finished==0 %>
+            <button class=order_is_done id=<%=ord.id%>>Finished</button>
+        <%else%>
+            <button class=order_is_picked_up id=<%=ord.id%>>Order Claimed</button>
+            <button class=order_is_abandoned id=<%=ord.id%>>Order Never Claimed</button>
+        <%end%>
+    </div>
+<%end%>

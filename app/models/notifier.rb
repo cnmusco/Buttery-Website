@@ -11,8 +11,9 @@ class Notifier < ActionMailer::Base
     #send an email to reset pwd
     def reset_pwd(user)
         mail( :to => user.email, 
-              :subject => "If You Have Lost Your Password, Please Click The Following Link",
-              :body => "www.piersonbuttery.com/account_controller/new_pwd/"+user.username+'/'+user.hash)
+              :subject => "Buttery Password Reset",
+              :body => "If You Have Lost Your Password, Please Click The Following Link to Reset it
+              www.piersonbuttery.com/account_controller/new_pwd/"+user.username+'/'+user.hash)
     end
     
     def stock_email(ings, address)        

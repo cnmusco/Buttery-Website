@@ -246,6 +246,26 @@
     margin-left: 750px;
 }
 
+#order
+{
+    float:left;
+    padding:25px 5px;
+    margin:5px;
+}
+.orders_0_0
+{
+    border: 2px solid red;
+}
+.orders_1_0
+{
+    border: 2px solid yellow;
+}
+.orders_1_1
+{
+    border: 2px solid green;
+}
+
+
 
 .worker_buttons
 {

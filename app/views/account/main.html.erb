@@ -1,7 +1,9 @@
 <div id="account_name>"><%=@user.name%> </div>
 <div id="account_username"><%=@user.username%></div>
 <div id="account_stats">
-    <div>Completed Orders: <%=@user.online_orders - @user.warnings%></div>
+    <%if @user.ban==1%>
+        <div> Please Speak With Mike As Soon As Possible</div> 
+    <%end%>
     <% if @user.worker==1 %>
         <div>Full Time Buttery Worker</div>
     <%end%>

@@ -56,6 +56,8 @@ function buttons()
         {
             $("#invalid_login").hide();
             $("#invalid_login5").hide();
+            $("#invalid_login7").hide();
+            
             $('#pwd').val('');
             $('#username').val('');
             $("#log_in_menu").slideDown('fast', function(){});
@@ -70,6 +72,8 @@ function buttons()
     {
         $("#invalid_login").hide();
         $("#invalid_login5").hide();
+        $("#invalid_login7").hide();
+        
         if($("#username").val() && $("#pwd").val())
         {
             $.ajax({
@@ -115,7 +119,11 @@ function buttons()
     
     $("#sign_up_button").click(function()
     {
-        $("#invalid_login_all").hide();
+        $("#invalid_login1").hide();
+        $("#invalid_login2").hide();
+        $("#invalid_login3").hide();
+        $("#invalid_login4").hide();
+        $("#invalid_login6").hide();
         
         if(sign_up_validator())
         {
@@ -408,7 +416,58 @@ function buttons()
                 last_parent=parent;
             }
         });
-        alert(order.join('')); //NEED TO JOIN AND ADD TO DB
+         $.ajax({
+                type: "POST",
+                url: "/order/add_order",
+                data: ({order: order.join(''),}),
+            });
+    });
+    
+    
+    //order button on worker page
+    $('#orders').click(function()
+    {
+        window.location="/worker/orders";
+    });
+    //begin making order button
+    $(".order_is_cooking").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:0,
+                        id: $(this).attr('id')})
+            });
+    });
+    //finished order button
+    $(".order_is_done").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:1,
+                        id: $(this).attr('id')})
+            });
+    });
+    //pickup order button
+    $(".order_is_picked_up").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:2,
+                        id: $(this).attr('id')})
+            });
+    });
+    //finished order button
+    $(".order_is_abandoned").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:3,
+                        id: $(this).attr('id')})
+            });
     });
     
     
@@ -440,7 +499,7 @@ function buttons()
         {
             $.ajax({
                 type: "POST",
-                url: "account/reset_pwd",
+                url: "/account/reset_pwd",
                 data: ({username: unm})
             });
             alert("An Email Has Been Sent To You");
@@ -491,7 +550,6 @@ function sign_up_validator()
             flag1=1;
         }
     }
-    
     return 1;
 }
 
