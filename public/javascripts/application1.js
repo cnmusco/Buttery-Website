@@ -15,6 +15,10 @@ function buttons()
         if(!(str.match(y)))
             window.location = "/worker/update_inventory"
     });
+    $("#account_info").click(function()
+    {
+        window.location = "/account"
+    });
     $("#home").click(function()
     {
         var str=window.location.href;
@@ -52,6 +56,8 @@ function buttons()
         {
             $("#invalid_login").hide();
             $("#invalid_login5").hide();
+            $("#invalid_login7").hide();
+            
             $('#pwd').val('');
             $('#username').val('');
             $("#log_in_menu").slideDown('fast', function(){});
@@ -64,6 +70,10 @@ function buttons()
     
     $("#login_button").click(function()
     {
+        $("#invalid_login").hide();
+        $("#invalid_login5").hide();
+        $("#invalid_login7").hide();
+        
         if($("#username").val() && $("#pwd").val())
         {
             $.ajax({
@@ -94,6 +104,7 @@ function buttons()
             $("#invalid_login2").hide();
             $("#invalid_login3").hide();
             $("#invalid_login4").hide();
+            $("#invalid_login6").hide();
             $('#email1').val('');
             $('#pwd0').val('');
             $('#pwd1').val('');
@@ -112,6 +123,7 @@ function buttons()
         $("#invalid_login2").hide();
         $("#invalid_login3").hide();
         $("#invalid_login4").hide();
+        $("#invalid_login6").hide();
         
         if(sign_up_validator())
         {
@@ -258,8 +270,8 @@ function buttons()
     });
     $("#ni_submit").click(function()
     {
-        var name, quant, unit;
-        if((name=$("#ni_name").val()) && (quant=$("#ni_amount").val()) && parseInt(quant)==quant && (unit=$("#ni_unit").val()))
+        var name, quant, unit, thresh;
+        if((name=$("#ni_name").val()) && (quant=$("#ni_amount").val()) && parseInt(quant)==quant && (thresh=$("#ni_thresh").val()) && parseInt(thresh)==thresh&& (unit=$("#ni_unit").val()))
         {
             $.ajax({
                 type: "POST",
@@ -269,11 +281,12 @@ function buttons()
                     flag: 5,
                     current_item: $("#edit_item_changer").val(),
                     amount: quant,
-                    unit: unit}),
-                    success: function(data)
-                            {
-                                $("#new_item").html(data);
-                            }
+                    unit: unit,
+                    thresh: thresh}),
+                success: function(data)
+                        {
+                            $("#new_item").html(data);
+                        }
             });
             
             $("#ni_name").val('');
@@ -281,6 +294,8 @@ function buttons()
             $("#ni_unit").val('');
             alert(name + " has been added to the inventory");
         }
+        else
+            alert("Invalid Input");
     });
     
     $("#edit_item_changer").live('change', function()
@@ -401,7 +416,113 @@ function buttons()
                 last_parent=parent;
             }
         });
-        alert(order.join('')); //NEED TO JOIN AND ADD TO DB
+         $.ajax({
+                type: "POST",
+                url: "/order/add_order",
+                data: ({order: order.join(''),}),
+            });
+    });
+    
+    
+    //order button on worker page
+    $('#orders').click(function()
+    {
+        window.location="/worker/orders";
+    });
+    //begin making order button
+    $(".order_is_cooking").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:0,
+                        id: $(this).attr('id')})
+            });
+    });
+    //finished order button
+    $(".order_is_done").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:1,
+                        id: $(this).attr('id')})
+            });
+    });
+    //pickup order button
+    $(".order_is_picked_up").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:2,
+                        id: $(this).attr('id')})
+            });
+    });
+    //finished order button
+    $(".order_is_abandoned").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:3,
+                        id: $(this).attr('id')})
+            });
+    });
+    
+    
+    //button for account manager
+    $("#change_pwd").click(function()
+    {
+        var old_pwd, new_pwd;
+        
+        //ensure that fields are correctly entered
+        if((old_pwd=$("#acc_old_pwd").val()) && (new_pwd=$("#acc_new_pwd1").val()) &&
+                    new_pwd==$("#acc_new_pwd2").val() && new_pwd!=old_pwd)
+        {
+            $.ajax({
+                type: "POST",
+                url: "account/change_pwd",
+                data: ({old_pwd: old_pwd,
+                        new_pwd: new_pwd})
+            });
+        }
+    });
+    
+    //reset password
+    $("#forgot_pwd").click(function()
+    {
+        var unm = $("#username").val();
+        if(!unm)
+            alert("Please Enter Your Username");
+        else
+        {
+            $.ajax({
+                type: "POST",
+                url: "/account/reset_pwd",
+                data: ({username: unm})
+            });
+            alert("An Email Has Been Sent To You");
+        }
+    });
+    
+    //log out
+    $("#log_out").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/user_accounts/logout"
+                });
+    });
+    
+    
+    //send stocking email
+    $("#restock").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/worker/restock"
+                });
     });
 }
 
@@ -429,7 +550,6 @@ function sign_up_validator()
             flag1=1;
         }
     }
-    
     return 1;
 }
 

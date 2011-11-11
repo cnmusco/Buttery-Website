@@ -6,6 +6,7 @@
     <th>Ingredient name</th>
     <th>Amount in stock</th>
     <th>Unit of stock</th>
+    <th>Threshold</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,6 +18,7 @@
     <td><%= ingredient.ingredient_name %></td>
     <td><%= ingredient.amount_in_stock %></td>
     <td><%= ingredient.unit_of_stock %></td>
+    <td><%= ingredient.threshold %></td>
     <td><%= link_to 'Show', ingredient %></td>
     <td><%= link_to 'Edit', edit_ingredient_path(ingredient) %></td>
     <td><%= link_to 'Destroy', ingredient, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  user_id: 1
+  order: MyString
+  started: 1
+  finished: 1
+
+two:
+  name: MyString
+  user_id: 1
+  order: MyString
+  started: 1
+  finished: 1

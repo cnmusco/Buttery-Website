@@ -3,17 +3,31 @@ class UserAccountsController < ApplicationController
     
     def signup
         user=User.where(:email => params[:email])[0]
-                                                                    #CHECK FO CASE OF USERNAME ALREADY EXISTING
+        usernamae_flag=0
+        
+        #check and see if username is already in use
+        all_users=User.find(:all, :order=>'username DESC')
+        all_users.each do |usr|
+            break if usr[:username]==nil
+            if usr[:username]==params[:username]
+                usernamae_flag=1
+            end
+        end
+        
+        if usernamae_flag==1
+            render :update do |page|
+                page<< '$("#invalid_login3").show();'
+            end
         #email is not in db
-        if user==nil
+        elsif user==nil
             render :update do |page|
                 page<< '$("#invalid_login4").show();'
             end
-            
-        #if the user has been activated, they cannot re-signup
+        
+        #the email addres already has an active account
         elsif user[:activated]==1
             render :update do |page|
-                page<< '$("#invalid_login3").show();'
+                page<< '$("#invalid_login6").show();'
             end
         
         #otherwise, enter the data in the db and send the email to activate account
@@ -29,13 +43,14 @@ class UserAccountsController < ApplicationController
                 page<< 'alert("Thank You For Signing Up.  An Email Will Be Sent Shortly.\nPlease Follow Its Instructions");'
             end
             
-            #send the email
-            Notifier.signup_email(user).deliver
             
             #update the db
             user.username=params[:username]
             user.password=hashed_pwd
             user.save
+            
+            #send the email
+            Notifier.signup_email(user).deliver
         end
     end
     
@@ -50,7 +65,7 @@ class UserAccountsController < ApplicationController
         else
             user.activated=1
             user.save
-                            #TODO ALSO LOG USER IN
+            session[:current_user]=user
         end
     end
     
@@ -63,6 +78,11 @@ class UserAccountsController < ApplicationController
             render :update do |page|
                 page<< '$("#invalid_login").show();'
             end
+        #is the user banned
+        elsif user.ban==1
+            render :update do |page|
+                page<< '$("#invalid_login7").show();'
+            end
         #is the account active?
         elsif user[:activated]==0
             render :update do |page|
@@ -74,8 +94,19 @@ class UserAccountsController < ApplicationController
         else
             render :update do |page|
                 page<< '$("#log_in_menu").slideUp("fast", function(){});'
+                page<< '$("#nonworker_message").text("");'
                 page<< "alert('welcome back '+ '#{user[:name]}');"
             end
+            session[:current_user]=user
         end
+    end
+    
+    #logs the user out
+    def logout
+        render :update do |page|
+            page<< 'window.location = "/home";'
+        end
+        flash[:notice]='You Have Successfully Logged Out'
+        session[:current_user]=nil
     end
 end
