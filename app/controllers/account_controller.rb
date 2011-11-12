@@ -3,7 +3,7 @@ class AccountController < ApplicationController
     
     before_filter :require_login, :only=>[:main]
     def require_login
-        unless session[:current_user] && session[:current_user].worker==1
+        unless session[:current_user]
             flash[:notice] = "You Need To Login To View This Page"
             redirect_to :root
         end
