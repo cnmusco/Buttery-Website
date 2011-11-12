@@ -1,12 +1,12 @@
 <div id="acc_info">
-    <div id="account_name>"><%=@user.name%> </div>
-    <div id="account_username"><%=@user.username%></div>
+    <div id="account_name>"><strong>Name:</strong> <%=@user.name.split.map{|x| x.capitalize}.join(" ")%> </div>
+    <div id="account_username"><strong>Username:</strong> <%=@user.username%></div>
     <div id="account_stats">
         <%if @user.ban==1%>
             <div> Please Speak With Mike As Soon As Possible</div> 
         <%end%>
         <% if @user.worker==1 %>
-            <div>Full Time Buttery Worker</div>
+            <div><strong>Job: </strong>Full Time Buttery Worker</div>
         <%end%>
     </div>
 
@@ -47,7 +47,7 @@
                 <%end%>
             </table>
             <%if ord.started==0%>
-                <button class="acc_order_cancel" id=<%=ord.id%>>Cancel Order</button>
+                <button class="acc_order_cancel clean-gray" id=<%=ord.id%>>Cancel Order</button>
             <%end%>
         </div>
     <%end%>

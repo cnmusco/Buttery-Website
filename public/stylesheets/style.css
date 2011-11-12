@@ -317,6 +317,8 @@ body {
 {
     float:left;
     margin-right: 200px;
+	line-height: 2em;
+	font-size: 15px;
 }
 #acc_inividual_order
 {
