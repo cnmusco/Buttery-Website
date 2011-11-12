@@ -15,7 +15,7 @@ function buttons()
         var str=window.location.href;
         var y=new RegExp("/worker");
         if(!(str.match(y)))
-            window.location = "/worker/update_inventory"
+            window.location = "/worker/orders"
     });
     $("#account_info").click(function()
     {
@@ -321,7 +321,7 @@ function buttons()
     
     
     //buttons for edit and delete menu items
-    $("#update_menu_button").click(function()
+    $("#update_menu_button").live('click',function()
     {
         var ings_to_be_removed=new Array();
         var ings_to_be_added=new Array();
@@ -538,6 +538,17 @@ function buttons()
         $.ajax({
                 type: "POST",
                 url: "/worker/restock"
+                });
+    });
+    
+    
+    //cancel order on account page
+    $('.acc_order_cancel').click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/account/cancel_order",
+                data: ({ord_id: $(this).attr('id')})
                 });
     });
 }

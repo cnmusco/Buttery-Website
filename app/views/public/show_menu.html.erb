@@ -4,6 +4,8 @@
 
 <h2>See What's In Stock and Place an Order</h2>
 
+<div>There Are Currently <%=@order_counter%> Orders Ahead Of You</div>
+
 <% clas="" %>
 <% @classes.each do |cla| %> 
     <% if clas!=cla.class_of_food %>

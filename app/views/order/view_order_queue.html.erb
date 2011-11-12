@@ -1,3 +1,5 @@
+<%=render "worker_menu"%>
+
 <% @orders.each do |ord| %>
     <div id=order class=orders_<%=ord.started%>_<%=ord.finished%>>
         <%= ord.name %>

@@ -42,5 +42,14 @@ class PublicController < ApplicationController
         Ingredient.all.each do |ing|
             @ings[ing.id]=ing
         end
+        
+        #see how many orders there are
+        orders=Order.all
+        @order_counter=0
+        orders.each do |ord|
+            if ord.finished==0
+                @order_counter+=1
+            end
+        end
     end
 end

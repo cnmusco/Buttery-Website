@@ -80,6 +80,7 @@ Buttery::Application.routes.draw do
    post 'user_accounts/logout'
    post 'account/change_pwd'
    post 'account/reset_pwd'
+   post 'account/cancel_order'
    post '/user_accounts/logout'
    post '/order/add_order'
    post 'order/view_order_queue'
