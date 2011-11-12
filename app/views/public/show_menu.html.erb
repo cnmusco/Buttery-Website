@@ -2,7 +2,7 @@
     <div id="nonworker_message"><%=flash[:notice]%></div>
 <%end%>
 
-<h3>See What's In Stock and Place an Order</h3>
+<h2>See What's In Stock and Place an Order</h2>
 
 <% clas="" %>
 <% @classes.each do |cla| %> 
@@ -12,7 +12,7 @@
             <h3><%= clas %></h3>
             <% @parents.each do |parent| %>
                 <% if parent.class_of_food==clas %>
-                    <button class="item_names_public" name=<%= parent.id %> id=public_items_<%= parent.rgb %>
+                    <button class="item_names_public skip-grey" name=<%= parent.id %> id=public_items_<%= parent.rgb %>
                                 <% if parent.rgb==0 %>
                                     <%= ' disabled="disabled"'%>
                                 <%end%>
@@ -25,7 +25,7 @@
                                 <% if mkup.food==parent.id %>
                                     <% if @ings[mkup.ingredient].amount_in_stock!=0 %>
                                         <tr><td> <div class=pub_ing_<%=@ings[mkup.ingredient].amount_in_stock %>> <%= @ings[mkup.ingredient].ingredient_name%> </div></td>
-                                         <td> <select class="pub_ings_in_itms" id=<%= parent.parent_name %> name=<%= @ings[mkup.ingredient].id %>>
+                                         <td> <select class="pub_ings_in_itms styled-select" id=<%= parent.parent_name %> name=<%= @ings[mkup.ingredient].id %>>
                                             <% if mkup.vital==0 %>
                                                 <option value=0> 0 </option>
                                             <%end%>
@@ -53,4 +53,4 @@
         </div>
     <% end %>
 <% end%>
-<button id="submit_order">Submit Order</button>
+<button id="submit_order" class="skip">Submit Order</button>

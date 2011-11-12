@@ -1,6 +1,8 @@
 <html>
 <head>
     <%=stylesheet_link_tag("style")%>
+	<%=stylesheet_link_tag("cnm_buttons")%>
+
     <%=javascript_include_tag :defaults, "application1"%>
     <%= csrf_meta_tag %>
 </head>
@@ -8,58 +10,67 @@
 <div id="all">
 <div id="head-container">
 	<div id="header">
-            <h1>
+            <span id="headline">
                     Pierson Buttery
-            </h1>
+            </span><br/>
             <div id="log_in_display">
-                <%if session[:current_user]%>
-                    <%='hi, ' + session[:current_user].name%>
-                    <button id="account_info">Account Info</button>
-                    <button id="log_out">Log Out</button>
-                <%else%>
-                    Log In To Make An Order Online
-                <%end%>
             </div>
 	</div>
 </div>
 
 <div id="navigation-container">
     <div id="navigation">
-                <ul>
+                <ul id="nav_list">
                         <li><button id="home">Home</button></li>
                         <li><button id="worker_view">Worker View</button></li>
                         <li><button id="log_in">Log In</button></li>
                             <div class="login" id="log_in_menu">
-                                <p>Login Information</p>
-                                <form>
+                                <!--<p>Login Information</p>-->
+                                <form id="login_form">
                                 <table>
                                     <tr><td>username: <td/><td><input type="text" id="username" /></td></tr>
                                     <tr><td>password: <td/><td><input type="password" id="pwd" /></td>
                                 </table>
+ 								<input type="submit" value="Log In" id="login_button" class="clean-gray">
+								<button id="forgot_pwd" class="clean-gray">Forgot Password</button>
                                 </form>
-                                <button id="login_button">Log In</button><button id="forgot_pwd">Forgot Pasword</button>
                                 <div class="invalid_login" id="invalid_login">Invalid Username/Password</div>
                                 <div class="invalid_login" id="invalid_login5">Account Not Activated.</br>Activation Email Has Been Resent</div>
                                 <div class="invalid_login" id="invalid_login7">This Account Has Been Temporarily Deactivated.</br>Please Speak With Mike ASAP</div>
                             </div>
-                        <li><button id="sign_up_butt">Sign Up</button></li>
+                        <li><button id="sign_up_butt" >Sign Up</button></li>
                             <div class="login" id="sign_up_menu">
-                                <p>Information for New Account</p>
-                                <form>
+                                <!--<p>Information for New Account</p>-->
+                                <form id='sign_up_form'>
                                 <table>
                                     <tr><td>username: <td/><td><input type="text" id="username1" /></td></tr>
                                     <tr><td>email address: <td/><td><input type="text" id="email1" /></td></tr>
-                                    <tr><td>password: <td/><td><input type="password" id="pwd0" /></td>
-                                    <tr><td>retype password: <td/><td><input type="password" id="pwd1" /></td> 
+                                    <tr><td>password: <td/><td><input type="password" id="pwd0" /></td></tr>
+                                    <tr><td>retype password: <td/><td><input type="password" id="pwd1" /></td></tr>
+									<tr><td><input type="submit" value="Sign Up" id="sign_up_button" class="clean-gray"></td></tr>
                                 </table>
                                 </form>
-                                <button id="sign_up_button">Sign Up</button> 
                                 <div class="invalid_login" id="invalid_login1">Invalid Entry</div>
                                 <div class="invalid_login" id="invalid_login2">Must Use Yale Email Address and Matching Passwords</div>
                                 <div class="invalid_login" id="invalid_login3">This Username is Unavailable</div>
                                 <div class="invalid_login" id="invalid_login4">You Have Entered an Invalid Yale Email </br>Address For A Student of Pierson</div>
                                 <div class="invalid_login" id="invalid_login6">This Email Address Already has an Active Account</div>
                             </div>
+
+							<li><span id='logged_out' <%if session[:current_user]%>style='display:none'<%end%>>
+								Log In To Make An Order Online
+							</span>
+							</li>
+							<span id = 'logged_in' <%if !session[:current_user]%>style='display:none'<%end%>>
+								<span id='welcome-message'>
+		                    	<%if session[:current_user]%>
+									<%='Welcome, ' + session[:current_user].name.split.map{|x| x.capitalize}.join(" ")%>
+								<%end%>
+								</span>
+		                    		<button id="account_info" class="clean-gray">Account Info</button>
+		                    		<button id="log_out" class="clean-gray">Log Out</button>
+							</div>
+							<li>
                 </ul>
         </div>
 </div>

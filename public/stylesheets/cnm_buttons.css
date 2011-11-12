@@ -1,0 +1,170 @@
+/* The actual buttons on our page*/
+#account_info {
+	width:100px;
+	margin-bottom: 10px;
+}
+
+#log_out {
+	width:100px;
+	margin-bottom: 10px;
+}
+
+#login_button {
+	width:80px;
+	left-margin:5px;
+	right-margin:5px;
+	font-size:12px;
+}
+
+#forgot_pwd {
+	width:130px;
+	right-margin:5px;
+	left-margin:5px;
+	font-size:12px;
+}
+
+#sign_up_button {
+	width:100px;
+	font-size:12px;
+}
+
+/* clean gray
+*******************************************************************************/
+.clean-gray {
+  background-color: #eeeeee;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#eeeeee), to(#cccccc));
+  /* Saf4+, Chrome */
+  background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+  background-image: linear-gradient(top, #eeeeee, #cccccc);
+  border: 1px solid #ccc;
+  border-bottom: 1px solid #bbb;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  color: #333;
+  font: bold 11px "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+  line-height: 1;
+  padding: 8px 0;
+  text-align: center;
+  text-shadow: 0 1px 0 #eee;
+  width: 150px; }
+.clean-gray:hover {
+    background-color: #dddddd;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#bbbbbb));
+    /* Saf4+, Chrome */
+    background-image: -webkit-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -moz-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -ms-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: -o-linear-gradient(top, #dddddd, #bbbbbb);
+    background-image: linear-gradient(top, #dddddd, #bbbbbb);
+    border: 1px solid #bbb;
+    border-bottom: 1px solid #999;
+    cursor: pointer;
+    text-shadow: 0 1px 0 #ddd; }
+ .clean-gray:active {
+    border: 1px solid #aaa;
+    border-bottom: 1px solid #888;
+    -webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -moz-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -ms-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    -o-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+    box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee; }
+
+	/* skip (inspired by okcupid iphone interface)
+	*******************************************************************************/
+	button.skip {
+	  background-color: #8c9cbf;
+	  background-image: -webkit-gradient(linear, left top, left bottom, from(#8c9cbf 0%), to(#546a9e 50%));
+	  /* Saf4+, Chrome */
+	  background-image: -webkit-linear-gradient(top, #8c9cbf 0%, #546a9e 50%, #36518f 50%, #3d5691 100%);
+	  background-image: -moz-linear-gradient(top, #8c9cbf 0%, #546a9e 50%, #36518f 50%, #3d5691 100%);
+	  background-image: -ms-linear-gradient(top, #8c9cbf 0%, #546a9e 50%, #36518f 50%, #3d5691 100%);
+	  background-image: -o-linear-gradient(top, #8c9cbf 0%, #546a9e 50%, #36518f 50%, #3d5691 100%);
+	  background-image: linear-gradient(top, #8c9cbf 0%, #546a9e 50%, #36518f 50%, #3d5691 100%);
+	  border: 1px solid #172d6e;
+	  border-bottom: 1px solid #0e1d45;
+	  -webkit-border-radius: 5px;
+	  -moz-border-radius: 5px;
+	  -ms-border-radius: 5px;
+	  -o-border-radius: 5px;
+	  border-radius: 5px;
+	  -webkit-box-shadow: inset 0 1px 0 0 #b1b9cb;
+	  -moz-box-shadow: inset 0 1px 0 0 #b1b9cb;
+	  -ms-box-shadow: inset 0 1px 0 0 #b1b9cb;
+	  -o-box-shadow: inset 0 1px 0 0 #b1b9cb;
+	  box-shadow: inset 0 1px 0 0 #b1b9cb;
+	  color: #fff;
+	  font: bold 16px "helvetica neue", helvetica, arial, sans-serif;
+	  padding: 7px 0 8px 0;
+	  text-decoration: none;
+	  text-align: center;
+	  text-shadow: 0 -1px 1px #000f4d;
+	  width: 150px; }
+	  button.skip:hover {
+	    background-color: #7f8dad;
+	    background-image: -webkit-gradient(linear, left top, left bottom, from(#7f8dad 0%), to(#4a5e8c 50%));
+	    /* Saf4+, Chrome */
+	    background-image: -webkit-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+	    background-image: -moz-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+	    background-image: -ms-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+	    background-image: -o-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+	    background-image: linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+	    cursor: pointer; }
+	  button.skip:active {
+	    -webkit-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+	    -moz-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+	    -ms-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+	    -o-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+	    box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white; }
+	
+		/* skip-grey (inspired by okcupid iphone interface)
+		*******************************************************************************/
+		button.skip-grey {
+		  background-color: #8c9cbf;
+		  background-image: -webkit-gradient(linear, left top, left bottom, from(#999 0%), to(#555 50%));
+		  /* Saf4+, Chrome */
+		  background-image: -webkit-linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+		  background-image: -moz-linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+		  background-image: -ms-linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+		  background-image: -o-linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+		  background-image: linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+		  border: 1px solid #222;
+		  border-bottom: 1px solid #111111;
+		  -webkit-border-radius: 5px;
+		  -moz-border-radius: 5px;
+		  -ms-border-radius: 5px;
+		  -o-border-radius: 5px;
+		  border-radius: 5px;
+		  -webkit-box-shadow: inset 0 1px 0 0 #b1b9cb;
+		  -moz-box-shadow: inset 0 1px 0 0 #b1b9cb;
+		  -ms-box-shadow: inset 0 1px 0 0 #b1b9cb;
+		  -o-box-shadow: inset 0 1px 0 0 #b1b9cb;
+		  box-shadow: inset 0 1px 0 0 #b1b9cb;
+		  color: #fff;
+		  font: bold 16px "helvetica neue", helvetica, arial, sans-serif;
+		  padding: 7px 0 8px 0;
+		  text-decoration: none;
+		  text-align: center;
+		  text-shadow: 0 -1px 1px #000f4d;
+		  width: 150px; }
+		  button.skip-grey:hover {
+		    background-color: #7f8dad;
+		    background-image: -webkit-gradient(linear, left top, left bottom, from(#7f8dad 0%), to(#4a5e8c 50%));
+		    /* Saf4+, Chrome */
+		    background-image: -webkit-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+		    background-image: -moz-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+		    background-image: -ms-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+		    background-image: -o-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+		    background-image: linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+		    cursor: pointer; }
+		  button.skip-grey:active {
+		    -webkit-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+		    -moz-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+		    -ms-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+		    -o-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+		    box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white; }

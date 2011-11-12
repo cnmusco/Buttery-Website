@@ -39,7 +39,7 @@ class UserAccountsController < ApplicationController
                 page<< "$('#pwd0').val('');"
                 page<< "$('#pwd1').val('');"
                 page<< "$('#username1').val('');"
-                page<< '$("#sign_up_menu").slideUp("fast", function(){});'
+                page<< '$("#sign_up_menu").toggle();'
                 page<< 'alert("Thank You For Signing Up.  An Email Will Be Sent Shortly.\nPlease Follow Its Instructions");'
             end
             
@@ -77,34 +77,41 @@ class UserAccountsController < ApplicationController
         if user==nil || user[:password]!=hash_pwd(params[:pwd])
             render :update do |page|
                 page<< '$("#invalid_login").show();'
+                page<< 'login_success = false;'
             end
         #is the user banned
         elsif user.ban==1
             render :update do |page|
                 page<< '$("#invalid_login7").show();'
+                page<< 'login_success = false;'
             end
         #is the account active?
         elsif user[:activated]==0
             render :update do |page|
                 page<< '$("#invalid_login5").show();'
+                page<< 'login_success = false;'
             end
             Notifier.signup_email(user).deliver
             
         #log the user in
         else
             render :update do |page|
-                page<< '$("#log_in_menu").slideUp("fast", function(){});'
-                page<< '$("#nonworker_message").text("");'
-                page<< "alert('welcome back '+ '#{user[:name]}');"
+                page<< 'login_success = true;'
+                #page<< '$("#log_in_menu").slideUp("fast", function(){});'
+                #page<< '$("#nonworker_message").text("");'
+                page<< "user_name = '#{user[:name].split.map{|x| x.capitalize}.join(" ")}';"
             end
             session[:current_user]=user
         end
+        return true
     end
     
     #logs the user out
     def logout
         render :update do |page|
             page<< 'window.location = "/home";'
+            page<< '$("#logged_in").toggle();'
+  					page<< '$("#logged_out").toggle();'
         end
         flash[:notice]='You Have Successfully Logged Out'
         session[:current_user]=nil

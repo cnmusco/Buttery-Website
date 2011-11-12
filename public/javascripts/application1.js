@@ -1,3 +1,5 @@
+var login_success = false;
+var user_name = "";
 
 //load after the page loads
 $(document).ready(function()
@@ -67,9 +69,8 @@ function buttons()
             $("#log_in_menu").slideUp('fast', function(){});
         }
     });
-    
-    $("#login_button").click(function()
-    {
+	
+	$("#login_form").submit(function(){
         $("#invalid_login").hide();
         $("#invalid_login5").hide();
         $("#invalid_login7").hide();
@@ -80,13 +81,26 @@ function buttons()
             type: "POST",
             url: "/user_accounts/login",
             data: ({username: $("#username").val(),
-                    pwd: $("#pwd").val()})
+                    pwd: $("#pwd").val()}),
+			success: function() {
+				if(login_success) {
+					//$("#log_in_menu").slideUp("fast", function(){});
+					$("#log_in_menu").toggle();
+					$("#nonworker_message").text("");
+					$("#welcome-message").html("Welcome, " + user_name);
+					$("#logged_in").show();
+					$("#logged_out").hide();
+					alert('Welcome Back '+ user_name);
+					
+				}
+			}
             });
         }
         else
         {
             $("#invalid_login").show();
         }
+		return false;
     });
     
     
@@ -117,7 +131,7 @@ function buttons()
         }
     });
     
-    $("#sign_up_button").click(function()
+	$("#sign_up_form").submit(function()
     {
         $("#invalid_login1").hide();
         $("#invalid_login2").hide();
@@ -131,6 +145,7 @@ function buttons()
         }
         else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val() && $("#username1").val())
         {
+			console.log("ajaxing");
             $.ajax({
             type: "POST",
             url: "/user_accounts/signup",
@@ -143,6 +158,7 @@ function buttons()
         {
             $("#invalid_login1").show();
         }
+		return false;
     });
     
     

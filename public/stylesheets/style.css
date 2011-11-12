@@ -1,3 +1,46 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Lucida, Arial, sans-serif;
+    font-size:13px;
+    color:#444;
+}
+
+.classes{
+	font-size:18px;
+}
+
+.styled-select{
+	margin-left:10px;
+}
+#welcome-message{
+	font-size:15px;
+	font-weight: bold;
+	padding-right: 10px;
+	color: #FFFFFF;
+}
+
+#logged_out {
+	font-size:15px;
+	color:#FFFFFF;
+	margin: 0px 0px 0px 200px;
+}
+#logged_in {
+	font-size:15px;
+	color:#FFFFFF;
+	margin: 5px 0px 2px 200px;
+}
+
+#nav_list {
+}
+#headline {
+	font-size:36px;
+	clear: both;
+	font-weight: bold;
+}
+
+#login_form {
+	
+}
+
 #head-container
 {
 	color: #000;
@@ -34,10 +77,9 @@
 
 #navigation ul
 {
-	margin: 0;
-	padding: 0;
+	margin: 0px;
+	padding:0px;
 }
-
 #navigation ul li
 {
 	list-style-type: none;
@@ -84,10 +126,12 @@
 #log_in_menu
 {
     margin-left:165;
+	padding: 7px 7px 0px 7px;
 }
 #sign_up_menu
 {
     margin-left:225;
+	padding: 7px 7px 0px 7px;
 }
 #forgot_pwd
 {
@@ -243,7 +287,7 @@
 }
 #submit_order
 {
-    margin-left: 750px;
+    margin-left: 650px;
 }
 
 #order
