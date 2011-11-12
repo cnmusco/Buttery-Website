@@ -22,4 +22,10 @@ class Notifier < ActionMailer::Base
               :body => "Please get the following items before your shift tomorrow: 
               "+ings)
     end
+    
+    def order_ready(user)
+         mail( :to => user.email, 
+              :subject => "Order Is Almost Ready",
+              :body => "Your order is being made.  Please come down to the buttery to pick it up ASAP.")
+    end
 end

@@ -94,6 +94,19 @@ class AccountController < ApplicationController
     def cancel_order
         ord=Order.find(params[:ord_id])
         if ord && ord.started==0
+            #add the ingredients back to inventory
+            ord1=ord.order.split('|')
+            ord1.delete_at(0)
+            ord1.each do |o|
+                c=o.split(',')
+                c.delete_at(0)
+                c.each do |a|
+                    a=a.split(':')
+                    num=Ingredient.find(a[0]).amount_in_stock
+                    Ingredient.find(Integer(a[0])).update_attributes(:amount_in_stock=>num+Integer(a[1]))
+                end
+            end
+            
             ord.destroy
             message='Order Cancelled'
         #it is too late to cancel

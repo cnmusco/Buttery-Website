@@ -21,8 +21,38 @@ class OrderController < ApplicationController
     def add_order
         cur_user=User.find(session[:current_user].id)
         if cur_user && params[:order]!='' && cur_user.ban==0
-            Order.create(:name=>cur_user.name, :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
-            message='Order Successfully Placed'
+            #subtract ingredients for order or give error message
+            flag=1
+            ings_to_sub=Array.new
+            num_to_sub=Array.new
+            ord=params[:order].split('|')
+            ord.delete_at(0)
+            ord.each do |o|
+                c=o.split(',')
+                c.delete_at(0)
+                c.each do |a|
+                    a=a.split(':')
+                    num=Ingredient.find(a[0]).amount_in_stock
+                    if (num-Integer(a[1]))<0
+                        flag=0
+                    else
+                        ings_to_sub.push(Integer(a[0]))
+                        num_to_sub.push(num-Integer(a[1]))
+                    end
+                end
+            end
+            
+            if flag==1  #make substitutions
+                Order.create(:name=>cur_user.name, :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
+                message='Order Successfully Placed'
+                i=0
+                ings_to_sub.each do |ing|
+                    Ingredient.find(ing).update_attributes(:amount_in_stock => num_to_sub[i])
+                    i+=1
+                end
+            else
+                message='At Least One of The Requested Items Is No Longer In Stock'
+            end
         elsif cur_user.ban==1
             session[:current_user]=nil
             message='This Account Has Been Deactivated'
@@ -53,6 +83,7 @@ class OrderController < ApplicationController
             if flag==0
                 ord=Order.find(params[:id])
                 ord.update_attributes(:started=>1)
+                Notifier.order_ready(User.find(ord.user_id)).deliver
             
             #finish order
             elsif flag==1
