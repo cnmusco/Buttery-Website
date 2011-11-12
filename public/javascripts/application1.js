@@ -90,7 +90,7 @@ function buttons()
 					$("#welcome-message").html("Welcome, " + user_name);
 					$("#logged_in").show();
 					$("#logged_out").hide();
-					alert('Welcome Back '+ user_name);
+					//alert('Welcome Back '+ user_name);
 					
 				}
 			}
