@@ -18,37 +18,39 @@
 </table>
 <button id="change_pwd" class="clean-gray">Change Password</button>
 
-<div id="acc_orders">
-    <h3>Your Active Orders</h3>
-    <%@ords.each do |ord|%>
-        <% ord1=ord.order.split('|') %>
-        <% ord1.delete_at(0) %>
-        <div id="acc_inividual_order">
-            <% if ord.finished==1 %>
-                <%status='Awaiting Pickup'%>
-            <%elsif ord.started==1%>
-                <%status='Has Been Started'%>
-            <%else%>
-                <%status='Not Started'%>
-            <%end%>
-            <div>Status: <%=status%></div>
-            <table>
-                <% ord1.each do |o| %>
-                    <%o=o.split(',')%>
-                    <tr>
-                        <td><%= o.delete_at(0) %>:</td>
-                        <td><table>
-                            <% o.each do |o| %>
-                                <% o=o.split(':') %>
-                                <tr><td><%= @ings[Integer(o[0])].ingredient_name %><%=' x ' + o[1]%></td></tr>
-                            <%end%>
-                        </table></td>
-                    </tr>
+<%if @ords%>
+    <div id="acc_orders">
+        <h3>Your Active Orders</h3>
+        <%@ords.each do |ord|%>
+            <% ord1=ord.order.split('|') %>
+            <% ord1.delete_at(0) %>
+            <div id="acc_inividual_order">
+                <% if ord.finished==1 %>
+                    <%status='Awaiting Pickup'%>
+                <%elsif ord.started==1%>
+                    <%status='Has Been Started'%>
+                <%else%>
+                    <%status='Not Started'%>
                 <%end%>
-            </table>
-            <%if ord.started==0%>
-                <button class="acc_order_cancel clean-gray" id=<%=ord.id%>>Cancel Order</button>
-            <%end%>
-        </div>
-    <%end%>
-</div>
+                <div>Status: <%=status%></div>
+                <table>
+                    <% ord1.each do |o| %>
+                        <%o=o.split(',')%>
+                        <tr>
+                            <td><%= o.delete_at(0) %>:</td>
+                            <td><table>
+                                <% o.each do |o| %>
+                                    <% o=o.split(':') %>
+                                    <tr><td><%= @ings[Integer(o[0])].ingredient_name %><%=' x ' + o[1]%></td></tr>
+                                <%end%>
+                            </table></td>
+                        </tr>
+                    <%end%>
+                </table>
+                <%if ord.started==0%>
+                    <button class="acc_order_cancel clean-gray" id=<%=ord.id%>>Cancel Order</button>
+                <%end%>
+            </div>
+        <%end%>
+    </div>
+<%end%>
