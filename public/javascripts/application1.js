@@ -430,11 +430,35 @@ function buttons()
                 last_parent=parent;
             }
         });
-         $.ajax({
-                type: "POST",
-                url: "/order/add_order",
-                data: ({order: order.join(''),}),
-            });
+        
+        //is it proper ordering time
+        var date=new Date();
+        var day=date.getDay(), hour=date.getHours(), minutes=date.getMinutes();
+        var butt_open=0;//becomes 1 if the buttery is open
+        
+        //between 12am and 12:15am
+        if(!hour && minutes<15)
+        {
+            if(day && day<6)
+                butt_open=1;
+        }
+        //between 10:15pm and 
+        else if(hour>22 || (hour==22 && minutes>15))
+        {
+            if(day<5)
+                butt_open=1;
+        }
+        
+        if(butt_open)
+        {
+             $.ajax({
+                    type: "POST",
+                    url: "/order/add_order",
+                    data: ({order: order.join(''),}),
+                });
+        }
+        else
+            alert("The Buttery Is Not Open At This Time");
     });
     
     
