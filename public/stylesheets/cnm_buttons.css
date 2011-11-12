@@ -1,12 +1,14 @@
 /* The actual buttons on our page*/
 #account_info {
 	width:100px;
-	margin-bottom: 10px;
+	margin-top:6px;
+	vertical-align:middle;
 }
 
 #log_out {
 	width:100px;
-	margin-bottom: 10px;
+	vertical-align:middle;
+	margin-top:6px;
 }
 
 #login_button {
@@ -52,7 +54,7 @@
   padding: 8px 0;
   text-align: center;
   text-shadow: 0 1px 0 #eee;
-  width: 150px; }
+  /*width: 150px;*/ }
 .clean-gray:hover {
     background-color: #dddddd;
     background-image: -webkit-gradient(linear, left top, left bottom, from(#dddddd), to(#bbbbbb));

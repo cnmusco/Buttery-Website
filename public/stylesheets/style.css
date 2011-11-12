@@ -1,6 +1,6 @@
 body {
     font-family: 'Helvetica Neue', Helvetica, Lucida, Arial, sans-serif;
-    font-size:13px;
+    font-size:14px;
     color:#444;
 }
 
@@ -11,26 +11,31 @@ body {
 .styled-select{
 	margin-left:10px;
 }
+
+#order_count {
+	padding:6px 0px 3px 0px;
+}
+
 #welcome-message{
 	font-size:15px;
-	font-weight: bold;
 	padding-right: 10px;
 	color: #FFFFFF;
+	vertical-align:middle;
 }
 
 #logged_out {
 	font-size:15px;
 	color:#FFFFFF;
 	margin: 0px 0px 0px 200px;
+	padding-top:10px;
+
 }
 #logged_in {
 	font-size:15px;
 	color:#FFFFFF;
-	margin: 5px 0px 2px 200px;
+	margin: 0px 0px 2px 100px;
 }
 
-#nav_list {
-}
 #headline {
 	font-size:36px;
 	clear: both;
@@ -44,7 +49,7 @@ body {
 #head-container
 {
 	color: #000;
-	background: #ccc;
+	background: #FFFF66;
 }
 
 #header
@@ -52,7 +57,7 @@ body {
 	margin: 0 auto;
 	width: 860px;
 	padding: 20px;
-	background: #ddd;
+	background: #FFFF66;
 }
 
 #header h1 { margin: 0; }
@@ -67,6 +72,7 @@ body {
 	width: 100%;
 	color: #000;
 	background: #333;
+	height:40px;
 }
 
 #navigation
@@ -84,19 +90,55 @@ body {
 {
 	list-style-type: none;
 	display: inline;
+	float:left;
 }
 
-#navigation li button
-{
-	display: block;
-	float: left;
-	padding: 5px 10px;
-	color: #0000FF;
-	text-decoration: none;
-	border-right: 1px solid #fff;
+.nav_button {
+	color:#FFFFFF;
+	border-style:none;
+	background:#333;
+	vertical-align:middle;
+	font-size:16px;
+	font-weight:bold;
 }
 
-#navigation li button:hover { background: #87CEEB; }
+#home_li {
+	border-width: 0px 0px 0px 2px;
+	border-style:solid;
+	border-color:#FFFFFF;
+	height:40px;
+	padding:6px 5px 0px 5px;
+	text-align:center;
+}
+#worker_li {
+	border-width: 0px 0px 0px 2px;
+	border-style:solid;
+	border-color:#FFFFFF;
+	height:40px;
+	padding-top:6px;
+	width: 130px;
+	text-align:center;
+}
+#login_li {
+	border-width: 0px 0px 0px 2px;
+	border-style:solid;
+	border-color:#FFFFFF;
+	height:40px;
+	padding:6px 5px 0px 5px;
+	text-align:center;
+}
+#signup_li {
+	border-width: 0px 2px 0px 2px;
+	border-style:solid;
+	border-color:#FFFFFF;
+	height:40px;
+	padding:6px 5px 0px 5px;
+	text-align:center;
+}
+
+.nav_button:hover {
+	color:#E5EECC;
+}
 
 #hidden_num_of_ings
 {
@@ -114,6 +156,7 @@ body {
 #nonworker_message
 {
     color:red;
+	padding:6px 0px 6px 0px;
 }
 
 .login
@@ -125,12 +168,12 @@ body {
 }
 #log_in_menu
 {
-    margin-left:165;
+    margin-left:215;
 	padding: 7px 7px 0px 7px;
 }
 #sign_up_menu
 {
-    margin-left:225;
+    margin-left:295;
 	padding: 7px 7px 0px 7px;
 }
 #forgot_pwd
@@ -283,7 +326,7 @@ body {
 }
 #all_ing_0
 {
-    font-size:80%;
+    font-size:90%;
 }
 #submit_order
 {
@@ -337,7 +380,7 @@ body {
 	float: left;
 	width: 100%;
 	color: #000;
-	background: #eee;
+	background: #FFFFFF;
 }
 
 #content-container2
@@ -370,7 +413,7 @@ body {
 {
 	clear: left;
 	color: #fff;
-	background: #000;
+	background: #333;
 }
 
 #footer
@@ -378,6 +421,9 @@ body {
 	margin: 0 auto;
 	width: 900px;
 	text-align: right;
-	padding: 20px;
-	height: 1%;
+	height: 40px;
+}
+
+#footer_text{
+	line-height: 3em;
 }
