@@ -168,13 +168,15 @@ body {
 }
 #log_in_menu
 {
-    margin-left:215;
-	padding: 7px 7px 0px 7px;
+    margin-left:205;
+    margin-top:12;
+    padding: 7px 7px 0px 7px;
 }
 #sign_up_menu
 {
-    margin-left:295;
-	padding: 7px 7px 0px 7px;
+    margin-left:281;
+    margin-top:12;
+    padding: 7px 7px 0px 7px;
 }
 #forgot_pwd
 {
@@ -229,6 +231,45 @@ body {
     background: #87CEEB;
 }
 
+.order_is_cooking
+{
+    padding: 10px 29px;
+    background: #DCDCDC;
+}
+.order_is_cooking:hover
+{
+    padding: 10px 29px;
+    background: #87CEEB;
+}
+.order_is_done
+{
+    padding: 10px 40px;
+    background: #DCDCDC;
+}
+.order_is_done:hover
+{
+    padding: 10px 40px;
+    background: #87CEEB;
+}
+.order_is_picked_up
+{
+    padding: 10px 25px;
+    background: #DCDCDC;
+}
+.order_is_picked_up:hover
+{
+    padding: 10px 25px;
+    background: #87CEEB;
+}.order_is_abandoned
+{
+    padding: 10px 15px;
+    background: #DCDCDC;
+}
+.order_is_abandoned:hover
+{
+    padding: 10px 15px;
+    background: #87CEEB;
+}
 
 .add_item
 {

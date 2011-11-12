@@ -97,8 +97,6 @@ class UserAccountsController < ApplicationController
         else
             render :update do |page|
                 page<< 'login_success = true;'
-                #page<< '$("#log_in_menu").slideUp("fast", function(){});'
-                #page<< '$("#nonworker_message").text("");'
                 page<< "user_name = '#{user[:name].split.map{|x| x.capitalize}.join(" ")}';"
             end
             session[:current_user]=user

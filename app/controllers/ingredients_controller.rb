@@ -1,6 +1,15 @@
 class IngredientsController < ApplicationController
   # GET /ingredients
   # GET /ingredients.xml
+  before_filter :require_admin
+       
+    def require_admin
+        unless session[:current_user] && (session[:current_user].email=='michael.levine@yale.edu' || session[:current_user].email=='cameron.musco@yale.edu')
+            flash[:notice] = "UNAUTHORIZED ACCESS"
+            redirect_to :root
+        end
+    end
+    
   def index
     @ingredients = Ingredient.all
 

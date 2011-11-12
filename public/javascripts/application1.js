@@ -84,13 +84,11 @@ function buttons()
                     pwd: $("#pwd").val()}),
 			success: function() {
 				if(login_success) {
-					//$("#log_in_menu").slideUp("fast", function(){});
 					$("#log_in_menu").toggle();
 					$("#nonworker_message").text("");
 					$("#welcome-message").html("Welcome, " + user_name);
 					$("#logged_in").show();
 					$("#logged_out").hide();
-					//alert('Welcome Back '+ user_name);
 					
 				}
 			}
