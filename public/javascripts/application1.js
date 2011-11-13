@@ -276,7 +276,7 @@ function buttons()
             }
         }
     });
-    $("#add_class").change(function()
+    $("#add_class").live('change', function()
     {
         if($("#add_class").val()=="other")
             $("#nmi_new_class").show();
