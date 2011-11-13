@@ -113,8 +113,8 @@ class AccountController < ApplicationController
         else
             message='It Is Too Late To Cancel'
         end
+        flash[:message]=message
         render :update do |page|
-            page<< "alert('#{message}');"
             page<< "window.location='/account';"
         end
     end

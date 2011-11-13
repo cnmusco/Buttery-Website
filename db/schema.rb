@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(:version => 20111112181121) do
 # Could not dump table "makeups" because of following Mysql2::Error
 #   Invalid date: BTREE
 
+# Could not dump table "menus" because of following Mysql2::Error
+#   Invalid date: BTREE
+
 # Could not dump table "orders" because of following Mysql2::Error
 #   Invalid date: BTREE
 

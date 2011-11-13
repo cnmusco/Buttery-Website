@@ -1,3 +1,7 @@
+<% if flash[:message] %>
+    <div id="nonworker_message"><%=flash[:message]%></div>
+<%end%>
+
 <div id="acc_info">
     <div id="account_name>"><strong>Name:</strong> <%=@user.name.split.map{|x| x.capitalize}.join(" ")%> </div>
     <div id="account_username"><strong>Username:</strong> <%=@user.username%></div>
@@ -10,15 +14,16 @@
         <%end%>
     </div>
 
-<h3>Change Password</h3>
-<table>
-    <tr><td>Old Password</td><td><input type="password" id="acc_old_pwd"/></td></tr>
-    <tr><td>New Password</td><td><input type="password" id="acc_new_pwd1"/></td></tr>
-    <tr><td>Retype New Password</td><td><input type="password" id="acc_new_pwd2"/></td></tr>
-</table>
-<button id="change_pwd" class="clean-gray">Change Password</button>
+    <h3>Change Password</h3>
+    <table>
+        <tr><td>Old Password</td><td><input type="password" id="acc_old_pwd"/></td></tr>
+        <tr><td>New Password</td><td><input type="password" id="acc_new_pwd1"/></td></tr>
+        <tr><td>Retype New Password</td><td><input type="password" id="acc_new_pwd2"/></td></tr>
+    </table>
+    <button id="change_pwd" class="clean-gray">Change Password</button>
+</div>
 
-<%if @ords%>
+<%if @ords!=[]%>
     <div id="acc_orders">
         <h3>Your Active Orders</h3>
         <%@ords.each do |ord|%>
