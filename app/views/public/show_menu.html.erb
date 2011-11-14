@@ -7,7 +7,11 @@
 		<td>
 <h2>See What's In Stock and Place an Order</h2>
 
-<div id="order_count">There Are Currently <%=@order_counter%> Orders Ahead Of You</div>
+<% if @order_counter!=1 %>
+    <div id="order_count">There Are Currently <%=@order_counter%> Orders Ahead Of You</div>
+<%else%>
+    <div id="order_count">There Is Currently 1 Order Ahead Of You</div>
+<%end%>
 		</td>
 		<td>
 <button id="submit_order" class="skip">Submit Order</button>

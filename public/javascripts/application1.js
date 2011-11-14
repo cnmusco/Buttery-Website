@@ -5,8 +5,30 @@ var user_name = "";
 $(document).ready(function()
 {
     change_alert();
+    reload_order_queue();
     buttons();
 }); 
+
+//reloads the order queue automatically
+function reload_order_queue()
+{
+    var str=window.location.href;
+        var y=new RegExp("/worker/orders");
+    if(str.match(y))
+        setTimeout("reload_order_queue1()", 90000);
+}
+function reload_order_queue1()
+{
+    var str=window.location.href;
+    var y=new RegExp("/worker/orders");
+    if(str.match(y))
+    {
+        window.location = "/worker/orders"
+        setTimeout("reload_order_queue1()", 90000);
+    }
+}
+
+
 
 function buttons()
 {
@@ -204,7 +226,7 @@ function buttons()
     
     
     //Buttons for Menu Manager
-    $("#nmi_submit").click(function()
+    $("#nmi_submit").live('click', function()
     {
         var num_ings=parseInt($("#hidden_num_of_ings").text(), 10);
         var ids=new Array();
@@ -288,7 +310,7 @@ function buttons()
         else
             $("#nmi_new_class").hide();
     });
-    $("#ni_submit").click(function()
+    $("#ni_submit").live('click', function()
     {
         var name, quant, unit, thresh;
         if((name=$("#ni_name").val()) && (quant=$("#ni_amount").val()) && parseInt(quant)==quant && (thresh=$("#ni_thresh").val()) && parseInt(thresh)==thresh&& (unit=$("#ni_unit").val()))
@@ -388,7 +410,7 @@ function buttons()
             });
         }
     });
-    $("#delete_menu_button").click(function()
+    $("#delete_menu_button").live('click', function()
     {
         if(confirm("Are You Sure You Want To Delete This Item?"))
         {
