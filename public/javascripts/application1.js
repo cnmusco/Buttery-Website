@@ -32,11 +32,10 @@ function reload_order_queue1()
 
 function buttons()
 {
-	$("#about").click(function()
-	{
-		window.location = "/about"
-	});
-	
+    $("#about").click(function()
+    {
+            window.location = "/about"
+    });
     //button link chnages
     $("#worker_view").click(function()
     {
@@ -51,10 +50,7 @@ function buttons()
     });
     $("#home").click(function()
     {
-        var str=window.location.href;
-        var y=new RegExp("/home");
-        if(!(str.match(y)))
-            window.location = "/home"
+        window.location = "/home"
     });
     $("#up_inv").click(function()
     {
