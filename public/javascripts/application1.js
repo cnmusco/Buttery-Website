@@ -5,8 +5,30 @@ var user_name = "";
 $(document).ready(function()
 {
     change_alert();
+    reload_order_queue();
     buttons();
 }); 
+
+//reloads the order queue automatically
+function reload_order_queue()
+{
+    var str=window.location.href;
+        var y=new RegExp("/worker/orders");
+    if(str.match(y))
+        setTimeout("reload_order_queue1()", 240000);
+}
+function reload_order_queue1()
+{
+    var str=window.location.href;
+    var y=new RegExp("/worker/orders");
+    if(str.match(y))
+    {
+        window.location = "/worker/orders"
+        setTimeout("reload_order_queue1()", 240000);
+    }
+}
+
+
 
 function buttons()
 {
