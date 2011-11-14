@@ -428,7 +428,7 @@ function buttons()
         }
     });
     
-    $(".item_names_public").click(function()
+    $(".item_names_public").click(function(event)
     {
         var val="#pub_ings_" + event.target.name;
         $(val).toggle();
