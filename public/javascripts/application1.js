@@ -4,7 +4,7 @@ var user_name = "";
 //load after the page loads
 $(document).ready(function()
 {
-    //change_alert();
+    change_alert();
     buttons();
 }); 
 
