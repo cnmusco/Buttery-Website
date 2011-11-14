@@ -74,6 +74,8 @@ class OrderController < ApplicationController
         ings.each do |ing|
             @ings[ing.id]=ing
         end
+        @grills=Parent.where(:class_of_food => 'Grill')
+        @mkups=Makeup.find(:all, :order=>'vital DESC')
         
         flag=params[:flag]
         if flag
@@ -83,7 +85,9 @@ class OrderController < ApplicationController
             if flag==0
                 ord=Order.find(params[:id])
                 ord.update_attributes(:started=>1)
-                Notifier.order_ready(User.find(ord.user_id)).deliver
+                if ord.user_id
+                    Notifier.order_ready(User.find(ord.user_id)).deliver
+                end
             
             #finish order
             elsif flag==1
@@ -92,23 +96,29 @@ class OrderController < ApplicationController
             #pick up order
             elsif flag==2
                 order=Order.find(params[:id])
-                user=User.find(order.user_id)
-                x=user.online_orders
-                user.online_orders=x+1
-                user.save
+                if order.user_id
+                    user=User.find(order.user_id)
+                    x=user.online_orders
+                    user.online_orders=x+1
+                    user.save
+                end
                 Order.find(params[:id]).destroy
             
             #user never picked up order
-            else
+            elsif flag==3
                 order=Order.find(params[:id])
-                user=User.find(order.user_id)
-                user.ban=1
-                x=user.warnings
-                user.warnings=x+1
-                user.save
+                if order.user_id
+                    user=User.find(order.user_id)
+                    user.ban=1
+                    x=user.warnings
+                    user.warnings=x+1
+                    user.save
                 
-                order=Order.where(:user_id => user.id).each do |ord|
-                    ord.destroy
+                    order=Order.where(:user_id => user.id).each do |ord|
+                        ord.destroy
+                    end
+                else
+                    order.destroy
                 end
             end
             render :update do |page|
@@ -129,6 +139,47 @@ class OrderController < ApplicationController
         end
         tmp.each do |t|
             @orders.push(t)
+        end
+    end
+    
+    
+    #add a GRILL order from the worker page
+    def add_manual_order
+        #subtract ingredients for order or give error message
+        flag=1
+        ings_to_sub=Array.new
+        num_to_sub=Array.new
+        ord=params[:order].split('|')
+        ord.delete_at(0)
+        ord.each do |o|
+            c=o.split(',')
+            c.delete_at(0)
+            c.each do |a|
+                a=a.split(':')
+                num=Ingredient.find(a[0]).amount_in_stock
+                if (num-Integer(a[1]))<0
+                    flag=0
+                else
+                    ings_to_sub.push(Integer(a[0]))
+                    num_to_sub.push(num-Integer(a[1]))
+                end
+            end
+        end
+        
+        if flag==1  #make substitutions
+            Order.create(:name=>'face-to-face', :order=>params[:order], :started=>0, :finished=>0)
+            message='Order Successfully Placed'
+            i=0
+            ings_to_sub.each do |ing|
+                Ingredient.find(ing).update_attributes(:amount_in_stock => num_to_sub[i])
+                i+=1
+            end
+        else
+            message='At Least One of The Requested Items Is No Longer In Stock'
+        end
+        render :update do |page|
+            page<< 'window.location = "/worker/orders";'
+            page<< " alert('#{message}');"
         end
     end
 end

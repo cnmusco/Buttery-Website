@@ -1,4 +1,36 @@
 <%=render "worker_menu"%>
+    </br>
+<div class="grill_buttons">
+    <% @grills.each do |cla| %>
+        <button class="grill_button skip-grey" id=<%=cla.parent_name%>><%=cla.parent_name%></button>
+        
+        <table id=grill_ings_<%=cla.parent_name%> class='grill_ings'>
+            <th><%=cla.parent_name%></th>
+            <% @mkups.each do |mkup| %>
+                <% if mkup.food==cla.id  && @ings[mkup.ingredient].amount_in_stock >0 %>
+                    <tr>
+                        <td><%= @ings[mkup.ingredient].ingredient_name %></td>
+                        <td><select class="wkr_ings_in_itms styled-select" id=<%= cla.parent_name%> name=<%= @ings[mkup.ingredient].id %>>
+                                <% if mkup.vital==0 %>
+                                    <option value=0> 0</option>
+                                <%end%>
+                                <option value=1> 1</option>
+                                <% if @ings[mkup.ingredient].amount_in_stock >1 %>
+                                    <option value=2> 2</option>
+                                <%end%>
+                                <% if @ings[mkup.ingredient].amount_in_stock >2 %>
+                                    <option value=3> 3</option>
+                                <%end%>
+                                </select></td></td>
+                    </tr>
+                <%end%>
+            <%end%>
+                <tr><td><button class='grill_submit_order clean-gray' id=<%=cla.parent_name%>>Place Order</button></td></tr>
+        </table>
+    <%end%>
+</div>
+
+</br>
 
 <% @orders.each do |ord| %>
     <div id=order class=orders_<%=ord.started%>_<%=ord.finished%>>

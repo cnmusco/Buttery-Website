@@ -4,7 +4,7 @@ var user_name = "";
 //load after the page loads
 $(document).ready(function()
 {
-    change_alert();
+    //change_alert();
     buttons();
 }); 
 
@@ -574,6 +574,38 @@ function buttons()
                 data: ({ord_id: $(this).attr('id')})
         });
     });
+    
+    
+    //when manual grill order is clicked
+    $('.grill_button').click(function()
+    {
+        if(!$('#grill_ings_'+$(this).attr('id')).is(":visible"))
+        {
+            $('.grill_ings').hide();
+            $('#grill_ings_'+$(this).attr('id')).show();
+        }
+        else
+            $('.grill_ings').hide();
+    });
+    //place order
+    $('.grill_submit_order').click(function()
+    {
+        var val=$(this).attr('id');
+        var order=new Array, itm;
+        order.push('|'+val);
+        $('.wkr_ings_in_itms').each(function()
+        {
+            if($(this).attr('id')==val && $(this).val()!=0)
+            {
+                order.push(','+$(this).attr('name')+':'+$(this).val());
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/order/add_manual_order",
+            data: ({order: order.join(''),}),
+        });
+    });
 }
 
 function sign_up_validator()
@@ -617,6 +649,8 @@ function edit_remove(cur_itm)
                 }
     });
 }
+
+
 
 
 

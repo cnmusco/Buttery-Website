@@ -469,6 +469,18 @@ body {
 	line-height: 3em;
 }
 
+.grill_ings
+{
+    display:none;
+    background: #E5EECC;
+    z-index:100;
+    position:absolute;
+    margin: 0;
+    width:66%;
+}
+
+
+
 
 #modalContainer {
 	background-color:transparent;
