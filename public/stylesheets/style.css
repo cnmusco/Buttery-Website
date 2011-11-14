@@ -4,12 +4,18 @@ body {
     color:#444;
 }
 
+#about_content {
+	font-size: 15px;
+	line-height: 1.5em;
+}
+
 .classes{
-	font-size:18px;
+	font-size:16px;
+	margin: 0px 0px 0px 0px;
 }
 
 .styled-select{
-	margin-left:10px;
+	margin-left:5px;
 }
 
 #order_count {
@@ -26,18 +32,18 @@ body {
 #logged_out {
 	font-size:15px;
 	color:#FFFFFF;
-	margin: 0px 0px 0px 200px;
+	margin: 0px 0px 0px 160px;
 	padding-top:10px;
 
 }
 #logged_in {
-	font-size:15px;
+	font-size:14px;
 	color:#FFFFFF;
-	margin: 0px 0px 2px 100px;
+	margin: 0px 0px 2px 70px;
 }
 
 #headline {
-	font-size:36px;
+	font-size:38px;
 	clear: both;
 	font-weight: bold;
 }
@@ -54,7 +60,7 @@ body {
 
 #header
 {
-	margin: 0 auto;
+	margin: 0 80;
 	width: 860px;
 	padding: 20px;
 	background: #FFFF66;
@@ -77,8 +83,8 @@ body {
 
 #navigation
 {
-	margin: 0 auto;
-	width: 900px;
+	margin: 0 100px;
+	width: 1000px;
 }
 
 #navigation ul
@@ -128,6 +134,15 @@ body {
 	text-align:center;
 }
 #signup_li {
+	border-width: 0px 0px 0px 2px;
+	border-style:solid;
+	border-color:#FFFFFF;
+	height:40px;
+	padding:6px 5px 0px 5px;
+	text-align:center;
+}
+
+#about_li {
 	border-width: 0px 2px 0px 2px;
 	border-style:solid;
 	border-color:#FFFFFF;
@@ -336,6 +351,10 @@ body {
 .hidden_ings_pub
 {
     display:none;
+	font-size: 13px;
+}
+.pub_ings_in_itms{
+	padding:0px 0px 0px 0px;
 }
 .item_names_public
 {
@@ -368,10 +387,16 @@ body {
 #all_ing_0
 {
     font-size:90%;
+	width: 100px;
 }
 #submit_order
 {
-    margin-left: 650px;
+    margin-left: 200;
+}
+
+.menu_ingredient {
+	width: 100px;
+	padding: 0px 0px 0px 0px;
 }
 
 #order
@@ -419,21 +444,20 @@ body {
 #content-container
 {
 	float: left;
-	width: 100%;
+	width: 950px;
 	color: #000;
 	background: #FFFFFF;
 }
 
 #content-container2
 {
-	margin: 0 auto;
-	width: 900px;
+	margin-left:40px;
 }
 
 #content-container3
 {
 	float: left;
-	width: 900px;
+	width: 950px;
 	background: #FFF;
 }
 
@@ -441,9 +465,9 @@ body {
 {
 	clear: left;
 	float: left;
-	width: 900px;
+	width: 950px;
 	padding: 20px 0;
-	margin: 0 0 0 30px;
+	margin: 0 0 0 0px;
 	display: inline;
 }
 

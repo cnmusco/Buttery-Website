@@ -2,10 +2,18 @@
     <div id="nonworker_message"><%=flash[:notice]%></div>
 <%end%>
 
+<table id="menu_top">
+	<tr>
+		<td>
 <h2>See What's In Stock and Place an Order</h2>
 
 <div id="order_count">There Are Currently <%=@order_counter%> Orders Ahead Of You</div>
-
+		</td>
+		<td>
+<button id="submit_order" class="skip">Submit Order</button>
+		</td>
+	</tr>
+</table>
 <% clas="" %>
 <% @classes.each do |cla| %> 
     <% if clas!=cla.class_of_food %>
@@ -14,7 +22,7 @@
             <h3><%= clas %></h3>
             <% @parents.each do |parent| %>
                 <% if parent.class_of_food==clas %>
-                    <button class="item_names_public skip-grey" name=<%= parent.id %> id=public_items_<%= parent.rgb %>
+                    <button class="item_names_public skip-grey-order" name=<%= parent.id %> id=public_items_<%= parent.rgb %>
                                 <% if parent.rgb==0 %>
                                     <%= ' disabled="disabled"'%>
                                 <%end%>
@@ -22,11 +30,11 @@
                     <% if parent.rgb!=0 %>
                         <% empties=Array.new %>
                         <table class="hidden_ings_pub" id=pub_ings_<%= parent.id %>>
-                            <tr><th> Item </th> <th> Servings </th></tr>
+                            <tr><td> <strong>Item</strong> </td> <td> <strong>Servings</strong> </td></tr>
                             <% @makeups.each do |mkup| %>
                                 <% if mkup.food==parent.id %>
                                     <% if @ings[mkup.ingredient].amount_in_stock!=0 %>
-                                        <tr><td> <div class=pub_ing_<%=@ings[mkup.ingredient].amount_in_stock %>> <%= @ings[mkup.ingredient].ingredient_name%> </div></td>
+                                        <tr><td class='menu_ingredient'> <div class=pub_ing_<%=@ings[mkup.ingredient].amount_in_stock %>> <%= @ings[mkup.ingredient].ingredient_name%> </div></td>
                                          <td> <select class="pub_ings_in_itms styled-select" id=<%= parent.parent_name %> name=<%= @ings[mkup.ingredient].id %>>
                                             <% if mkup.vital==0 %>
                                                 <option value=0> 0 </option>
@@ -55,4 +63,3 @@
         </div>
     <% end %>
 <% end%>
-<button id="submit_order" class="skip">Submit Order</button>

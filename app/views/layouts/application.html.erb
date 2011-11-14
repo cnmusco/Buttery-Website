@@ -54,7 +54,7 @@
                                 <div class="invalid_login" id="invalid_login4">You Have Entered an Invalid Yale Email </br>Address For A Student of Pierson</div>
                                 <div class="invalid_login" id="invalid_login6">This Email Address Already has an Active Account</div>
                             </div>
-
+							<li id="about_li"><button id="about" class="nav_button">About</button></li>
 							<li id='logged_out' <%if session[:current_user]%>style='display:none'<%end%>>
 								Log In To Make An Order Online
 							</li>
@@ -74,13 +74,11 @@
 
 <div id="content-container">
 	<div id="content-container2">
-		<div id="content-container3">
 			<div id="content">
                                 <%=yield%>
 			</div>
-			
-		</div>
 	</div>
+</div>
 	<div id="footer-container">
 		<div id="footer">
 			<div id='footer_text'>Created by Mike Levine and Cameron Musco, 2011</div>

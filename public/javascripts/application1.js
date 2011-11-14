@@ -10,6 +10,11 @@ $(document).ready(function()
 
 function buttons()
 {
+	$("#about").click(function()
+	{
+		window.location = "/about"
+	});
+	
     //button link chnages
     $("#worker_view").click(function()
     {

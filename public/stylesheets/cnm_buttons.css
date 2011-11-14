@@ -1,12 +1,12 @@
 /* The actual buttons on our page*/
 #account_info {
-	width:100px;
+	width:80px;
 	margin-top:6px;
 	vertical-align:middle;
 }
 
 #log_out {
-	width:100px;
+	width:80px;
 	vertical-align:middle;
 	margin-top:6px;
 }
@@ -170,3 +170,52 @@
 		    -ms-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
 		    -o-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
 		    box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white; }
+		
+		
+		
+			/* skip-grey-order (inspired by okcupid iphone interface)
+			*******************************************************************************/
+			button.skip-grey-order {
+			  background-color: #8c9cbf;
+			  background-image: -webkit-gradient(linear, left top, left bottom, from(#999 0%), to(#555 50%));
+			  /* Saf4+, Chrome */
+			  background-image: -webkit-linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+			  background-image: -moz-linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+			  background-image: -ms-linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+			  background-image: -o-linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+			  background-image: linear-gradient(top, #999 0%, #555 50%, #444444 50%, #333333 100%);
+			  border: 1px solid #222;
+			  border-bottom: 1px solid #111111;
+			  -webkit-border-radius: 5px;
+			  -moz-border-radius: 5px;
+			  -ms-border-radius: 5px;
+			  -o-border-radius: 5px;
+			  border-radius: 5px;
+			  -webkit-box-shadow: inset 0 1px 0 0 #b1b9cb;
+			  -moz-box-shadow: inset 0 1px 0 0 #b1b9cb;
+			  -ms-box-shadow: inset 0 1px 0 0 #b1b9cb;
+			  -o-box-shadow: inset 0 1px 0 0 #b1b9cb;
+			  box-shadow: inset 0 1px 0 0 #b1b9cb;
+			  color: #fff;
+			  font: bold 15px "helvetica neue", helvetica, arial, sans-serif;
+			  padding: 7px 0 8px 0;
+			  text-decoration: none;
+			  text-align: center;
+			  text-shadow: 0 -1px 1px #000f4d;
+			  width: 130px; }
+			  button.skip-grey-order:hover {
+			    background-color: #7f8dad;
+			    background-image: -webkit-gradient(linear, left top, left bottom, from(#7f8dad 0%), to(#4a5e8c 50%));
+			    /* Saf4+, Chrome */
+			    background-image: -webkit-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+			    background-image: -moz-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+			    background-image: -ms-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+			    background-image: -o-linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+			    background-image: linear-gradient(top, #7f8dad 0%, #4a5e8c 50%, #2f477d 50%, #364c80 100%);
+			    cursor: pointer; }
+			  button.skip-grey-order:active {
+			    -webkit-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+			    -moz-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+			    -ms-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+			    -o-box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white;
+			    box-shadow: inset 0 0 20px 0 #1d2845, 0 1px 0 white; }

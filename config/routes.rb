@@ -1,6 +1,5 @@
 Buttery::Application.routes.draw do
 
-
   resources :orders
 
   resources :users
@@ -61,6 +60,7 @@ Buttery::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
    root :to => "public#show_menu"
+   match 'about' => "about#index"
    match 'home' => "public#show_menu"
    match 'worker/update_inventory' => 'worker#update_inventory'
    match 'worker/manage_menu' => 'worker#add_items'
