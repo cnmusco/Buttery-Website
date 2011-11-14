@@ -15,7 +15,7 @@ function reload_order_queue()
     var str=window.location.href;
         var y=new RegExp("/worker/orders");
     if(str.match(y))
-        setTimeout("reload_order_queue1()", 240000);
+        setTimeout("reload_order_queue1()", 90000);
 }
 function reload_order_queue1()
 {
@@ -24,7 +24,7 @@ function reload_order_queue1()
     if(str.match(y))
     {
         window.location = "/worker/orders"
-        setTimeout("reload_order_queue1()", 240000);
+        setTimeout("reload_order_queue1()", 90000);
     }
 }
 
