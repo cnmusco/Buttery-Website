@@ -451,7 +451,8 @@ body {
 
 #content-container2
 {
-	margin-left:40px;
+	margin-left:100px;
+        width:100%;
 }
 
 #content
