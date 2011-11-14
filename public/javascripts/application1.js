@@ -221,7 +221,7 @@ function buttons()
     
     
     //Buttons for Menu Manager
-    $("#nmi_submit").click(function()
+    $("#nmi_submit").live('click', function()
     {
         var num_ings=parseInt($("#hidden_num_of_ings").text(), 10);
         var ids=new Array();
@@ -305,7 +305,7 @@ function buttons()
         else
             $("#nmi_new_class").hide();
     });
-    $("#ni_submit").click(function()
+    $("#ni_submit").live('click', function()
     {
         var name, quant, unit, thresh;
         if((name=$("#ni_name").val()) && (quant=$("#ni_amount").val()) && parseInt(quant)==quant && (thresh=$("#ni_thresh").val()) && parseInt(thresh)==thresh&& (unit=$("#ni_unit").val()))
@@ -405,7 +405,7 @@ function buttons()
             });
         }
     });
-    $("#delete_menu_button").click(function()
+    $("#delete_menu_button").live('click', function()
     {
         if(confirm("Are You Sure You Want To Delete This Item?"))
         {
