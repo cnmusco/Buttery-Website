@@ -682,7 +682,7 @@ function change_alert()
 {
 
 // constants to define the title of the alert and button text.
-var ALERT_TITLE = "Sorry!";
+var ALERT_TITLE = "Pierson Buttery";
 var ALERT_BUTTON_TEXT = "Close";
 
 // over-ride the alert method only if this a newer browser.
