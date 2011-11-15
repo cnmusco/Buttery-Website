@@ -440,6 +440,11 @@ body {
     margin: 0 auto;
 }
 
+#about_content
+{
+    width: 950px;
+}
+
 
 #content-container
 {
