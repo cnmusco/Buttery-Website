@@ -472,7 +472,7 @@ function buttons()
             if(day<5)
                 butt_open=1;
         }
-        
+        butt_open=0;
         if(butt_open)
         {
              $.ajax({
