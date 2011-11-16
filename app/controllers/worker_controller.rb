@@ -46,7 +46,7 @@ class WorkerController < ApplicationController
         ings=Ingredient.all
         restock=Array.new()
         ings.each do |ing|
-            if ing.threshold >= ing.amount_in_stock
+            if ing.threshold >= ing.amount_in_stock && ing.threshold!=0
                 restock.push(ing.ingredient_name)
             end
         end
