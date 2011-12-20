@@ -10,24 +10,63 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111112181121) do
+ActiveRecord::Schema.define(:version => 20111219225313) do
 
-# Could not dump table "ingredients" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "ingredients", :force => true do |t|
+    t.string   "ingredient_name"
+    t.integer  "amount_in_stock"
+    t.string   "unit_of_stock"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "threshold"
+  end
 
-# Could not dump table "makeups" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "makeups", :force => true do |t|
+    t.integer  "vital"
+    t.integer  "food"
+    t.integer  "ingredient"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "menus" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "menus", :force => true do |t|
+    t.string "item_name"
+    t.string "parent_name"
+  end
 
-# Could not dump table "orders" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "orders", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.string   "order"
+    t.integer  "started"
+    t.integer  "finished"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "parents" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "parents", :force => true do |t|
+    t.string   "parent_name"
+    t.string   "class_of_food"
+    t.integer  "rgb"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
-# Could not dump table "users" because of following Mysql2::Error
-#   Invalid date: BTREE
+  create_table "users", :force => true do |t|
+    t.string  "name"
+    t.string  "email"
+    t.string  "username"
+    t.string  "hash"
+    t.text    "password"
+    t.integer "worker"
+    t.integer "warnings"
+    t.integer "online_orders"
+    t.integer "ban"
+    t.integer "activated"
+    t.integer "year"
+    t.integer "phone_number"
+    t.integer "contact_options"
+    t.string  "phone_number1"
+  end
 
 end

@@ -55,6 +55,16 @@
   <%= @user.year %>
 </p>
 
+<p>
+  <b>Phone Number:</b>
+  <%= @user.phone_number1 %>
+</p>
+
+
+<p>
+  <b>Contact Info:</b>
+  <%= @user.contact_options %>
+</p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>

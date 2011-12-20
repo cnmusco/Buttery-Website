@@ -472,7 +472,10 @@ function buttons()
             if(day<5)
                 butt_open=1;
         }
-        butt_open=0;
+        
+        //butt_open=1; //manually open and close ordering (for testing
+        
+        
         if(butt_open)
         {
              $.ajax({
@@ -626,7 +629,37 @@ function buttons()
         $.ajax({
             type: "POST",
             url: "/order/add_manual_order",
-            data: ({order: order.join(''),}),
+            data: ({order: order.join('')}),
+        });
+    });
+    
+    
+    
+    
+    //save phone number
+    $('#new_num').click(function()
+    {
+        var num=$('#number').val();
+        if (num.length==10 && !isNaN(num))
+        {
+            $.ajax({
+                type: "POST",
+                url: "/account",
+                data: ({number: num})
+            });
+            window.location= '/account';
+        }
+        else
+            alert("Invalid Number");
+    });
+    
+    //change contact options
+    $('#contact_options').change(function()
+    {
+        $.ajax({
+            type: "POST",
+            url: "/account",
+            data: ({acc: $("input:checked").val()})
         });
     });
 }

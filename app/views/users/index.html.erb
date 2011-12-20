@@ -13,6 +13,8 @@
     <th>Ban</th>
     <th>Activated</th>
     <th>Year</th>
+    <th>Phone</th>
+    <th>Contact Options</th>
     <th></th>
     <th></th>
     <th></th>
@@ -31,6 +33,8 @@
     <td><%= user.ban %></td>
     <td><%= user.activated %></td>
     <td><%= user.year %></td>
+    <td><%= user.phone_number1 %></td>
+    <td><%= user.contact_options %></td>
     <td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>

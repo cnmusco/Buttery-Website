@@ -13,6 +13,30 @@ class AccountController < ApplicationController
         @user=User.find(session[:current_user].id)
         @ords=Order.where(:user_id=>session[:current_user].id)
         
+        if params[:number]
+            @user.phone_number1=params[:number]
+            @user.save
+        end
+        if params[:acc]
+            @user.contact_options=params[:acc]
+            @user.save
+        end
+        
+        if @user.phone_number1
+            @number=Array.new
+            counter=0
+            @number.push('(')
+            @user.phone_number1.each_char do |x|
+                @number.push(x)
+                if counter==2
+                    @number.push(') ')
+                elsif counter==5
+                    @number.push('-')
+                end
+                counter+=1
+            end
+        end
+        
         ings=Ingredient.all
         @ings=Array.new
         ings.each do |ing|

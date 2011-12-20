@@ -85,6 +85,7 @@ Buttery::Application.routes.draw do
    post '/order/add_order'
    post 'order/view_order_queue'
    post 'order/add_manual_order'
+   post 'account/main'
 
   # See how all your routes lay out with "rake routes"
 
