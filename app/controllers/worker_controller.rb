@@ -10,7 +10,11 @@ class WorkerController < ApplicationController
     end
     
     def update_inventory
-        @ingredients=Ingredient.find(:all, :order=>'ingredient_name')
+        #@ingredients=Ingredient.find(:all, :order=>'ingredient_name')
+        @ingredients=Array.new
+        Ingredient.find(:all, :order=>'ingredient_name').each do |ing|
+            @ingredients.push(ing)
+        end
     end
     
     #controllers for changing the amount of inventory
