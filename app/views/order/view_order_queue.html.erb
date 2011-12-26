@@ -47,7 +47,12 @@
                             <% o=o.split(':') %>
                             <tr><td><%= @ings[Integer(o[0])].ingredient_name %><%=' x ' + o[1]%></td></tr>
                         <%end%>
-                    </table></td>
+                    </table>
+                    <% if ord.notes!='' %>
+                        <td>
+                            <%= 'Notes: '+ ord.notes %>
+                        </td>
+                    <%end%></td>
                 </tr>
             <%end%>
         </table>

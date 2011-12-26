@@ -481,7 +481,8 @@ function buttons()
              $.ajax({
                     type: "POST",
                     url: "/order/add_order",
-                    data: ({order: order.join(''),}),
+                    data: ({order: order.join(''),
+                    notes: $('#order_notes').val()})
                 });
         }
         else

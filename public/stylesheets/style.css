@@ -415,9 +415,13 @@ body {
     font-size:90%;
 	width: 100px;
 }
+#order_notes1
+{
+    margin-left:80;
+}
 #submit_order
 {
-    margin-left: 200;
+    margin-left:50;
 }
 
 .menu_ingredient {

@@ -25,6 +25,7 @@ class OrderController < ApplicationController
         if cur_user && params[:order]!='' && cur_user.ban==0
             #subtract ingredients for order or give error message
             flag=1
+            flag1=0
             ings_to_sub=Array.new
             num_to_sub=Array.new
             ord=params[:order].split('|')
@@ -33,6 +34,7 @@ class OrderController < ApplicationController
                 c=o.split(',')
                 c.delete_at(0)
                 c.each do |a|
+                    flag1=1
                     a=a.split(':')
                     num=Ingredient.find(a[0]).amount_in_stock
                     if (num-Integer(a[1]))<0
@@ -44,16 +46,18 @@ class OrderController < ApplicationController
                 end
             end
             
-            if flag==1  #make substitutions
-                Order.create(:name=>cur_user.name, :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
+            if flag==1  && flag1==1#make substitutions
+                Order.create(:name=>cur_user.name, :notes=>params[:notes], :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
                 message='Order Successfully Placed'
                 i=0
                 ings_to_sub.each do |ing|
                     Ingredient.find(ing).update_attributes(:amount_in_stock => num_to_sub[i])
                     i+=1
                 end
-            else
+            elsif flag1==1
                 message='At Least One of The Requested Items Is No Longer In Stock'
+            else
+                message='You Must Select Something To Make An Order'
             end
         elsif cur_user.ban==1
             session[:current_user]=nil
