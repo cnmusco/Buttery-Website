@@ -1,5 +1,7 @@
 class OrderController < ApplicationController
     
+    include OrderHelper
+    
     before_filter :require_worker, :only=>[:view_order_queue]
     rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
     
@@ -87,6 +89,7 @@ class OrderController < ApplicationController
                 ord.update_attributes(:started=>1)
                 if ord.user_id
                     Notifier.order_ready(User.find(ord.user_id)).deliver
+                    sendTxt(User.find(ord.user_id), "Your Order Has Been Started")
                 end
             
             #finish order

@@ -473,7 +473,7 @@ function buttons()
                 butt_open=1;
         }
         
-        //butt_open=1; //manually open and close ordering (for testing
+        butt_open=1; //manually open and close ordering (for testing)
         
         
         if(butt_open)

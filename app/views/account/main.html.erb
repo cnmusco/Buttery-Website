@@ -33,15 +33,15 @@
     <button id="change_pwd" class="clean-gray">Change Password</button>
 </div>
 
-<div id="contact_options">
-    <h3>Choose How We Contact You For Orders</h3>
-    <form id="contact_options">
-        <input type="radio" name="contact" value="0" 
-                <% if @user.contact_options==0 %>
-                    checked
-                <%end%>
-        /> Email<br />
-        <% if @number %>
+<% if @number %>
+    <div id="contact_options">
+        <h3>Choose How We Contact You For Orders</h3>
+        <form id="contact_options">
+            <input type="radio" name="contact" value="0" 
+                    <% if @user.contact_options==0 %>
+                        checked
+                    <%end%>
+            /> Email<br />
             <input type="radio" name="contact" value="1"  
                     <% if @user.contact_options==1 %>
                         checked
@@ -52,9 +52,9 @@
                         checked
                     <%end%>
             /> Text and Email
-        <%end%>
-    </form>
-</div>
+        </form>
+    </div>
+<%end%>
 
 
 <%if @ords!=[]%>
