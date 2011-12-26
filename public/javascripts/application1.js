@@ -699,10 +699,15 @@ function buttons()
             type: "POST",
             url: "/worker/up_inv1",
             data: ({word: $(this).val()}),
-                        success: function(data)
-                                {
-                                    $("#inv_to_update").html(data);
-                                }
+                    success: function(data)
+                    {
+                        $('#inventory_search').css('color', 'black');
+                        $("#inv_to_update").html(data);
+                    },
+                    error: function()
+                    {
+                        $('#inventory_search').css('color', 'red');
+                    }
         });
     });
 }

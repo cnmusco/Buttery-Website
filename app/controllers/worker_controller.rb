@@ -23,7 +23,9 @@ class WorkerController < ApplicationController
                 @ingredients.push(ing)
             end
         end
-        render :partial => 'up_inv'
+        if @ingredients.length>0
+            render :partial => 'up_inv'
+        end
     end
     
     #controllers for changing the amount of inventory
