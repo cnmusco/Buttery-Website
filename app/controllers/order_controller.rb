@@ -88,8 +88,13 @@ class OrderController < ApplicationController
                 ord=Order.find(params[:id])
                 ord.update_attributes(:started=>1)
                 if ord.user_id
-                    Notifier.order_ready(User.find(ord.user_id)).deliver
-                    sendTxt(User.find(ord.user_id), "Your Order Has Been Started")
+                    usr=User.find(ord.user_id)
+                    if usr.contact_options==0 || usr.contact_options==2
+                        Notifier.order_ready(usr).deliver
+                    end
+                    if usr.contact_options==1 || usr.contact_options==2
+                        sendTxt(User.find(ord.user_id), "Your Order Has Been Started")
+                    end
                 end
             
             #finish order
