@@ -306,6 +306,11 @@ body {
     background: #87CEEB;
 }
 
+#inv_search
+{
+    font-size:150%;
+    padding: 20px;
+}
 
 .add_item
 {
