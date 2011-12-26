@@ -689,6 +689,22 @@ function buttons()
             data: ({acc: $("input:checked").val()})
         });
     });
+    
+    
+    
+    //update inventory search box
+    $('#inventory_search').keyup(function()
+    {
+        $.ajax({
+            type: "POST",
+            url: "/worker/up_inv1",
+            data: ({word: $(this).val()}),
+                        success: function(data)
+                                {
+                                    $("#inv_to_update").html(data);
+                                }
+        });
+    });
 }
 
 function sign_up_validator()

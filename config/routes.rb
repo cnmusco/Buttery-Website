@@ -75,6 +75,7 @@ Buttery::Application.routes.draw do
    post 'worker/sub_inv'
    post 'worker/empty_inv'
    post 'worker/restock'
+   post 'worker/up_inv1'
    post 'user_accounts/signup'
    post 'user_accounts/login'
    post 'user_accounts/logout'

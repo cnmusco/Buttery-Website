@@ -10,11 +10,20 @@ class WorkerController < ApplicationController
     end
     
     def update_inventory
-        #@ingredients=Ingredient.find(:all, :order=>'ingredient_name')
         @ingredients=Array.new
         Ingredient.find(:all, :order=>'ingredient_name').each do |ing|
             @ingredients.push(ing)
         end
+    end
+    
+    def up_inv1
+        @ingredients=Array.new
+        Ingredient.find(:all, :order=>'ingredient_name').each do |ing|
+            if /#{params[:word].downcase}/=~ing.ingredient_name.downcase
+                @ingredients.push(ing)
+            end
+        end
+        render :partial => 'up_inv'
     end
     
     #controllers for changing the amount of inventory
