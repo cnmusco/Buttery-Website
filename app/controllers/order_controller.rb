@@ -94,7 +94,7 @@ class OrderController < ApplicationController
                         Notifier.order_ready(usr).deliver
                     end
                     if usr.contact_options==1 || usr.contact_options==2
-                        sendTxt(usr.phone_number, "Your order has been started and should be ready in a few minutes")
+                        sendTxt(usr, "Your order has been started and should be ready in a few minutes")
                     end
                 end
             
