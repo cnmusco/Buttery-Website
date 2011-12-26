@@ -16,10 +16,13 @@ class WorkerController < ApplicationController
         end
     end
     
+    #inventory filters
     def up_inv1
         @ingredients=Array.new
+        flag=params[:flag]
         Ingredient.find(:all, :order=>'ingredient_name').each do |ing|
-            if /#{params[:word].downcase}/=~ing.ingredient_name.downcase
+            #see if word matches and if filters match
+            if /#{params[:word].downcase}/=~ing.ingredient_name.downcase && (flag=='0' || (flag=='1' && ing.amount_in_stock<ing.threshold) || (flag=='2' && ing.amount_in_stock==0))
                 @ingredients.push(ing)
             end
         end
@@ -27,6 +30,19 @@ class WorkerController < ApplicationController
             render :partial => 'up_inv'
         end
     end
+    
+    #filter
+    def up_inv2
+        @ingredients=Array.new
+        flag=params[:flag]
+        Ingredient.find(:all, :order=>'ingredient_name').each do |ing|
+            if flag=='0' || (flag=='1' && ing.amount_in_stock<ing.threshold) || (flag=='2' && ing.amount_in_stock==0)
+                @ingredients.push(ing)
+            end
+        end
+        render :partial => 'up_inv'
+    end
+    
     
     #controllers for changing the amount of inventory
     def add_inv

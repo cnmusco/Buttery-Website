@@ -306,11 +306,21 @@ body {
     background: #87CEEB;
 }
 
-#inv_search
+#inv_filter
+{
+    padding-top:18;
+}
+
+.inv_filters
+{
+    margin-left: 180;
+}
+
+#inv_search1
 {
     font-size:150%;
-    padding: 20px;
 }
+
 
 .add_item
 {

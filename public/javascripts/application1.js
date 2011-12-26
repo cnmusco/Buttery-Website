@@ -187,7 +187,7 @@ function buttons()
     
     //functions for adding, subtracting and emptying inventroy 
     //from worker inv page
-    $(".add_item").click(function()
+    $(".add_item").live('click', function()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
@@ -198,7 +198,7 @@ function buttons()
         });
         
     });
-    $(".sub_item").click(function()
+    $(".sub_item").live('click', function()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
@@ -208,7 +208,7 @@ function buttons()
             data: ({id: ing_id})
         });
     });
-    $(".empty_item").click(function()
+    $(".empty_item").live('click', function()
     {
         ing_id=this.id;
         var ais="#ais"+ing_id;
@@ -696,22 +696,34 @@ function buttons()
     //update inventory search box
     $('#inventory_search').keyup(function()
     {
-        $.ajax({
-            type: "POST",
-            url: "/worker/up_inv1",
-            data: ({word: $(this).val()}),
-                    success: function(data)
-                    {
-                        $('#inventory_search').css('color', 'black');
-                        $("#inv_to_update").html(data);
-                    },
-                    error: function()
-                    {
-                        $('#inventory_search').css('color', 'red');
-                    }
-        });
+        filter();
+    });
+    //filter by quantity
+    $('#inv_filter').change(function()
+    {
+        filter();
     });
 }
+
+function filter()
+{
+    $.ajax({
+        type: "POST",
+        url: "/worker/up_inv1",
+        data: ({word: $('#inventory_search').val(),
+                flag: $('input:checked').val()}),
+                success: function(data)
+                {
+                    $('#inventory_search').css('color', 'black');
+                    $("#inv_to_update").html(data);
+                },
+                error: function()
+                {
+                    $('#inventory_search').css('color', 'red');
+                }
+    });
+}
+
 
 function sign_up_validator()
 {
