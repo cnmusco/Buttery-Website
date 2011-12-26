@@ -2,15 +2,15 @@
     </br>
 <div class="grill_buttons">
     <% @grills.each do |cla| %>
-        <button class="grill_button skip-grey" id=<%=cla.parent_name%>><%=cla.parent_name%></button>
+        <button class="grill_button skip-grey" id="<%=cla.parent_name%>" value=<%=cla.id%>><%=cla.parent_name%></button>
         
-        <table id=grill_ings_<%=cla.parent_name%> class='grill_ings'>
+        <table id="grill_ings_<%=cla.id%>" class='grill_ings'>
             <th><%=cla.parent_name%></th>
             <% @mkups.each do |mkup| %>
                 <% if mkup.food==cla.id  && @ings[mkup.ingredient].amount_in_stock >0 %>
                     <tr>
                         <td><%= @ings[mkup.ingredient].ingredient_name %></td>
-                        <td><select class="wkr_ings_in_itms styled-select" id=<%= cla.parent_name%> name=<%= @ings[mkup.ingredient].id %>>
+                        <td><select class="wkr_ings_in_itms styled-select" id="<%= cla.parent_name%>" name=<%= @ings[mkup.ingredient].id %>>
                                 <% if mkup.vital==0 %>
                                     <option value=0> 0</option>
                                 <%end%>
@@ -25,7 +25,7 @@
                     </tr>
                 <%end%>
             <%end%>
-                <tr><td><button class='grill_submit_order clean-gray' id=<%=cla.parent_name%>>Place Order</button></td></tr>
+                <tr><td><button class='grill_submit_order clean-gray' id="<%=cla.parent_name%>">Place Order</button></td></tr>
         </table>
     <%end%>
 </div>
@@ -54,10 +54,14 @@
         <%if ord.started==0 %>
             <button class=order_is_cooking id=<%=ord.id%>>Begin Making</button>
         <%elsif ord.finished==0 %>
-            <button class=order_is_done id=<%=ord.id%>>Finished</button>
+            <button class=order_is_done1 id=<%=ord.id%>>Finished: Customer Here</button></br>
+            <button class=order_is_done id=<%=ord.id%>>Finished: Customer Not Here</button>
         <%else%>
             <button class=order_is_picked_up id=<%=ord.id%>>Order Claimed</button>
             <button class=order_is_abandoned id=<%=ord.id%>>Order Never Claimed</button>
+        <%end%>
+        <% if !ord.user_id %>
+            <button class=worker_cancel_order id=<%=ord.id%>>Cancel</button>
         <%end%>
     </div>
 <%end%>

@@ -258,12 +258,22 @@ body {
 }
 .order_is_done
 {
-    padding: 10px 40px;
+    padding: 10px 10px;
     background: #DCDCDC;
 }
 .order_is_done:hover
 {
-    padding: 10px 40px;
+    padding: 10px 10px;
+    background: #87CEEB;
+}
+.order_is_done1
+{
+    padding: 10px 10px;
+    background: #DCDCDC;
+}
+.order_is_done1:hover
+{
+    padding: 10px 10px;
     background: #87CEEB;
 }
 .order_is_picked_up
@@ -285,6 +295,17 @@ body {
     padding: 10px 15px;
     background: #87CEEB;
 }
+.worker_cancel_order
+{
+    padding: 10px 40px;
+    background: #DCDCDC;
+}
+.worker_cancel_order:hover
+{
+    padding: 10px 40px;
+    background: #87CEEB;
+}
+
 
 .add_item
 {

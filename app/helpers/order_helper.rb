@@ -6,9 +6,11 @@ module OrderHelper
         # set up a client to talk to the Twilio REST API
         @client = Twilio::REST::Client.new account_sid, auth_token
         
+        num= '+1' + usr.phone_number1
+        
         @client.account.sms.messages.create(
           :from => '+14155992671',
-          :to => '+16318483521',
+          :to => num,
           :body => msg
         )
     end

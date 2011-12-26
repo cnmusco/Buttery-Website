@@ -25,7 +25,13 @@ class Notifier < ActionMailer::Base
     
     def order_ready(user)
          mail( :to => user.email, 
-              :subject => "Order Is Almost Ready",
-              :body => "Your order is being made.  Please come down to the buttery to pick it up ASAP.")
+              :subject => "Order Has Been Started",
+              :body => "Your order is being made.  It should be finished in a few minutes.")
+    end
+    
+    def order_finished(user)
+         mail( :to => user.email, 
+              :subject => "Order Is Finished",
+              :body => "Your order is done.  Come down before it gets cold.")
     end
 end

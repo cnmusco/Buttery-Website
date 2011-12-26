@@ -89,19 +89,33 @@ class OrderController < ApplicationController
                 ord.update_attributes(:started=>1)
                 if ord.user_id
                     usr=User.find(ord.user_id)
+                    #inform user
                     if usr.contact_options==0 || usr.contact_options==2
                         Notifier.order_ready(usr).deliver
                     end
                     if usr.contact_options==1 || usr.contact_options==2
-                        sendTxt(User.find(ord.user_id), "Your Order Has Been Started")
+                        sendTxt(usr.phone_number, "Your order has been started and should be ready in a few minutes")
                     end
                 end
             
-            #finish order
+            #finish order, customer not in buttery
             elsif flag==1
-                Order.find(params[:id]).update_attributes(:finished=>1)
+                order=Order.find(params[:id])
+                if !order.user_id
+                    order.destroy
+                else
+                    order.update_attributes(:finished=>1)
+                    #inform user
+                    usr=User.find(order.user_id)
+                    if usr.contact_options==0 || usr.contact_options==2
+                        Notifier.order_finished(usr).deliver
+                    end
+                    if usr.contact_options==1 || usr.contact_options==2
+                        sendTxt(usr, "Your order is done.  Come down before it gets cold")
+                    end
+                end
                 
-            #pick up order
+            #pick up order or finish with user in buttery
             elsif flag==2
                 order=Order.find(params[:id])
                 if order.user_id
@@ -128,6 +142,23 @@ class OrderController < ApplicationController
                 else
                     order.destroy
                 end
+                
+            #cancel order
+            elsif flag==4
+                order=Order.find(params[:id])
+                
+                ord=order.order.split('|')
+                ord.delete_at(0)
+                ord.each do |o|
+                    c=o.split(',')
+                    c.delete_at(0)
+                    c.each do |a|
+                        a=a.split(':')
+                        num=Ingredient.find(a[0]).amount_in_stock
+                        Ingredient.find(Integer(a[0])).update_attributes(:amount_in_stock => num+Integer(a[1]))
+                    end
+                end
+                order.destroy
             end
             render :update do |page|
                 page<< 'window.location="/worker/orders";'
@@ -176,18 +207,20 @@ class OrderController < ApplicationController
         
         if flag==1  #make substitutions
             Order.create(:name=>'face-to-face', :order=>params[:order], :started=>0, :finished=>0)
-            message='Order Successfully Placed'
             i=0
             ings_to_sub.each do |ing|
                 Ingredient.find(ing).update_attributes(:amount_in_stock => num_to_sub[i])
                 i+=1
             end
+            
+            render :update do |page|
+                page<< 'window.location = "/worker/orders";'
+            end
         else
-            message='At Least One of The Requested Items Is No Longer In Stock'
-        end
-        render :update do |page|
-            page<< 'window.location = "/worker/orders";'
-            page<< " alert('#{message}');"
+            render :update do |page|
+                page<< 'window.location = "/worker/orders";'
+                page<< " alert('At Least One of The Requested Items Is No Longer In Stock');"
+            end
         end
     end
 end

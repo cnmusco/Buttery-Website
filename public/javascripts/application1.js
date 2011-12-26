@@ -514,6 +514,16 @@ function buttons()
                         id: $(this).attr('id')})
             });
     });
+    //finished order, customer is in buttery
+    $(".order_is_done1").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:2,
+                        id: $(this).attr('id')})
+            });
+    });
     //pickup order button
     $(".order_is_picked_up").click(function()
     {
@@ -531,6 +541,17 @@ function buttons()
                 type: "POST",
                 url: "/order/view_order_queue",
                 data: ({flag:3,
+                        id: $(this).attr('id')})
+            });
+    });
+    
+    //cancel order
+    $(".worker_cancel_order").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:4,
                         id: $(this).attr('id')})
             });
     });
@@ -605,10 +626,15 @@ function buttons()
     //when manual grill order is clicked
     $('.grill_button').click(function()
     {
-        if(!$('#grill_ings_'+$(this).attr('id')).is(":visible"))
+        /*if(!$('#grill_ings_'+$(this).attr('id')).is(":visible"))
         {
             $('.grill_ings').hide();
             $('#grill_ings_'+$(this).attr('id')).show();
+        }*/
+        if(!$('#grill_ings_'+$(this).val()).is(":visible"))
+        {
+            $('.grill_ings').hide();
+            $('#grill_ings_'+$(this).val()).show();
         }
         else
             $('.grill_ings').hide();
@@ -626,6 +652,7 @@ function buttons()
                 order.push(','+$(this).attr('name')+':'+$(this).val());
             }
         });
+        
         $.ajax({
             type: "POST",
             url: "/order/add_manual_order",
