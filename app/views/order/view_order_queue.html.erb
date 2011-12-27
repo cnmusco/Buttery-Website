@@ -48,13 +48,12 @@
                             <tr><td><%= @ings[Integer(o[0])].ingredient_name %><%=' x ' + o[1]%></td></tr>
                         <%end%>
                     </table>
-                    <% if ord.notes!='' %>
-                        <td>
-                            <%= 'Notes: '+ ord.notes %>
-                        </td>
-                    <%end%></td>
-                </tr>
+                    </td>
             <%end%>
+            <% if ord.notes!='' %>
+                    <td><%= 'Notes: '+ ord.notes %></td>
+            <%end%>
+            </tr>
         </table>
         <%if ord.started==0 %>
             <button class=order_is_cooking id=<%=ord.id%>>Begin Making</button>
