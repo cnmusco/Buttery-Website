@@ -47,8 +47,7 @@ class OrderController < ApplicationController
             end
             
             if flag==1  && flag1==1#make substitutions
-                #Order.create(:name=>cur_user.name, :notes=>params[:notes], :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
-                Order.create(:name=>cur_user.name, :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
+                Order.create(:name=>cur_user.name, :notes=>params[:notes], :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
                 message='Order Successfully Placed'
                 i=0
                 ings_to_sub.each do |ing|
