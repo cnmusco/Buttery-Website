@@ -306,6 +306,29 @@ body {
     background: #87CEEB;
 }
 
+#different_quant_order_q
+{
+    color:red;
+}
+#non_vit_order_q
+{
+    color:green;
+}
+
+#order_q_notes
+{
+    font-size: 125%;
+    color: red;
+}
+#order_q_notes1
+{
+    padding: 0 0 8 0;
+}
+#order_q_name
+{
+    padding: 0 0 8 0;
+}
+
 #inv_filter
 {
     padding-top:18;
@@ -432,6 +455,11 @@ body {
 #submit_order
 {
     margin-left:50;
+}
+
+.grill_buttons
+{
+    margin-left: 175;
 }
 
 .menu_ingredient {

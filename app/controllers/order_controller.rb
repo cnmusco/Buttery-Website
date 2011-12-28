@@ -1,6 +1,7 @@
 class OrderController < ApplicationController
     
     include OrderHelper
+    include ParentsHelper
     
     before_filter :require_worker, :only=>[:view_order_queue]
     rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
@@ -80,8 +81,31 @@ class OrderController < ApplicationController
         ings.each do |ing|
             @ings[ing.id]=ing
         end
-        @grills=Parent.where(:class_of_food => 'Grill')
+        update_rgb
+        @grills=Array.new
+        grill=Parent.where(:class_of_food => 'Grill').each do |g|
+            if g.rgb!=0
+                @grills.push(g)
+            end
+        end
         @mkups=Makeup.find(:all, :order=>'vital DESC')
+        
+        #Parent name has array with vital ings (nil if not vital)
+        #used to highlight non-vitals on orders
+        @mkup1=Hash.new
+        Parent.all.each do |par|
+            @mkup1[par.parent_name]=Array.new
+            
+            #put all vital ings in array (hashed by id)
+            @mkups.each do |m|
+                if m.vital==0
+                    break
+                elsif m.food==par.id
+                    @mkup1[par.parent_name][m.ingredient]=1
+                end
+            end
+        end
+        
         
         flag=params[:flag]
         if flag

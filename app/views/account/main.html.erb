@@ -72,6 +72,9 @@
                     <%status='Not Started'%>
                 <%end%>
                 <div>Status: <%=status%></div>
+                <%if ord.notes!='' %>
+                    <%='Notes: ' + ord.notes%>
+                <%end%>
                 <table>
                     <% ord1.each do |o| %>
                         <%o=o.split(',')%>
