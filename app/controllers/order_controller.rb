@@ -22,51 +22,53 @@ class OrderController < ApplicationController
     
     #adds order to the table
     def add_order
-        cur_user=User.find(session[:current_user].id)
-        if cur_user && params[:order]!='' && cur_user.ban==0
-            #subtract ingredients for order or give error message
-            flag=1
-            flag1=0
-            ings_to_sub=Array.new
-            num_to_sub=Array.new
-            ord=params[:order].split('|')
-            ord.delete_at(0)
-            ord.each do |o|
-                c=o.split(',')
-                c.delete_at(0)
-                c.each do |a|
-                    flag1=1
-                    a=a.split(':')
-                    num=Ingredient.find(a[0]).amount_in_stock
-                    if (num-Integer(a[1]))<0
-                        flag=0
-                    else
-                        ings_to_sub.push(Integer(a[0]))
-                        num_to_sub.push(num-Integer(a[1]))
+        if !session[:current_user]
+            message='You Must Log In To Place An Order'
+        else
+            cur_user=User.find(session[:current_user].id)
+            if cur_user && params[:order]!='' && cur_user.ban==0
+                #subtract ingredients for order or give error message
+                flag=1
+                flag1=0
+                ings_to_sub=Array.new
+                num_to_sub=Array.new
+                ord=params[:order].split('|')
+                ord.delete_at(0)
+                ord.each do |o|
+                    c=o.split(',')
+                    c.delete_at(0)
+                    c.each do |a|
+                        flag1=1
+                        a=a.split(':')
+                        num=Ingredient.find(a[0]).amount_in_stock
+                        if (num-Integer(a[1]))<0
+                            flag=0
+                        else
+                            ings_to_sub.push(Integer(a[0]))
+                            num_to_sub.push(num-Integer(a[1]))
+                        end
                     end
                 end
-            end
-            
-            if flag==1  && flag1==1#make substitutions
-                Order.create(:name=>cur_user.name, :notes=>params[:notes], :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
-                message='Order Successfully Placed'
-                i=0
-                ings_to_sub.each do |ing|
-                    Ingredient.find(ing).update_attributes(:amount_in_stock => num_to_sub[i])
-                    i+=1
+                
+                if flag==1  && flag1==1#make substitutions
+                    Order.create(:name=>cur_user.name, :notes=>params[:notes], :user_id=>cur_user.id, :order=>params[:order], :started=>0, :finished=>0)
+                    message='Order Successfully Placed'
+                    i=0
+                    ings_to_sub.each do |ing|
+                        Ingredient.find(ing).update_attributes(:amount_in_stock => num_to_sub[i])
+                        i+=1
+                    end
+                elsif flag1==1
+                    message='At Least One of The Requested Items Is No Longer In Stock'
+                else
+                    message='You Must Select Something To Make An Order'
                 end
-            elsif flag1==1
-                message='At Least One of The Requested Items Is No Longer In Stock'
+            elsif cur_user.ban==1
+                session[:current_user]=nil
+                message='This Account Has Been Deactivated'
             else
                 message='You Must Select Something To Make An Order'
             end
-        elsif cur_user.ban==1
-            session[:current_user]=nil
-            message='This Account Has Been Deactivated'
-        elsif params[:order]!=''
-            message='You Must Log In To Place An Order'
-        else
-            message='You Must Select Something To Make An Order'
         end
         render :update do |page|
             page<< 'window.location = "/home";'
