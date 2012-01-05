@@ -85,6 +85,7 @@ Buttery::Application.routes.draw do
    post 'account/cancel_order'
    post '/user_accounts/logout'
    post '/order/add_order'
+   post '/order/refresh_queue'
    post 'order/view_order_queue'
    post 'order/add_manual_order'
    post 'account/main'

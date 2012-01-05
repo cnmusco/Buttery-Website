@@ -253,4 +253,54 @@ class OrderController < ApplicationController
             end
         end
     end
+    
+    #refresh the page aka render _the_queue
+    def refresh_queue
+        ings=Ingredient.all
+        @ings=Array.new
+        ings.each do |ing|
+            @ings[ing.id]=ing
+        end
+        update_rgb
+        @grills=Array.new
+        grill=Parent.where(:class_of_food => 'Grill').each do |g|
+            if g.rgb!=0
+                @grills.push(g)
+            end
+        end
+        @mkups=Makeup.find(:all, :order=>'vital DESC')
+        
+        #Parent name has array with vital ings (nil if not vital)
+        #used to highlight non-vitals on orders
+        @mkup1=Hash.new
+        Parent.all.each do |par|
+            @mkup1[par.parent_name]=Array.new
+            
+            #put all vital ings in array (hashed by id)
+            @mkups.each do |m|
+                if m.vital==0
+                    break
+                elsif m.food==par.id
+                    @mkup1[par.parent_name][m.ingredient]=1
+                end
+            end
+        end
+        
+        #sort orders by so finished before started befire others
+        orders=Order.find(:all, :order=>'started DESC')
+        @orders=Array.new
+        tmp=Array.new
+        orders.each do |o|
+            if o.finished==0
+                @orders.push(o)
+            else
+                tmp.push(o)
+            end
+        end
+        tmp.each do |t|
+            @orders.push(t)
+        end
+        
+        render :partial => 'the_queue'
+    end
 end

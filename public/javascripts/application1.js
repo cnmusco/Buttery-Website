@@ -23,7 +23,14 @@ function reload_order_queue1()
     var y=new RegExp("/worker/orders");
     if(str.match(y))
     {
-        window.location = "/worker/orders"
+        $.ajax({
+            type: "POST",
+            url: "/order/refresh_queue",
+            success: function(data)
+            {
+                $("#order_queue").html(data)
+            }
+        });
         setTimeout("reload_order_queue1()", 90000);
     }
 }
@@ -473,7 +480,7 @@ function buttons()
                 butt_open=1;
         }
         
-        butt_open=1; //manually open and close ordering (for testing)
+        butt_open=0; //manually open and close ordering (for testing)
         
         
         if(butt_open)

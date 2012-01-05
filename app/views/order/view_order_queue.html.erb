@@ -32,47 +32,6 @@
 
 </br>
 
-<% @orders.each do |ord| %>
-    <div id=order class=orders_<%=ord.started%>_<%=ord.finished%>>
-        <div id="order_q_name"><%= ord.name %></div>
-        <% if ord.notes!='' %>
-                <div id=order_q_notes1>Notes: <span id="order_q_notes"><%= ord.notes %></span></div>
-        <%end%>
-        <% ord1=ord.order.split('|') %>
-        <% ord1.delete_at(0) %>
-        <table border=1>
-            <% ord1.each do |o| %>
-                <%o=o.split(',')%>
-                <tr>
-                    <td><%= item_name=o.delete_at(0) %></td>
-                    <td><table>
-                        <% o.each do |o| %>
-                            <% o=o.split(':') %>
-                            <tr><td>
-                                <span <% if !@mkup1[item_name][Integer(o[0])] %>
-                                                id="non_vit_order_q"
-                                            <%end%>><%= @ings[Integer(o[0])].ingredient_name %></span><span
-                                                                                                        <%if o[1]!='1'%>
-                                                                                                            id="different_quant_order_q"
-                                                                                                        <%end%>><%=' x ' + o[1]%></span>
-                            </td></tr>
-                        <%end%>
-                    </table>
-                    </td>
-            <%end%>
-            </tr>
-        </table>
-        <%if ord.started==0 %>
-            <button class=order_is_cooking id=<%=ord.id%>>Begin Making</button>
-        <%elsif ord.finished==0 %>
-            <button class=order_is_done1 id=<%=ord.id%>>Finished: Customer Here</button></br>
-            <button class=order_is_done id=<%=ord.id%>>Finished: Customer Not Here</button>
-        <%else%>
-            <button class=order_is_picked_up id=<%=ord.id%>>Order Claimed</button>
-            <button class=order_is_abandoned id=<%=ord.id%>>Order Never Claimed</button>
-        <%end%>
-        <% if !ord.user_id %>
-            <button class=worker_cancel_order id=<%=ord.id%>>Cancel</button>
-        <%end%>
-    </div>
-<%end%>
+<div id="order_queue">
+    <%=render "the_queue"%>
+</div>
