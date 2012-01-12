@@ -317,12 +317,13 @@ body {
 
 #order_q_notes
 {
-    font-size: 125%;
+    font-size: 110%;
     color: red;
 }
 #order_q_notes1
 {
     padding: 0 0 8 0;
+	width:300px;
 }
 #order_q_name
 {
@@ -450,7 +451,11 @@ body {
 }
 #order_notes1
 {
-    margin-left:80;
+    margin-left:10;
+	margin-top:20;
+ 	font-family: 'Helvetica Neue', Helvetica, Lucida, Arial, sans-serif;
+    font-size:16px;
+    color:#444;
 }
 #submit_order
 {
@@ -467,11 +472,12 @@ body {
 	padding: 0px 0px 0px 0px;
 }
 
-#order
+.order_style_class
 {
     float:left;
     padding:25px 5px;
     margin:5px;
+	
 }
 .orders_0_0
 {

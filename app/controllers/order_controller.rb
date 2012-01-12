@@ -236,6 +236,7 @@ class OrderController < ApplicationController
         end
         
         if flag==1  #make substitutions
+
             Order.create(:name=>'face-to-face', :order=>params[:order], :started=>0, :finished=>0)
             i=0
             ings_to_sub.each do |ing|

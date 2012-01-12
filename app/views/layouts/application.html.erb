@@ -22,8 +22,14 @@
     <div id="navigation">
                 <ul id="nav_list">
                         <li id="home_li"><button id="home" class="nav_button">Home</button></li>
-                        <li id="worker_li"><button id="worker_view" class="nav_button">Worker View</button></li>
-                        <li id="login_li"><button id="log_in" class="nav_button">Log In</button></li>
+						
+                        <li id="worker_li" <%if  not session[:current_user] or session[:current_user].worker == 0%>
+							style='display:none'
+						<%end%>
+><button id="worker_view" class="nav_button">Worker View</button></li>
+	
+                        <li id="login_li" <%if session[:current_user]%>style='display:none'<%end%>
+	><button id="log_in" class="nav_button">Log In</button></li>
                             <div class="login" id="log_in_menu">
                                 <form id="login_form">
                                 <table>
@@ -37,7 +43,7 @@
                                 <div class="invalid_login" id="invalid_login5">Account Not Activated.</br>Activation Email Has Been Resent</div>
                                 <div class="invalid_login" id="invalid_login7">This Account Has Been Temporarily Deactivated.</br>Please Speak With Mike ASAP</div>
                             </div>
-                        <li id="signup_li"><button id="sign_up_butt" class="nav_button">Sign Up</button></li>
+                        <li id="signup_li" <%if session[:current_user]%>style='display:none'<%end%>><button id="sign_up_butt" class="nav_button">Sign Up</button></li>
                             <div class="login" id="sign_up_menu">
                                 <form id='sign_up_form'>
                                 	<table>

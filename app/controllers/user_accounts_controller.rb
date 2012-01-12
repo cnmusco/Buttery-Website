@@ -96,6 +96,11 @@ class UserAccountsController < ApplicationController
         #log the user in
         else
             render :update do |page|
+                if user.worker == 1
+                  page<< '$("#worker_li").show();'
+                end
+                page<< '$("#login_li").hide();'
+                page<< '$("#signup_li").hide();'
                 page<< 'login_success = true;'
                 page<< "user_name = '#{user[:name].split.map{|x| x.capitalize}.join(" ")}';"
             end
@@ -110,6 +115,9 @@ class UserAccountsController < ApplicationController
             page<< 'window.location = "/home";'
             page<< '$("#logged_in").toggle();'
   					page<< '$("#logged_out").toggle();'
+  					page<< '$("#worker_li").hide();'
+  					page<< '$("#login_li").show();'
+            page<< '$("#signup_li").show();'
         end
         flash[:notice]='You Have Successfully Logged Out'
         session[:current_user]=nil

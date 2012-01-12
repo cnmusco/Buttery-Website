@@ -13,12 +13,12 @@
     <div id="order_count">There Is Currently 1 Order Ahead Of You</div>
 <%end%>
 		</td><td>
-           <div id="order_notes1">Notes: <input id="order_notes"></input></div>
            </td><td>
 <button id="submit_order" class="skip">Submit Order</button>
 		</td>
 	</tr>
 </table>
+<div id="order_notes1">Notes for order: <input id="order_notes" size="60"></input></div>
 <% clas="" %>
 <% @classes.each do |cla| %> 
     <% if clas!=cla.class_of_food %>
