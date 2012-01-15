@@ -16,6 +16,9 @@ class WorkerController < ApplicationController
         end
     end
     
+    def manual
+    end
+    
     #inventory filters
     def up_inv1
         @ingredients=Array.new

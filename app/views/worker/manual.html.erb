@@ -1,0 +1,73 @@
+<%=render "worker_menu"%>
+</br>
+
+<div>
+<h2>Format of Menu</h2>
+<p>The menu is made up of 'Items.'  Items include slammers, grilled cheese,
+quesadillas, etc.  Each item is made up of ingredients.  An ingredient
+can either be vital or non-vital.  A vital ingredient is absolutely
+necessary for the item (e.g. a tortilla for a quesadilla) and a non-vital
+ingredient is an optional topping (e.g. pepperoni or buffalo chicken for a
+quesadilla).</p>
+
+
+<h2>Orders Page</h2>
+<p>Each order is surrounded by a border that is red, yellow, or green
+depending on the status of the order.  Red orders, which have not been
+started, appear after yellow orders.  Once you are ready to start the
+order, hit the 'Begin Making' button.  This order will then become
+yellow.  Yellow orders, which are in progress orders, will appear
+first.  These are the orders that are currently being cooked.  Once an
+order is finished, there are two options.  Hitting the 'Person is
+Here' button will complete the order and remove it from the order queue.  Hitting the 'Person is Not Here'
+button will inform the customer using an email or text message and will make the order green.  Green
+(finished) orders appear at the end.  When the order is claimed, hit
+the 'Order Claimed' button.  If, at the end of the shift, the order is
+never claimed, hit the 'Order Never Claimed' button. The customer will receive a warning for not picking up the order.</p>
+
+<p>If a customer orders in person something from the grill (slammer, quesadilla,
+ect), create that order using the controls on this page.  This will
+create a face-to-face order. You can cancel this order at anytime if necessary. </p>
+
+<p>Online orders can have notes regarding the order. All orders then list the actual items ordered.  On the left is the item name,
+and on the right are the ingredients followed by their quantity.  The
+quantity is in servings, so nuggets x 1 is not 1 nugget, but an order
+of nuggets.  Non-vital ingredients are written in green, and any
+quantity that is greater than one is written in red.  This is done to
+highlight changes to the standard order.</p>
+
+
+
+<h2>Update Inventory</h2>
+<p>The inventory automatically updates itself for online orders, and
+grill orders.  All other items must be subtracted from the inventory
+manually.  Ingredients that don't have a set value like shredded
+mozzarella and nachos should have their initial inventories set at
+ridiculous amounts (like 100) and as soon as they are out, hit the
+'out of stock' button.  When a customer orders a non-grill item in
+person, you do not need to manually subtract the ingredient unless it
+is out of stock.  At the end of the shift, make sure that all of the
+inventory is accurate and then hit the stocking email button.  This
+button will automatically create a list of items to stock and send it
+to the next worker.</p>
+
+
+<h2>Menu Manager</h2>
+<p>This page allows a worker to add and edit menu items and ingredients (only an admin can edit ingredients).  Most of this page
+should be pretty simple to use (and not used often).</p>
+
+
+
+<h2>During A Shift</h2>
+<p>During a shift, the site should remain on the order page (it refreshes
+automatically), unless you need to manually mark that an item is out of stock.  Use
+common sense when dealing with orders.  If someone asks for 4 orders of
+peperoni on a quesadilla, chances are they meant 4 pieces or one
+order.  In this case (since the 4 orders are automatically subtracted,
+make a manual adjustment to the inventory).  If something becomes out
+of stock and it is listed as in stock, make a manual adjustment and
+vice-versa.  The purpose of this site is to improve the buttery
+experience, so if you ever have any questions, or ideas for
+improvements, don't hesitate to shoot me an email
+(michael.levine@yale.edu).</p>
+</div>

@@ -7,7 +7,23 @@ $(document).ready(function()
     change_alert();
     reload_order_queue();
     buttons();
+    see_butt_open();
 }); 
+
+
+function see_butt_open()
+{
+    var str=window.location.href;
+    var y=new RegExp("/home");
+    var tmp=str.split('/');
+    var root=(tmp.length==4 && !tmp[3]);
+    
+    if((root || str.match(y)) && !butt_open1())
+    {
+        $("#submit_button1").html("<div id=butt_closed> The Buttery Is Closed</div>");
+    }
+}
+
 
 //reloads the order queue automatically
 function reload_order_queue()
@@ -73,6 +89,13 @@ function buttons()
         if(!(str.match(y)))
             window.location = "/worker/manage_menu"
     });
+    $("#manual").click(function()
+    {
+        var str=window.location.href;
+        var y=new RegExp("/worker/manual");
+        if(!(str.match(y)))
+            window.location = "/worker/manual"
+    });   
     
     
     
@@ -461,11 +484,8 @@ function buttons()
                 last_parent=parent;
             }
         });
-        
-        //is it proper ordering time
-        var date=new Date();
-        var day=date.getDay(), hour=date.getHours(), minutes=date.getMinutes();
-        var butt_open=butt_open();//becomes 1 if the buttery is open
+    
+        var butt_open=butt_open1();//becomes 1 if the buttery is open
         
         if(butt_open)
         {
@@ -759,8 +779,12 @@ function edit_remove(cur_itm)
 }
 
 
-function butt_open()
-{   
+function butt_open1()
+{  
+    //is it proper ordering time
+    var date=new Date();
+    var day=date.getDay(), hour=date.getHours(), minutes=date.getMinutes();
+    
     //between 12am and 12:15am
     if(!hour && minutes<15)
     {

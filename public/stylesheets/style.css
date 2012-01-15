@@ -245,6 +245,16 @@ body {
     padding: 10px 13px;
     background: #87CEEB;
 }
+#manual
+{
+    padding: 10px 33px;
+    background: #DCDCDC;
+}
+#manual:hover
+{
+    padding: 10px 33px;
+    background: #87CEEB;
+}
 
 .order_is_cooking
 {
@@ -472,6 +482,13 @@ body {
 	padding: 0px 0px 0px 0px;
 }
 
+#butt_closed
+{
+    color:red;
+    margin-left:100;
+    font-size:250%;
+}
+
 .order_style_class
 {
     float:left;
@@ -481,14 +498,23 @@ body {
 }
 .orders_0_0
 {
+    float:left;
+    padding:25px 5px;
+    margin:5px;
     border: 2px solid red;
 }
 .orders_1_0
 {
+    float:left;
+    padding:25px 5px;
+    margin:5px;
     border: 2px solid yellow;
 }
 .orders_1_1
 {
+    float:left;
+    padding:25px 5px;
+    margin:5px;
     border: 2px solid green;
 }
 

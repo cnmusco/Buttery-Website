@@ -70,6 +70,7 @@ Buttery::Application.routes.draw do
    match 'account' => 'account#main'
    match 'account_controller/new_pwd/*username/*hash' => 'account#new_pwd'
    match 'worker/orders' => 'order#view_order_queue'
+   match 'worker/manual' => 'worker#manual'
    post 'worker/add_items'
    post 'worker/add_inv'
    post 'worker/sub_inv'

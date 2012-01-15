@@ -1,6 +1,6 @@
 
 <% @orders.each do |ord| %>
-    <div id=order class="order_style_class" orders_<%=ord.started%>_<%=ord.finished%>>
+    <div id=order class=orders_<%=ord.started%>_<%=ord.finished%>>
         <div id="order_q_name"><strong><%= ord.name.split.map{|x| x.capitalize}.join(" ") %></strong> <%= ord.created_at.strftime("%b %d - %I:%M %p")%></div>
         <% if ord.notes && ord.notes!=''%>
                 <div id=order_q_notes1>Notes: <span id="order_q_notes"><%= ord.notes %></span></div>
