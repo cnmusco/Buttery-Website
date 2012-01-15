@@ -465,23 +465,7 @@ function buttons()
         //is it proper ordering time
         var date=new Date();
         var day=date.getDay(), hour=date.getHours(), minutes=date.getMinutes();
-        var butt_open=0;//becomes 1 if the buttery is open
-        
-        //between 12am and 12:15am
-        if(!hour && minutes<15)
-        {
-            if(day && day<6)
-                butt_open=1;
-        }
-        //between 10:15pm and 
-        else if(hour>22 || (hour==22 && minutes>15))
-        {
-            if(day<5)
-                butt_open=1;
-        }
-        
-        butt_open=1; //manually open and close ordering (for testing)
-        
+        var butt_open=butt_open();//becomes 1 if the buttery is open
         
         if(butt_open)
         {
@@ -774,6 +758,23 @@ function edit_remove(cur_itm)
     });
 }
 
+
+function butt_open()
+{   
+    //between 12am and 12:15am
+    if(!hour && minutes<15)
+    {
+        if(day && day<6)
+            return 1;
+    }
+    //between 10:30pm and 
+    else if(hour>22 || (hour==22 && minutes>30))
+    {
+        if(day<5)
+            return 1;
+    }
+    return 0;
+}
 
 
 
