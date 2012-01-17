@@ -807,7 +807,7 @@ function edit_remove(cur_itm)
 
 function butt_open1()
 {  
-    return 0;//comment this out normally.  auto set if the butt is open
+    return 1;//comment this out normally.  auto set if the butt is open
     
     
     //is it proper ordering time
