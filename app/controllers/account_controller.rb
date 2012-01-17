@@ -15,6 +15,7 @@ class AccountController < ApplicationController
         
         if params[:reset]
             @user.phone_number1=nil
+            @user.contact_options=0
             @user.save
         end
         if params[:number]
