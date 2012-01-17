@@ -20,7 +20,7 @@ function see_butt_open()
     
     if((root || str.match(y)) && !butt_open1())
     {
-        $("#submit_button1").html(' <div id=butt_closed> The Buttery Is Closed</div>');
+        $("#submit_button1").html(' <div id=butt_closed> The Buttery  is Not Live Yet</div>');
     }
 }
 
