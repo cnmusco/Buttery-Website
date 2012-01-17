@@ -702,8 +702,6 @@ function buttons()
         var num=$('#number').val();
         if (num.length==10 && !isNaN(num))
         {
-	alert("does this make it work");
-
             $.ajax({
                 type: "POST",
                 url: "/account",
