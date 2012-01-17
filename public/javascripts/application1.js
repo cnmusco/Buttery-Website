@@ -709,7 +709,7 @@ function buttons()
                 data: ({number: num})
             });
             window.location= '/account';
-		},300);
+		},3000);
     }
         else
             alert("Invalid Number");
