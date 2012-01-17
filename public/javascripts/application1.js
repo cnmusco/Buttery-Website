@@ -702,14 +702,15 @@ function buttons()
         var num=$('#number').val();
         if (num.length==10 && !isNaN(num))
         {
-	window.setTimeout(function() {
+	alert("does this make it work");
+	//window.setTimeout(function() {
             $.ajax({
                 type: "POST",
                 url: "/account",
                 data: ({number: num})
             });
             window.location= '/account';
-		},3000);
+		//},3000);
     }
         else
             alert("Invalid Number");
