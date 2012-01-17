@@ -708,10 +708,10 @@ function buttons()
             $.ajax({
                 type: "POST",
                 url: "/account",
-                data: ({number: num})
-				success: function() {
-					window.location= '/account'
-				}
+                data: ({number: num}),
+                success: function() {
+                        window.location= '/account'
+                }
             });
     	}
         else
