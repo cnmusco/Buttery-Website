@@ -45,9 +45,9 @@ function reload_order_queue1()
             success: function(data)
             {
                 $("#order_queue").html(data)
+                setTimeout("reload_order_queue1()", 90000);
             }
         });
-        setTimeout("reload_order_queue1()", 90000);
     }
 }
 
@@ -103,9 +103,12 @@ function buttons()
         $.ajax({
             type: "POST",
             url: "/account",
-            data: ({reset: 1})
+            data: ({reset: 1}),
+            success: function()
+            {
+                window.location = "/account"   
+            }
             });
-        window.location = "/account"
     });
     
     
