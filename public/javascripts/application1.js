@@ -97,6 +97,17 @@ function buttons()
             window.location = "/worker/manual"
     });   
     
+    //reset phone number
+    $("#number_reset").click(function()
+    {
+        $.ajax({
+            type: "POST",
+            url: "/account",
+            data: ({reset: 1})
+            });
+        window.location = "/account"
+    });
+    
     
     
     //log in and sign up buttons
@@ -516,6 +527,16 @@ function buttons()
                         id: $(this).attr('id')})
             });
     });
+    
+    $(".order_is_cooking1").click(function()
+    {
+        $.ajax({
+                type: "POST",
+                url: "/order/view_order_queue",
+                data: ({flag:5,
+                        id: $(this).attr('id')})
+            });
+    });
     //finished order button
     $(".order_is_done").click(function()
     {
@@ -783,7 +804,10 @@ function edit_remove(cur_itm)
 
 
 function butt_open1()
-{  return 0;//comment this out normally.  auto set if the butt is open
+{  
+    return 0;//comment this out normally.  auto set if the butt is open
+    
+    
     //is it proper ordering time
     var date=new Date();
     var day=date.getDay(), hour=date.getHours(), minutes=date.getMinutes();

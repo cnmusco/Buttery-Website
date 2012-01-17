@@ -258,12 +258,22 @@ body {
 
 .order_is_cooking
 {
-    padding: 10px 29px;
+    padding: 10px 20px;
     background: #DCDCDC;
 }
 .order_is_cooking:hover
 {
-    padding: 10px 29px;
+    padding: 10px 20px;
+    background: #87CEEB;
+}
+.order_is_cooking1
+{
+    padding: 10px 20px;
+    background: #DCDCDC;
+}
+.order_is_cooking1:hover
+{
+    padding: 10px 20px;
     background: #87CEEB;
 }
 .order_is_done

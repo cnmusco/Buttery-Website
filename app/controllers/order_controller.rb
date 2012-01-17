@@ -128,6 +128,11 @@ class OrderController < ApplicationController
                     end
                 end
             
+            #start order, customer is here
+            elsif flag==5
+                ord=Order.find(params[:id])
+                ord.update_attributes(:started=>1)
+                
             #finish order, customer not in buttery
             elsif flag==1
                 order=Order.find(params[:id])

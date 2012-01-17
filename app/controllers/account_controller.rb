@@ -13,6 +13,10 @@ class AccountController < ApplicationController
         @user=User.find(session[:current_user].id)
         @ords=Order.where(:user_id=>session[:current_user].id)
         
+        if params[:reset]
+            @user.phone_number1=nil
+            @user.save
+        end
         if params[:number]
             @user.phone_number1=params[:number]
             @user.save

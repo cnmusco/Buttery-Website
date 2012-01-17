@@ -10,7 +10,7 @@
     <div id="account_stats">
         <div><strong>Phone Number: </strong>
         <% if @number %>
-            <%= @number.join() %></div>
+            <%= @number.join() %> <button id="number_reset" class="clean-gray">Delete</button></div>
         <%else%>
             Not Available &nbsp &nbsp &nbsp &nbsp &nbsp
             Enter Your Number: <input type="text" id="number" size=10 maxlength=10> </input><button id="new_num" class="clean-gray">Save Number</button></div>
