@@ -703,14 +703,14 @@ function buttons()
         if (num.length==10 && !isNaN(num))
         {
 	alert("does this make it work");
-	//window.setTimeout(function() {
+
             $.ajax({
                 type: "POST",
                 url: "/account",
                 data: ({number: num})
             });
-            window.location= '/account';
-		//},3000);
+          window.setTimeout(function() {window.location= '/account';
+	},3000);
     }
         else
             alert("Invalid Number");
