@@ -709,10 +709,11 @@ function buttons()
                 type: "POST",
                 url: "/account",
                 data: ({number: num})
+				success: function() {
+					window.location= '/account'
+				}
             });
-          window.setTimeout(function() {window.location= '/account';
-	},3000);
-    }
+    	}
         else
             alert("Invalid Number");
     });
