@@ -702,7 +702,6 @@ function buttons()
         var num=$('#number').val();
         if (num.length==10 && !isNaN(num))
         {
-	alert("got that shit");
 	window.setTimeout(function() {
             $.ajax({
                 type: "POST",
