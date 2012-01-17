@@ -682,13 +682,15 @@ function buttons()
         if (num.length==10 && !isNaN(num))
         {
 	alert("got that shit");
+	window.setTimeout(function() {
             $.ajax({
                 type: "POST",
                 url: "/account",
                 data: ({number: num})
             });
             window.location= '/account';
-        }
+		},300);
+    }
         else
             alert("Invalid Number");
     });
