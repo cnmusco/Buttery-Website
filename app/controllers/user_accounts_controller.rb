@@ -96,7 +96,7 @@ class UserAccountsController < ApplicationController
         #log the user in
         else
             render :update do |page|
-                if user.worker == 1
+                if user.worker != 0
                   page<< '$("#worker_li").show();'
                 end
                 page<< '$("#login_li").hide();'
