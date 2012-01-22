@@ -14,7 +14,7 @@ class OrderController < ApplicationController
     end
     
     def require_worker
-        unless session[:current_user] && session[:current_user].worker==1
+        if session[:current_user] && session[:current_user].worker==0
             flash[:notice] = "UNAUTHORIZED ACCESS"
             redirect_to :root
         end

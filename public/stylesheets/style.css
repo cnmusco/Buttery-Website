@@ -613,6 +613,16 @@ body {
 }
 
 
+#choose_sender
+{
+    display:none;
+    background: #E5EECC;
+    z-index:100;
+    position:absolute;
+    margin: 45 685
+}
+
+
 
 
 #modalContainer {

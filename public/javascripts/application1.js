@@ -642,10 +642,18 @@ function buttons()
     //send stocking email
     $("#restock").click(function()
     {
+        $("#choose_sender").toggle();
+    });
+    
+    $("#send_stocking_email").click(function()
+    {
         $.ajax({
-                type: "POST",
-                url: "/worker/restock"
-                });
+            type: "POST",
+            url: "/worker/restock",
+            data: ({to: $("select option:selected").val() })
+            });
+            $("#choose_sender").toggle();
+        
     });
     
     

@@ -1,9 +1,10 @@
 class WorkerController < ApplicationController
     
     before_filter :require_worker
+    
        
     def require_worker
-        unless session[:current_user] && session[:current_user].worker==1
+        if session[:current_user] && session[:current_user].worker==0
             flash[:notice] = "UNAUTHORIZED ACCESS"
             redirect_to :root
         end
@@ -14,6 +15,7 @@ class WorkerController < ApplicationController
         Ingredient.find(:all, :order=>'ingredient_name').each do |ing|
             @ingredients.push(ing)
         end
+        @worker=Array.new
     end
     
     def manual
@@ -86,8 +88,16 @@ class WorkerController < ApplicationController
         end
         
         restock*=', '
+        from=Array.new
+        session[:current_user].name.split(' ').each do |n|
+            from.push(n.capitalize)
+            from.push(' ')
+        end
+        from=from.join()
         
-        Notifier.stock_email(restock, 'michael.levine@yale.edu').deliver  #change address at some point
+        User.where(:worker => Integer(params[:to])).each do |to|
+            Notifier.stock_email(restock, to.email, from).deliver
+        end
         
         #alert user that task has been completed
         render :update do |page|
