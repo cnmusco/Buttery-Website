@@ -20,8 +20,7 @@ function see_butt_open()
     
     if((root || str.match(y)) && !butt_open1())
     {
-        $("#submit_button1").html(' <div id=butt_closed> The Buttery  is Not Live Yet</div>');
-        //$("#submit_button1").html(' <div id=butt_closed> The Buttery is\nNot Open</div>');
+        $("#submit_button1").html(' <div id=butt_closed> The Buttery is\nNot Open</div><div id=butt_closed1>The Buttery is Open Sunday-Thursday 10:00p-12:30a</div>');
     }
 }
 
@@ -816,7 +815,7 @@ function edit_remove(cur_itm)
 
 function butt_open1()
 {  
-    return 0;//comment this out normally.  auto set if the butt is open
+    //return 0;//comment this out normally.  auto set if the butt is open
     
     
     //is it proper ordering time

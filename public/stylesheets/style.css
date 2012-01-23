@@ -499,6 +499,12 @@ body {
     font-size:250%;
 }
 
+#butt_closed1
+{
+    color:red;
+    margin-left:130;
+}
+
 .order_style_class
 {
     float:left;
