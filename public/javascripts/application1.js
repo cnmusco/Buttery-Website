@@ -771,6 +771,11 @@ function buttons()
     {
         filter();
     });
+    //filter by quantity
+    $('#misc_inv_dropdown').change(function()
+    {
+        filter();
+    });
 }
 
 function filter()
@@ -779,6 +784,7 @@ function filter()
         type: "POST",
         url: "/worker/up_inv1",
         data: ({word: $('#inventory_search').val(),
+                misc_ing: $('#misc_inv_dropdown').val(),
                 flag: $('input:checked').val()}),
                 success: function(data)
                 {
