@@ -20,7 +20,7 @@ function see_butt_open()
     
     if((root || str.match(y)) && !butt_open1())
     {
-        $("#submit_button1").html(' <div id=butt_closed> The Buttery is\nNot Open</div><div id=butt_closed1>The Buttery is Open Sunday-Thursday 10:00p-12:30a</div>');
+        $("#submit_button1").html(' <div id=butt_closed> The Buttery is\nNot Open</div><div id=butt_closed1>The Buttery is Open Sunday-Thursday 10:30p-12:30a</div>');
     }
 }
 
