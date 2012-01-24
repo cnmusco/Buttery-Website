@@ -43,6 +43,7 @@ class WorkerController < ApplicationController
                     ings.push(Ingredient.find(mkup.ingredient))
                 end
             end
+            ings=ings.sort_by{ |hsh| hsh[:ingredient_name]}
         end
         
         ings.each do |ing|
