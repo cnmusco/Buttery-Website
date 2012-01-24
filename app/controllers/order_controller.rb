@@ -195,9 +195,10 @@ class OrderController < ApplicationController
                 end
                 order.destroy
             end
-            render :update do |page|
-                page<< 'window.location="/worker/orders";'
-            end
+            #now in the JS success functions
+            #render :update do |page|
+            #    page<< 'window.location="/worker/orders";'
+            #end
         end
         
         #sort orders by so finished before started befire others

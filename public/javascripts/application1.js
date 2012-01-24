@@ -521,74 +521,97 @@ function buttons()
         window.location="/worker/orders";
     });
     //begin making order button
-    $(".order_is_cooking").click(function()
+
+    $(".order_is_cooking").live('click', function()
     {
         $.ajax({
                 type: "POST",
                 url: "/order/view_order_queue",
                 data: ({flag:0,
-                        id: $(this).attr('id')})
+                        id: $(this).attr('id')}),
+		        success: function() {
+		              window.location="/worker/orders";
+		         }
+						
             });
     });
     
-    $(".order_is_cooking1").click(function()
+    $(".order_is_cooking1").live('click', function()
     {
         $.ajax({
                 type: "POST",
                 url: "/order/view_order_queue",
                 data: ({flag:5,
-                        id: $(this).attr('id')})
+                        id: $(this).attr('id')}),
+				success: function() {
+				      window.location="/worker/orders";
+				 }
             });
     });
     //finished order button
-    $(".order_is_done").click(function()
+    $(".order_is_done").live('click', function()
     {
         $.ajax({
                 type: "POST",
                 url: "/order/view_order_queue",
                 data: ({flag:1,
-                        id: $(this).attr('id')})
+                        id: $(this).attr('id')}),
+				        success: function() {
+				              window.location="/worker/orders";
+				         }
             });
     });
     //finished order, customer is in buttery
-    $(".order_is_done1").click(function()
+    $(".order_is_done1").live('click', function()
     {
         $.ajax({
                 type: "POST",
                 url: "/order/view_order_queue",
                 data: ({flag:2,
-                        id: $(this).attr('id')})
+                        id: $(this).attr('id')}),
+				        success: function() {
+				              window.location="/worker/orders";
+				         }
             });
     });
     //pickup order button
-    $(".order_is_picked_up").click(function()
+    $(".order_is_picked_up").live('click', function()
     {
         $.ajax({
                 type: "POST",
                 url: "/order/view_order_queue",
                 data: ({flag:2,
-                        id: $(this).attr('id')})
+                        id: $(this).attr('id')}),
+				        success: function() {
+				              window.location="/worker/orders";
+				         }
             });
     });
     //finished order button
-    $(".order_is_abandoned").click(function()
+    $(".order_is_abandoned").live('click', function()
     {
         $.ajax({
                 type: "POST",
                 url: "/order/view_order_queue",
                 data: ({flag:3,
-                        id: $(this).attr('id')})
+                        id: $(this).attr('id')}),
+				        success: function() {
+				              window.location="/worker/orders";
+				         }
             });
     });
     
     //cancel order
-    $(".worker_cancel_order").click(function()
+    $(".worker_cancel_order").live('click', function()
     {
         $.ajax({
                 type: "POST",
                 url: "/order/view_order_queue",
                 data: ({flag:4,
-                        id: $(this).attr('id')})
+                        id: $(this).attr('id')}),
+				        success: function() {
+				              window.location="/worker/orders";
+				         }
             });
     });
     
@@ -812,10 +835,9 @@ function edit_remove(cur_itm)
     });
 }
 
-
 function butt_open1()
 {  
-    //return 0;//comment this out normally.  auto set if the butt is open
+    //return 1;//comment this out normally.  auto set if the butt is open
     
     
     //is it proper ordering time
