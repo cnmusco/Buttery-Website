@@ -136,6 +136,7 @@ class OrderController < ApplicationController
             #finish order, customer not in buttery
             elsif flag==1
                 order=Order.find(params[:id])
+                #save_order(order)
                 if !order.user_id
                     order.destroy
                 else
@@ -153,6 +154,7 @@ class OrderController < ApplicationController
             #pick up order or finish with user in buttery
             elsif flag==2
                 order=Order.find(params[:id])
+                #save_order(order)
                 if order.user_id
                     user=User.find(order.user_id)
                     x=user.online_orders
@@ -310,4 +312,8 @@ class OrderController < ApplicationController
         
         render :partial => 'the_queue'
     end
+    
+    #def save_order(order)
+     # Pastorder.create(:name=>order.name, :notes=order.notes, :user_id=>order.user_id, :order=>order.order)
+    #end
 end
