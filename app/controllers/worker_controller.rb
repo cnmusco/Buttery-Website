@@ -89,7 +89,7 @@ class WorkerController < ApplicationController
     
     #send stocking email
     def restock
-        ings=Ingredient.all
+        ings=a=@ings=Ingredient.find(:all, :order=>'rank')
         restock=Array.new()
         ings.each do |ing|
             if ing.threshold >= ing.amount_in_stock && ing.threshold!=0
@@ -171,7 +171,7 @@ class WorkerController < ApplicationController
                     Makeup.create(:vital => vits[ing], :ingredient => ing, :food=>id)
                 end
             elsif flag==5
-                Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit], :threshold=>params[:thresh])
+                Ingredient.create(:ingredient_name=>params[:name], :amount_in_stock=>params[:amount], :unit_of_stock=>params[:unit], :threshold=>params[:thresh], :rank=>params[:rank])
             end
         end
 

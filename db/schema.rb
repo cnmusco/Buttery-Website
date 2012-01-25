@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111226102206) do
+ActiveRecord::Schema.define(:version => 20120125212632) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "ingredient_name"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20111226102206) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "threshold"
+    t.integer  "rank"
   end
 
   create_table "makeups", :force => true do |t|

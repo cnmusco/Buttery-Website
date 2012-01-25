@@ -372,7 +372,8 @@ function buttons()
                     current_item: $("#edit_item_changer").val(),
                     amount: quant,
                     unit: unit,
-                    thresh: thresh}),
+                    thresh: thresh,
+                    rank: $("#ing_rank").val()}),
                 success: function(data)
                         {
                             $("#new_item").html(data);
