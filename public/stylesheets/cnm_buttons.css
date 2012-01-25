@@ -23,6 +23,15 @@
 	right-margin:5px;
 	left-margin:5px;
 	font-size:12px;
+	float:right;
+}
+
+#forgot_username {
+	float:right;
+	width:130px;
+	right-margin:5px;
+	left-margin:5px;
+	font-size:12px;
 }
 
 #sign_up_button {

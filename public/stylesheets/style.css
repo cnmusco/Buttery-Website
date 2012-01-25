@@ -180,6 +180,9 @@ body {
     top:120; 
     background-color: #E5EECC;
     display:none;
+    margin-left:75;
+    margin-top:12;
+    padding: 7px 7px 0px 7px;
 }
 #log_in_menu
 {
@@ -193,15 +196,16 @@ body {
     margin-top:12;
     padding: 7px 7px 0px 7px;
 }
-#forgot_pwd
-{
-    float:right;
-}
 
 .invalid_login
 {
     color: red;
     display: none;
+	clear:both;
+}
+
+#send_username {
+	display:none;
 }
 
 #orders
@@ -352,7 +356,7 @@ body {
 
 #inv_filter
 {
-    padding-top:18;
+    padding-top:10;
 }
 
 .inv_filters

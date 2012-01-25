@@ -18,7 +18,7 @@
         <%if @user.ban==1%>
             <div> Please Speak With Mike As Soon As Possible</div> 
         <%end%>
-        <% if @user.worker==1 %>
+        <% if @user.worker!=0 %>
             <div><strong>Job: </strong>Full Time Buttery Worker</div>
         <%end%>
     </div>

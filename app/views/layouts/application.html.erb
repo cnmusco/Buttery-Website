@@ -37,11 +37,19 @@
                                     <tr><td>password: <td/><td><input type="password" id="pwd" /></td>
                                 </table>
  								<input type="submit" value="Log In" id="login_button" class="clean-gray">
-								<button id="forgot_pwd" class="clean-gray">Forgot Password</button>
+								<button id="forgot_pwd" class="clean-gray">Forgot Password</button><br/>
+								<button id="forgot_username" class="clean-gray">Forgot Username</button>
                                 </form>
                                 <div class="invalid_login" id="invalid_login">Invalid Username/Password</div>
                                 <div class="invalid_login" id="invalid_login5">Account Not Activated.</br>Activation Email Has Been Resent</div>
                                 <div class="invalid_login" id="invalid_login7">This Account Has Been Temporarily Deactivated.</br>Please Speak With Mike ASAP</div>
+                            </div>
+                            
+							<div class="login" id="send_username">
+                                <table>
+                                    <tr><td>Enter email: <td/><td><input type="text" id="username_email" /></td></tr>                     
+                                </table>
+ 								<button id="send_username_button" class="clean-gray">Send username to email</button>
                             </div>
                         <li id="signup_li" <%if session[:current_user]%>style='display:none'<%end%>><button id="sign_up_butt" class="nav_button">Sign Up</button></li>
                             <div class="login" id="sign_up_menu">

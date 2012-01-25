@@ -141,6 +141,10 @@ function buttons()
         {
             $("#sign_up_menu").hide();
         }
+        if($("#send_username").css("display")!="none")
+        {
+            $("#send_username").hide();
+        }
         
         if($("#log_in_menu").css("display")=="none")
         {
@@ -196,6 +200,10 @@ function buttons()
         if($("#log_in_menu").css("display")!="none")
         {
             $("#log_in_menu").hide();
+        }
+        if($("#send_username").css("display")!="none")
+        {
+            $("#send_username").hide();
         }
         
         if($("#sign_up_menu").css("display")=="none")
@@ -670,7 +678,29 @@ function buttons()
             alert("An Email Has Been Sent To You");
         }
     });
-    
+
+	//Forgot Username
+    $("#forgot_username").click(function()
+    {
+		$('#log_in_menu').hide();
+		$('#send_username').show();
+    });
+
+    $("#send_username_button").click(function(){
+		var us = $('#username_email').val()
+		if(!us) {
+        	alert("Please Enter Your Email");
+		}
+    	else {
+        		$.ajax({
+            		type: "POST",
+           			url: "/account/send_username",
+           			data: ({email: us})
+        		});
+			}
+		});
+		
+		
     //log out
     $("#log_out").click(function()
     {
