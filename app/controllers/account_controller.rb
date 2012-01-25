@@ -13,6 +13,22 @@ class AccountController < ApplicationController
         @user=User.find(session[:current_user].id)
         @ords=Order.where(:user_id=>session[:current_user].id)
         
+        if @user.id=187
+            Parent.all.each do |p|
+                Makeup.where(:food=>p.id).each do |mkup|
+                    if !Ingredient.find(mkup.ingredient).rank
+                        if p.class_of_food=='Drink'
+                            Ingredient.find(mkup.ingredient).update_attributes(:rank => 2)
+                        elsif p.class_of_food=='Microwave'
+                            Ingredient.find(mkup.ingredient).update_attributes(:rank => 3)
+                        else
+                            Ingredient.find(mkup.ingredient).update_attributes(:rank => 1)
+                        end
+                    end
+                end
+            end
+        end
+        
         if params[:reset]
             @user.phone_number1=nil
             @user.contact_options=0
