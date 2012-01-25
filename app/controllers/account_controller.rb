@@ -147,4 +147,25 @@ class AccountController < ApplicationController
             page<< "window.location='/account';"
         end
     end
+    
+    def send_username
+      user = User.where(:email => params[:email])[0]
+        
+      if user==nil
+            render :update do |page|
+                page<< "alert('Email Not Recognized');"
+            end
+      elsif user[:username] == nil
+        render :update do |page|
+          page<< "alert('Email not yet registered for an account. Try Signing Up');"
+        end
+      else
+        Notifier.send_username(user).deliver
+        render :update do |page|
+            page<< "alert('An email containing your username has been sent.');"
+            page<< "$('#send_username').hide();"
+        end
+      end
+    end
+    
 end

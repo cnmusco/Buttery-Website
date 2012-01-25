@@ -34,4 +34,10 @@ class Notifier < ActionMailer::Base
               :subject => "Order Is Finished (" + Time.now.strftime("%b %d - %I:%M:%S %p") + ")",
               :body => "Your order is done.  Come down before it gets cold.")
     end
+    
+    def send_username(user)
+       mail( :to => user.email, 
+            :subject => "Your Pierson Butter Username " + Time.now.strftime("%b %d - %I:%M:%S %p") + "",
+            :body => "Your username is: " + user.username)
+    end
 end
