@@ -1,4 +1,4 @@
-#Testing Github
+#Testing Githubw
 class AboutController < ApplicationController
   def index
   end
