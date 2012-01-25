@@ -13,10 +13,10 @@ $(document).ready(function()
 
 function analytics()
 {
-    var str=window.location.href;
+    /*var str=window.location.href;
     var y=new RegExp("/home");
     var tmp=str.split('/');
-    if(root || str.match(y))
+    if(root || str.match(y))*/
     {
          var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-28607691-1']);
@@ -28,7 +28,7 @@ function analytics()
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-    }
+    //}
 }
 
 function see_butt_open()
