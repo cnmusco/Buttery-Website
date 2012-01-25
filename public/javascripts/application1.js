@@ -790,6 +790,24 @@ function buttons()
     });
     
     
+    //account manager sub buttons
+    $("#sub_request").click(function()
+    {
+        var r=confirm("Are You Sure You Cannot Work This Week?");
+        if (r==true)
+        {
+            alert("The Message Has Been Sent");
+        }
+        else
+            alert("No Sub Notification Was Sent");
+    });
+    //sub contact option
+    $("#get_sub_email").change(function()
+    {
+        alert($("input[name=get_sub_email1]:checked").val());
+    });
+    
+    
     
     //update inventory search box
     $('#inventory_search').keyup(function()
