@@ -158,6 +158,7 @@ class AccountController < ApplicationController
       elsif user[:username] == nil
         render :update do |page|
           page<< "alert('Email not yet registered for an account. Try Signing Up');"
+          page<< "$('#send_username').hide();"
         end
       else
         Notifier.send_username(user).deliver
