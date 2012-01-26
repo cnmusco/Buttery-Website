@@ -1,0 +1,29 @@
+<h1>Listing pastorders</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>User</th>
+    <th>Order</th>
+    <th>Notes</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @pastorders.each do |pastorder| %>
+  <tr>
+    <td><%= pastorder.name %></td>
+    <td><%= pastorder.user_id %></td>
+    <td><%= pastorder.order %></td>
+    <td><%= pastorder.notes %></td>
+    <td><%= link_to 'Show', pastorder %></td>
+    <td><%= link_to 'Edit', edit_pastorder_path(pastorder) %></td>
+    <td><%= link_to 'Destroy', pastorder, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Pastorder', new_pastorder_path %>

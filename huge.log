@@ -1,0 +1,100 @@
+2012-01-16T10:21:57+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-01-16T10:22:00+00:00 heroku[router]: GET piersonbuttery.com/robots.txt dyno=web.1 queue=0 wait=0ms service=10ms status=200 bytes=204
+2012-01-16T11:24:04+00:00 heroku[web.1]: Idling
+2012-01-16T11:24:05+00:00 heroku[web.1]: State changed from up to down
+2012-01-16T11:24:05+00:00 heroku[web.1]: State changed from down to created
+2012-01-16T11:24:05+00:00 heroku[web.1]: State changed from created to starting
+2012-01-16T11:24:09+00:00 heroku[web.1]: Starting process with command `thin -p 40953 -e production -R /home/heroku_rack/heroku.ru start`
+2012-01-16T11:24:12+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-01-16T11:24:12+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-01-16T11:24:12+00:00 app[web.1]: >> Listening on 0.0.0.0:40953, CTRL+C to stop
+2012-01-16T11:24:13+00:00 heroku[web.1]: State changed from starting to up
+2012-01-16T12:28:03+00:00 heroku[web.1]: Idling
+2012-01-16T12:28:04+00:00 heroku[web.1]: State changed from up to down
+2012-01-16T12:28:06+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-01-16T12:28:06+00:00 app[web.1]: >> Stopping ...
+2012-01-16T12:28:06+00:00 heroku[web.1]: Process exited
+2012-01-16T18:56:39+00:00 heroku[web.1]: Unidling
+2012-01-16T18:56:39+00:00 heroku[web.1]: State changed from down to created
+2012-01-16T18:56:39+00:00 heroku[web.1]: State changed from created to starting
+2012-01-16T18:56:43+00:00 heroku[web.1]: Starting process with command `thin -p 42580 -e production -R /home/heroku_rack/heroku.ru start`
+2012-01-16T18:56:51+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-01-16T18:56:51+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-01-16T18:56:51+00:00 app[web.1]: >> Listening on 0.0.0.0:42580, CTRL+C to stop
+2012-01-16T18:56:52+00:00 heroku[web.1]: State changed from starting to up
+2012-01-16T18:56:53+00:00 app[web.1]: 
+2012-01-16T18:56:53+00:00 app[web.1]: 
+2012-01-16T18:56:53+00:00 app[web.1]: Started GET "/" for 199.21.99.99 at 2012-01-16 10:56:53 -0800
+2012-01-16T18:56:54+00:00 app[web.1]:   Processing by PublicController#show_menu as 
+2012-01-16T18:56:55+00:00 app[web.1]: Rendered public/show_menu.html.erb within layouts/application (8.8ms)
+2012-01-16T18:56:55+00:00 app[web.1]: Completed 200 OK in 1387ms (Views: 33.1ms | ActiveRecord: 1193.1ms)
+2012-01-16T18:56:55+00:00 heroku[router]: GET piersonbuttery.com/ dyno=web.1 queue=0 wait=0ms service=1572ms status=200 bytes=41433
+2012-01-16T20:03:55+00:00 heroku[web.1]: Idling
+2012-01-16T20:03:56+00:00 heroku[web.1]: State changed from up to down
+2012-01-16T20:03:58+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-01-16T20:03:58+00:00 app[web.1]: >> Stopping ...
+2012-01-16T20:03:58+00:00 heroku[web.1]: Process exited
+2012-01-17T00:44:17+00:00 heroku[web.1]: Unidling
+2012-01-17T00:44:17+00:00 heroku[web.1]: State changed from down to created
+2012-01-17T00:44:17+00:00 heroku[web.1]: State changed from created to starting
+2012-01-17T00:44:25+00:00 heroku[web.1]: State changed from starting to up
+2012-01-17T00:44:27+00:00 heroku[router]: GET piersonbuttery.com/ dyno=web.1 queue=0 wait=0ms service=500ms status=200 bytes=41429
+2012-01-17T00:57:24+00:00 heroku[slugc]: Slug compilation started
+2012-01-17T00:57:41+00:00 heroku[api]: Deploy b1a043d by mikenyy3@gmail.com
+2012-01-17T00:57:41+00:00 heroku[api]: Release v132 created by mikenyy3@gmail.com
+2012-01-17T00:57:41+00:00 heroku[web.1]: State changed from up to bouncing
+2012-01-17T00:57:41+00:00 heroku[web.1]: State changed from bouncing to created
+2012-01-17T00:57:41+00:00 heroku[web.1]: State changed from created to starting
+2012-01-17T00:57:42+00:00 heroku[slugc]: Slug compilation finished
+2012-01-17T00:57:45+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-01-17T00:57:45+00:00 app[web.1]: >> Stopping ...
+2012-01-17T00:57:45+00:00 heroku[web.1]: Process exited
+2012-01-17T00:57:45+00:00 heroku[web.1]: Starting process with command `thin -p 54330 -e production -R /home/heroku_rack/heroku.ru start`
+2012-01-17T00:57:50+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-01-17T00:57:50+00:00 app[web.1]: >> Listening on 0.0.0.0:54330, CTRL+C to stop
+2012-01-17T00:57:50+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-01-17T00:57:51+00:00 heroku[web.1]: State changed from starting to up
+2012-01-17T00:59:12+00:00 heroku[slugc]: Slug compilation started
+2012-01-17T00:59:29+00:00 heroku[api]: Deploy 761a000 by mikenyy3@gmail.com
+2012-01-17T00:59:29+00:00 heroku[api]: Release v133 created by mikenyy3@gmail.com
+2012-01-17T00:59:30+00:00 heroku[web.1]: State changed from up to bouncing
+2012-01-17T00:59:30+00:00 heroku[web.1]: State changed from bouncing to created
+2012-01-17T00:59:30+00:00 heroku[web.1]: State changed from created to starting
+2012-01-17T00:59:30+00:00 heroku[slugc]: Slug compilation finished
+2012-01-17T00:59:33+00:00 heroku[web.1]: Stopping process with SIGTERM
+2012-01-17T00:59:33+00:00 app[web.1]: >> Stopping ...
+2012-01-17T00:59:33+00:00 heroku[web.1]: Process exited
+2012-01-17T00:59:33+00:00 heroku[web.1]: Starting process with command `thin -p 10765 -e production -R /home/heroku_rack/heroku.ru start`
+2012-01-17T00:59:37+00:00 app[web.1]: >> Thin web server (v1.2.6 codename Crazy Delicious)
+2012-01-17T00:59:37+00:00 app[web.1]: >> Maximum connections set to 1024
+2012-01-17T00:59:37+00:00 app[web.1]: >> Listening on 0.0.0.0:10765, CTRL+C to stop
+2012-01-17T00:59:38+00:00 heroku[web.1]: State changed from starting to up
+2012-01-17T01:09:04+00:00 app[web.1]: 
+2012-01-17T01:09:04+00:00 app[web.1]: 
+2012-01-17T01:09:04+00:00 app[web.1]: Started GET "/" for 128.36.149.252 at 2012-01-16 17:09:04 -0800
+2012-01-17T01:09:04+00:00 app[web.1]:   Processing by PublicController#show_menu as HTML
+2012-01-17T01:09:04+00:00 app[web.1]: Rendered public/show_menu.html.erb within layouts/application (41.2ms)
+2012-01-17T01:09:04+00:00 app[web.1]: Completed 200 OK in 504ms (Views: 23.3ms | ActiveRecord: 268.6ms)
+2012-01-17T01:09:05+00:00 heroku[router]: GET piersonbuttery.com/javascripts/jquery.js dyno=web.1 queue=0 wait=0ms service=18ms status=200 bytes=236202
+2012-01-17T01:09:05+00:00 heroku[router]: GET piersonbuttery.com/javascripts/application.js dyno=web.1 queue=0 wait=0ms service=2ms status=200 bytes=148
+2012-01-17T01:09:05+00:00 heroku[router]: GET piersonbuttery.com/javascripts/jquery_ujs.js dyno=web.1 queue=0 wait=0ms service=2ms status=200 bytes=14861
+2012-01-17T01:09:05+00:00 heroku[router]: GET piersonbuttery.com/stylesheets/cnm_buttons.css dyno=web.1 queue=0 wait=0ms service=6ms status=200 bytes=10017
+2012-01-17T01:09:05+00:00 heroku[router]: GET piersonbuttery.com/javascripts/application1.js dyno=web.1 queue=0 wait=0ms service=11ms status=200 bytes=24372
+2012-01-17T01:09:05+00:00 heroku[router]: GET piersonbuttery.com/favicon.ico dyno=web.1 queue=0 wait=0ms service=4ms status=200 bytes=0
+2012-01-17T01:09:04+00:00 heroku[router]: GET piersonbuttery.com/ dyno=web.1 queue=0 wait=0ms service=762ms status=200 bytes=41472
+2012-01-17T01:09:05+00:00 heroku[router]: GET piersonbuttery.com/stylesheets/style.css dyno=web.1 queue=0 wait=0ms service=6ms status=200 bytes=8309
+2012-01-17T01:10:24+00:00 app[web.1]: 
+2012-01-17T01:10:24+00:00 app[web.1]: 
+2012-01-17T01:10:24+00:00 app[web.1]: Started GET "/account" for 128.36.149.252 at 2012-01-16 17:10:24 -0800
+2012-01-17T01:10:24+00:00 app[web.1]:   Processing by AccountController#main as HTML
+2012-01-17T01:10:24+00:00 app[web.1]: Rendered account/main.html.erb within layouts/application (3.9ms)
+2012-01-17T01:10:24+00:00 app[web.1]: Completed 200 OK in 80ms (Views: 10.8ms | ActiveRecord: 66.0ms)
+2012-01-17T01:10:24+00:00 heroku[router]: GET piersonbuttery.com/account dyno=web.1 queue=0 wait=0ms service=89ms status=200 bytes=5855
+2012-01-17T01:10:24+00:00 heroku[router]: GET piersonbuttery.com/favicon.ico dyno=web.1 queue=0 wait=0ms service=3ms status=200 bytes=0
+2012-01-17T01:10:35+00:00 heroku[router]: GET piersonbuttery.com/account dyno=web.1 queue=0 wait=0ms service=59ms status=200 bytes=5855
+2012-01-17T01:10:35+00:00 app[web.1]: 
+2012-01-17T01:10:35+00:00 app[web.1]: 
+2012-01-17T01:10:35+00:00 app[web.1]: Started GET "/account" for 128.36.149.252 at 2012-01-16 17:10:35 -0800
+2012-01-17T01:10:35+00:00 app[web.1]:   Processing by AccountController#main as HTML
+2012-01-17T01:10:35+00:00 app[web.1]: Rendered account/main.html.erb within layouts/application (1.9ms)
+2012-01-17T01:10:35+00:00 app[web.1]: Completed 200 OK in 52ms (Views: 2.1ms | ActiveRecord: 4.6ms)
