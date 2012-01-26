@@ -20,7 +20,10 @@
         <%end%>
         <% if @user.worker!=0 %>
             <div><strong>Job: </strong>Full Time Buttery Worker</div>
-            
+            <div><strong>Sub Request: </strong><button id="sub_request", value=<%=@user.id%> class="clean-gray">Request A Sub For This 
+                <% days=['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'] %>
+                <%= days[@user.worker+1] %></button>
+            </div>
         <%end%>
     </div>
 
@@ -57,7 +60,11 @@
     </div>
 <%end%>
     
-    
+    <h3>Do You Want To Recieve Sub Requests? <%if @user.worker!=0 %></br>(Even If You Are A Regular)<%end%></h3>
+    <form id="get_sub_email">
+        <input type="radio" name="get_sub_email1" value="0" checked/> No Thanks<br />
+        <input type="radio" name="get_sub_email1" value="1"/> By Email<br />
+    </form>
 
 <%if @ords!=[]%>
     <div id="acc_orders">

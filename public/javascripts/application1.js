@@ -850,6 +850,12 @@ function filter()
 
 function sign_up_validator()
 {
+    //passwords match?
+    if($("#pwd1").val() != $("#pwd0").val())
+    {
+        return 1;
+    }
+    
     return 0;
 }
 
