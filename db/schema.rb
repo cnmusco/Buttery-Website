@@ -11,6 +11,7 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20120125032828) do
+#ActiveRecord::Schema.define(:version => 20120126034027) do
 
   create_table "ingredients", :force => true do |t|
     t.string   "ingredient_name"
@@ -19,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120125032828) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "threshold"
+    t.integer  "rank"
   end
 
   create_table "makeups", :force => true do |t|
@@ -58,6 +60,15 @@ ActiveRecord::Schema.define(:version => 20120125032828) do
     t.integer  "user_id"
     t.string   "order"
     t.string   "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    end
+
+  create_table "sub_users", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "days_sub"
+    t.integer  "amount_subbed"
+    t.integer  "contact_method"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

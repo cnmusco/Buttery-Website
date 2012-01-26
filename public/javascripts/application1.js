@@ -375,7 +375,8 @@ function buttons()
                     current_item: $("#edit_item_changer").val(),
                     amount: quant,
                     unit: unit,
-                    thresh: thresh}),
+                    thresh: thresh,
+                    rank: $("#ing_rank").val()}),
                 success: function(data)
                         {
                             $("#new_item").html(data);
@@ -793,6 +794,24 @@ function buttons()
     });
     
     
+    //account manager sub buttons
+    $("#sub_request").click(function()
+    {
+        var r=confirm("Are You Sure You Cannot Work This Week?");
+        if (r==true)
+        {
+            alert("The Message Has Been Sent");
+        }
+        else
+            alert("No Sub Notification Was Sent");
+    });
+    //sub contact option
+    $("#get_sub_email").change(function()
+    {
+        alert($("input[name=get_sub_email1]:checked").val());
+    });
+    
+    
     
     //update inventory search box
     $('#inventory_search').keyup(function()
@@ -840,23 +859,7 @@ function sign_up_validator()
         return 1;
     }
     
-    //valid yale email address
-    var email=$("#email1").val();
-    var flag1=0;
-    for(var i=0; i<email.length; i++)
-    {
-        var letter=email.charAt(i);
-
-        if(flag1 && letter=='@')
-        {
-            return !email.substr(i)=="@yale.edu";
-        }
-        else if(letter=='.')
-        {
-            flag1=1;
-        }
-    }
-    return 1;
+    return 0;
 }
 
 //function updates the edit/remove section of the menu manger
