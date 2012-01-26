@@ -60,7 +60,7 @@
     </div>
 <%end%>
     
-    <h3>Do You Want To Recieve Sub Requests?</h3>
+    <h3>Do You Want To Recieve Sub Requests? <%if @user.worker!=0 %></br>(Even If You Are A Regular)<%end%></h3>
     <form id="get_sub_email">
         <input type="radio" name="get_sub_email1" value="0" checked/> No Thanks<br />
         <input type="radio" name="get_sub_email1" value="1"/> By Email<br />
