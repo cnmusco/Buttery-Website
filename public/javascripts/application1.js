@@ -207,7 +207,7 @@ function buttons()
     
 	$("#sign_up_form").submit(function()
     {
-		alert('submitting form');
+		//alert('submitting form');
         $("#invalid_login1").hide();
         $("#invalid_login2").hide();
         $("#invalid_login3").hide();
