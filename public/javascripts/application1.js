@@ -850,7 +850,7 @@ function filter()
 
 function sign_up_validator()
 {
-    return 1;
+    return 0;
 }
 
 //function updates the edit/remove section of the menu manger
