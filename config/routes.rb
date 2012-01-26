@@ -1,5 +1,9 @@
 Buttery::Application.routes.draw do
 
+  resources :sub_events
+
+  resources :sub_users
+
   resources :orders
 
   resources :users

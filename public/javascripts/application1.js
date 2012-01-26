@@ -850,28 +850,6 @@ function filter()
 
 function sign_up_validator()
 {
-    //passwords match?
-    if($("#pwd1").val() != $("#pwd0").val())
-    {
-        return 1;
-    }
-    
-    //valid yale email address
-    var email=$("#email1").val();
-    var flag1=0;
-    for(var i=0; i<email.length; i++)
-    {
-        var letter=email.charAt(i);
-
-        if(flag1 && letter=='@')
-        {
-            return !email.substr(i)=="@yale.edu";
-        }
-        else if(letter=='.')
-        {
-            flag1=1;
-        }
-    }
     return 1;
 }
 
