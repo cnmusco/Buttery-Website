@@ -207,25 +207,28 @@ function buttons()
     
 	$("#sign_up_form").submit(function()
     {
+		alert('submitting form');
         $("#invalid_login1").hide();
         $("#invalid_login2").hide();
         $("#invalid_login3").hide();
         $("#invalid_login4").hide();
         $("#invalid_login6").hide();
-        
+        //console.log('hid things');
         if(sign_up_validator())
         {
+			//console.log('validator');
             $("#invalid_login2").show();
         }
-        else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val() && $("#username1").val())
+        if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val() && $("#username1").val())
         {
-			console.log("ajaxing");
+			//console.log("ajaxing");
             $.ajax({
             type: "POST",
             url: "/user_accounts/signup",
             data: ({email: $("#email1").val(),
                     username: $("#username1").val(),
-                    pwd: $("#pwd1").val()})
+                    pwd: $("#pwd1").val()}),
+			success: function() {}
             });
         }
         else
@@ -873,7 +876,7 @@ function edit_remove(cur_itm)
 
 function butt_open1()
 {  
-    //return 1;//comment this out normally.  auto set if the butt is open
+    return 1;//comment this out normally.  auto set if the butt is open
     
     
     //is it proper ordering time
