@@ -219,7 +219,6 @@ function buttons()
         }
         else if($("#email1").val() && $("#pwd0").val() && $("#pwd1").val() && $("#username1").val())
         {
-			console.log("ajaxing");
             $.ajax({
             type: "POST",
             url: "/user_accounts/signup",
