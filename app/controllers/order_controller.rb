@@ -136,7 +136,6 @@ class OrderController < ApplicationController
             #finish order, customer not in buttery
             elsif flag==1
                 order=Order.find(params[:id])
-                save_order(order)
                 if !order.user_id
                     order.destroy
                 else
