@@ -90,14 +90,20 @@ class WorkerController < ApplicationController
     #send stocking email
     def restock
         ings=a=@ings=Ingredient.find(:all, :order=>'rank')
-        restock=Array.new()
+        restock1=Array.new()
+        restock2=Array.new()
         ings.each do |ing|
             if ing.threshold >= ing.amount_in_stock && ing.threshold!=0
-                restock.push(ing.ingredient_name)
+                if ing.rank!=3
+                    restock1.push(ing.ingredient_name)
+                else
+                    restock2.push(ing.ingredient_name)
+                end
             end
         end
         
-        restock*=', '
+        restock1*=', '
+        restock2*=', '
         from=Array.new
         session[:current_user].name.split(' ').each do |n|
             from.push(n.capitalize)
@@ -106,7 +112,7 @@ class WorkerController < ApplicationController
         from=from.join()
         
         User.where(:worker => Integer(params[:to])).each do |to|
-            Notifier.stock_email(restock, to.email, from).deliver
+            Notifier.stock_email(restock1, restock2, to.email, from).deliver
         end
         
         #alert user that task has been completed

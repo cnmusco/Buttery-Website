@@ -16,11 +16,12 @@ class Notifier < ActionMailer::Base
               www.piersonbuttery.com/account_controller/new_pwd/"+user.username+'/'+user.hash)
     end
     
-    def stock_email(ings, address, from)        
+    def stock_email(ings, ings2, address, from)        
         mail( :to => address, 
               :subject => "Stocking Email (" + Time.now.strftime("%b %d - %I:%M:%S %p") + ")",
               :body => "Please get the following items before your shift tomorrow: 
-              "+ings + "\n\nFrom,\n" + from)
+              "+ings + "\nAnd the following if they are in the freezer:\n
+              "+ings2+"\n\nFrom,\n" + from)
     end
     
     def order_ready(user)
