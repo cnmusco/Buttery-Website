@@ -23,7 +23,7 @@
 </head>
 
 <div id="all">
-<div id="head-container">
+<div id="head-container" class="top_rounded_corners">
 	<div id="header">
             <span id="headline">
                     Pierson Buttery
@@ -33,10 +33,10 @@
 	</div>
 </div>
 
-<div id="navigation-container">
+<div id="navigation-container" class="bottom_rounded_corners">
     <div id="navigation">
                 <ul id="nav_list">
-                        <li id="home_li"><button id="home" class="nav_button">Home</button></li>
+                       	<li id="home_li"><button id="home" class="nav_button">Home</button></li>
 						
                         <li id="worker_li" <%if  not session[:current_user] or session[:current_user].worker == 0%>
 							style='display:none'
@@ -86,18 +86,27 @@
                             </div>
 							<li id="about_li"><button id="about" class="nav_button">About</button></li>
 							<li id='logged_out' <%if session[:current_user]%>style='display:none'<%end%>>
-								Log In To Make An Order Online
+								Log In To Place An Order
 							</li>
-							<li id='logged_in' <%if !session[:current_user]%>style='display:none'<%end%>>
-								<span id='welcome-message'>
-		                    	<%if session[:current_user]%>
-									<%='Welcome, ' + session[:current_user].name.split.map{|x| x.capitalize}.join(" ")%>
-								<%end%>
-								</span>
-		                    	<button id="account_info" class="clean-gray">Account Info</button>
-		                    	<button id="log_out" class="clean-gray">Log Out</button>
-							<li/>
+							<span id='logged_in' <%if !session[:current_user]%>style='display:none'<%end%>>
+								<li class="welcome_li ">
+									<span id='welcome-message'>
+			                    	<%if session[:current_user]%>
+										<%='Welcome, ' + session[:current_user].name.split.map{|x| x.capitalize}.join(" ")%>
+									<%end%>
+									</span>
+								</li>
+							</span>
                 </ul>
+
+				<ul id="account_logout_buttons" <%if !session[:current_user]%>style='display:none'<%end%>>
+					<li class="small_button_li ">
+						<span id="account_info" class="nav_button_small">Account Info</span>
+					</li>
+					<li class="small_button_li ">
+	            		<span id="log_out" class="nav_button_small">Log Out</span>
+					</li>
+				</ul>
         </div>
 </div>
 
@@ -109,7 +118,7 @@
 			</div>
 	</div>
 </div>
-	<div id="footer-container">
+	<div id="footer-container" class="bottom_rounded_corners top_rounded_corners">
 		<div id="footer">
 			<div id='footer_text'>Created by Mike Levine and Cameron Musco, 2011</div>
 		</div>

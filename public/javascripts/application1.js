@@ -52,9 +52,24 @@ function reload_order_queue1()
 }
 
 
+function show_menu(class_name) {
+	$("#second_menu").children("div").hide();
+	$(".hidden_ings_pub").hide();
+	$("#" + class_name + "-items").animate({width:'toggle'},350);;
+}
 
 function buttons()
 {
+	
+	$("#class_list_ul").children("li").each(function () {
+	  $(this).click(function() {
+			$("#class_list_ul").children("li").removeClass('menu_active');
+			$(this).addClass('menu_active');
+			var class_name = $(this).attr('id').split("-")[0];
+
+			show_menu(class_name);
+		});
+	});
     $("#about").click(function()
     {
             window.location = "/about"
@@ -480,9 +495,13 @@ function buttons()
         }
     });
     
-    $(".item_names_public").click(function(event)
+    $(".parent_button").click(function()
     {
-        var val="#pub_ings_" + event.target.name;
+		$(".parent_button").removeClass('menu_active');
+		$(this).addClass('menu_active');
+		
+		$(".hidden_ings_pub").hide();
+        var val="#pub_ings_" + $(this).attr("name");
         $(val).toggle();
     });
     
@@ -879,7 +898,7 @@ function edit_remove(cur_itm)
 
 function butt_open1()
 {  
-    //return 1;//comment this out normally.  auto set if the butt is open
+    return 1;//comment this out normally.  auto set if the butt is open
     
     
     //is it proper ordering time
@@ -961,6 +980,15 @@ function createCustomAlert(txt) {
 // removes the custom alert from the DOM
 function removeCustomAlert() {
   document.getElementsByTagName("body")[0].removeChild(document.getElementById("modalContainer"));
+}
+
+function logout_toggle() {
+	$("#logged_in").toggle();
+	$("#logged_out").toggle();
+	$("#account_logout_buttons").toggle();
+	$("#worker_li").hide();
+	$("#login_li").show();
+	$("#signup_li").show();
 }
 
 

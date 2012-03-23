@@ -101,6 +101,9 @@ class UserAccountsController < ApplicationController
                 end
                 page<< '$("#login_li").hide();'
                 page<< '$("#signup_li").hide();'
+                page<< '$("#logged_in").toggle();'
+                page<< '$("#logged_out").toggle();'
+                page<< '$("#account_logout_buttons").toggle();'
                 page<< 'login_success = true;'
                 page<< "user_name = '#{user[:name].split.map{|x| x.capitalize}.join(" ")}';"
             end
@@ -112,14 +115,15 @@ class UserAccountsController < ApplicationController
     #logs the user out
     def logout
         render :update do |page|
+            #page<< '$("#logged_in").toggle();'
+            #page<< '$("#account_logout_buttons").toggle();'
+					  #page<< '$("#logged_out").toggle();'
             page<< 'window.location = "/home";'
-            page<< '$("#logged_in").toggle();'
-  					page<< '$("#logged_out").toggle();'
-  					page<< '$("#worker_li").hide();'
-  					page<< '$("#login_li").show();'
-            page<< '$("#signup_li").show();'
+  					#page<< '$("#worker_li").hide();'
+  					#page<< '$("#login_li").show();'
+            #page<< '$("#signup_li").show();'
         end
-        flash[:notice]='You Have Successfully Logged Out'
+        #flash[:notice]='You Have Successfully Logged Out'
         session[:current_user]=nil
     end
 end
