@@ -1,5 +1,7 @@
 var login_success = false;
 var user_name = "";
+var selected_second_level = "";
+var selected_third_level = "";
 
 //load after the page loads
 $(document).ready(function()
@@ -53,9 +55,32 @@ function reload_order_queue1()
 
 
 function show_menu(class_name) {
-	$("#second_menu").children("div").hide();
-	$(".hidden_ings_pub").hide();
-	$("#" + class_name + "-items").animate({width:'toggle'},350);;
+	if(selected_third_level != "") {
+		$(selected_third_level).hide('slide', { direction: 'left', complete: function(){show_menu2(class_name);} }, 450);
+		selected_third_level = "";
+	} else {
+		show_menu2(class_name);
+	}
+
+}
+
+function show_menu2(class_name) {
+	if(selected_second_level != "") {
+		$("#" + selected_second_level + "-items").hide('slide', { direction: 'left', complete: function(){show_menu3(class_name);} }, 450);
+	} else {
+		show_menu3(class_name);
+	}
+	selected_second_level = class_name;
+	
+}
+
+function show_menu3(class_name) {
+	$("#" + class_name + "-items").show('slide', { direction: 'left' }, 450);
+}
+
+function parent_helper(val) {
+	$(val).show('slide', { direction: 'left' }, 450);
+	selected_third_level = val;
 }
 
 function buttons()
@@ -497,12 +522,19 @@ function buttons()
     
     $(".parent_button").click(function()
     {
+		if($(this).attr('id') == "public_items_0") {
+			return;
+		}
+		
 		$(".parent_button").removeClass('menu_active');
 		$(this).addClass('menu_active');
-		
-		$(".hidden_ings_pub").hide();
-        var val="#pub_ings_" + $(this).attr("name");
-        $(val).toggle();
+		var val="#pub_ings_" + $(this).attr("name");
+        
+		if(selected_third_level != "") {
+			$(selected_third_level).hide('slide', { direction: 'left', complete: function(){parent_helper(val);}}, 450);
+		} else {
+			parent_helper(val);
+		}
     });
     
     
