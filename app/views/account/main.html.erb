@@ -23,15 +23,17 @@
             
         <%end%>
     </div>
-
-    <h3>Change Password</h3>
-    <table>
-        <tr><td>Old Password</td><td><input type="password" id="acc_old_pwd"/></td></tr>
-        <tr><td>New Password</td><td><input type="password" id="acc_new_pwd1"/></td></tr>
-        <tr><td>Retype New Password</td><td><input type="password" id="acc_new_pwd2"/></td></tr>
-    </table>
-	<br/>
-    <button id="change_pwd" class="clean-gray">Change Password</button>
+	
+	<div class="change_pwd_div">
+	    <strong>Change Password</strong>
+	    <table class="change_pwd_div2">
+	        <tr><td>Old Password</td><td><input type="password" id="acc_old_pwd"/></td></tr>
+	        <tr><td>New Password</td><td><input type="password" id="acc_new_pwd1"/></td></tr>
+	        <tr><td>Retype New Password</td><td><input type="password" id="acc_new_pwd2"/></td></tr>
+	    </table>
+		<br/>
+	    <button id="change_pwd" class="clean-gray">Change Password</button>
+	</div>
 </div>
 
 <% if @number %>
