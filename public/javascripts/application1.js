@@ -2,6 +2,7 @@ var login_success = false;
 var user_name = "";
 var selected_second_level = "";
 var selected_third_level = "";
+var cart = new Array();
 
 //load after the page loads
 $(document).ready(function()
@@ -543,9 +544,13 @@ function buttons()
     {
         var order=new Array();
         var last_parent='';
+        var cart1=new Array(), i;
+        for(i in cart)
+          cart1[cart[i]]=1;
+          
         $('.pub_ings_in_itms').each(function()
         {
-            if($(this).is(":visible"))
+            if(cart1[$(this).attr('id').toString()]==1)
             {
                 var parent=$(this).attr('id');
                 var value=$(this).val();
@@ -561,9 +566,8 @@ function buttons()
                 last_parent=parent;
             }
         });
-    
+
         var butt_open=butt_open1();//becomes 1 if the buttery is open
-        
         if(butt_open)
         {
              $.ajax({
@@ -879,6 +883,57 @@ function buttons()
     {
         filter();
     });
+    
+    
+    
+    //add an item to cart
+    $(".add_to_cart").live('click', function()
+    {
+      var par=$(this).val();
+      var flag=false;
+      // see if order is not empty
+      $('.pub_ings_in_itms').each(function()
+        {
+          var parent=$(this).attr('id');
+          var value=$(this).val();
+          if(par==parent)
+          {
+            if (value!=0)
+              flag=true;
+          }
+        });
+      
+      if (flag)
+      {
+        cart.push($(this).val());
+        $("#" + $(this).val()).html('<button class="remove_from_cart"  value=' + $(this).val()+'>Remove Item</button>');
+        update_cart($(this).val(), 1);
+      }
+      else
+        alert("You Have not Selected Anything");
+    });
+    
+    //remove an item from cart
+    $(".remove_from_cart").live('click', function()
+    {
+      $("#" + $(this).val()).html('<button class="add_to_cart" value=' + $(this).val()+'>Add Item</button>');
+      for(var i=0; i<cart.length; i++)
+      {
+        if(cart[i]==$(this).val())
+          cart.splice(i,1);
+      }
+      update_cart($(this).val(), 0);
+    });
+}
+
+//update shopping cart
+function update_cart(name, add)
+{
+  var to_become_html=new Array(), i;
+  for(i in cart)
+    to_become_html.push(cart[i]);
+  
+  $("#cart_items").html(to_become_html.join(", "))
 }
 
 function filter()
