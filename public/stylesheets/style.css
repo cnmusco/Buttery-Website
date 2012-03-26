@@ -504,19 +504,12 @@ body {
 }
 #order_notes1
 {
-	margin-left:20;
+	margin-right:300;
  	font-family: 'Helvetica Neue', Helvetica, Lucida, Arial, sans-serif;
 	font-size:18px;    
 	color:#444;
 }
-#submit_order
-{
-    margin-top:30;
-}
-#cart
-{
-  margin-left:750;
-}
+
 
 
 .grill_buttons
