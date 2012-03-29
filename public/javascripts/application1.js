@@ -542,30 +542,22 @@ function buttons()
     //submit button on public page
     $("#submit_order").click(function()
     {
-        var order=new Array();
-        var last_parent='';
-        var cart1=new Array(), i;
-        for(i in cart)
-          cart1[cart[i]]=1;
-          
-        $('.pub_ings_in_itms').each(function()
-        {
-            if(cart1[$(this).attr('id').toString()]==1)
-            {
-                var parent=$(this).attr('id');
-                var value=$(this).val();
-                if(last_parent!=parent)
-                {
-                    var tmp=order.pop();
-                    if(tmp!=('|'+last_parent) && tmp)
-                        order.push(tmp);
-                    order.push('|'+parent);
-                }
-                if(value!=0)
-                    order.push(','+$(this).attr('name')+':'+value);
-                last_parent=parent;
-            }
+        var order=new Array(), i, j;
         });
+        //parse through cart
+        //add items to order
+        for(i in cart) {
+          var tmp=cart[i].split(": ");
+          var name=new Array();
+          name[0]="|"+tmp[0];
+          var ings=tmp[1].split(", "), ing;
+          for(j in ings) {
+            ing=ings[j].split(" x ");
+            name.push(","+ing[0]+":"+ ing[1]);           
+          }
+          order.push(name.join(""));
+        }
+        
 
         var butt_open=butt_open1();//becomes 1 if the buttery is open
         if(butt_open)
@@ -891,22 +883,28 @@ function buttons()
     {
       var par=$(this).val();
       var flag=false;
+      var value, parent, parent1;
+      var items=new Array;
       // see if order is not empty
       $('.pub_ings_in_itms').each(function()
         {
-          var parent=$(this).attr('id');
-          var value=$(this).val();
+          if(!flag)
+            parent1=$(this).attr('id').split(" ");
+          parent=$(this).attr('id').split(" ")[0];
+          value=$(this).val();
           if(par==parent)
           {
-            if (value!=0)
+            if (value!=0) {
               flag=true;
+              items.push($(this).attr('name')+" x " + value);
+            }
           }
         });
       
       if (flag)
       {
-        cart.push($(this).val());
-        $("#" + $(this).val()).html('<button class="remove_from_cart"  value=' + $(this).val()+'>Remove Item</button>');
+        cart.push(parent1.toString().replace(/,/gi, " ")+": "+items.join(", "));
+        $("#" + $(this).val()).html('<button class="clean-gray remove_from_cart"  value=' + $(this).val()+'>Remove Item</button>');
         update_cart($(this).val(), 1);
       }
       else
@@ -916,10 +914,10 @@ function buttons()
     //remove an item from cart
     $(".remove_from_cart").live('click', function()
     {
-      $("#" + $(this).val()).html('<button class="add_to_cart" value=' + $(this).val()+'>Add Item</button>');
+      $("#" + $(this).val()).html('<button class="clean-gray add_to_cart" value=' + $(this).val()+'>Add Item</button>');
       for(var i=0; i<cart.length; i++)
       {
-        if(cart[i]==$(this).val())
+        if(cart[i].split(":")[0]==$(this).val())
           cart.splice(i,1);
       }
       update_cart($(this).val(), 0);
