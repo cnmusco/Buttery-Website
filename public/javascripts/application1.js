@@ -543,7 +543,6 @@ function buttons()
     $("#submit_order").click(function()
     {
         var order=new Array(), i, j;
-        });
         //parse through cart
         //add items to order
         for(i in cart) {
@@ -905,7 +904,7 @@ function buttons()
       {
         cart.push(parent1.toString().replace(/,/gi, " ")+": "+items.join(", "));
         $("#" + $(this).val()).html('<button class="clean-gray remove_from_cart"  value=' + $(this).val()+'>Remove Item</button>');
-        update_cart($(this).val(), 1);
+        update_cart($(this).val());
       }
       else
         alert("You Have not Selected Anything");
@@ -917,21 +916,28 @@ function buttons()
       $("#" + $(this).val()).html('<button class="clean-gray add_to_cart" value=' + $(this).val()+'>Add Item</button>');
       for(var i=0; i<cart.length; i++)
       {
-        if(cart[i].split(":")[0]==$(this).val())
+        if(cart[i].split(":")[0].split(" ")[0]==$(this).val())
           cart.splice(i,1);
       }
-      update_cart($(this).val(), 0);
+      update_cart($(this).val());
     });
 }
 
-//update shopping cart
-function update_cart(name, add)
+//update shopping cart view
+function update_cart(name)
 {
-  var to_become_html=new Array(), i;
-  for(i in cart)
-    to_become_html.push(cart[i]);
+  var to_become_html=new Array(), i, j, tmp1=new Array; tmp=cart;
+  for(i in cart) {
+    tmp=new Array();
+    tmp1=cart[i].split(": ")[1].split(", ")
+    for(j in tmp1) {
+      //push whatever this maps to instead of 'Buns' tmp1[j].split(" x ")[0]
+      tmp.push("Buns x " + tmp1[j].split(" x ")[1]);
+    }
+    to_become_html.push("<div>"+cart[i].split(": ")[0]+": "+tmp.join(", ")+"</div>");
+  }
   
-  $("#cart_items").html(to_become_html.join(", "))
+  $("#cart_items").html(to_become_html.join(""))
 }
 
 function filter()
