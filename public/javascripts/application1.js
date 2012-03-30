@@ -931,8 +931,8 @@ function update_cart(name)
     tmp=new Array();
     tmp1=cart[i].split(": ")[1].split(", ")
     for(j in tmp1) {
-      //push whatever this maps to instead of 'Buns' tmp1[j].split(" x ")[0]
-      tmp.push("Buns x " + tmp1[j].split(" x ")[1]);
+      var name=($("#"+tmp1[j].split(" x ")[0]).attr('name'));
+      tmp.push(name+" x " + tmp1[j].split(" x ")[1]);
     }
     to_become_html.push("<div>"+cart[i].split(": ")[0]+": "+tmp.join(", ")+"</div>");
   }

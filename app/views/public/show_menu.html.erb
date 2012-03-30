@@ -146,3 +146,8 @@
 		</td>
 	</tr>
 </table>
+<div style="display:none">
+  <% @ings1.each do |ing| %>
+    <div id=<%=ing.id%> name="<%=ing.ingredient_name%>"></div>
+  <%end%>
+</div>

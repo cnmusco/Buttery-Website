@@ -6,6 +6,7 @@ class PublicController < ApplicationController
         @classes=Parent.find(:all, :order=>'class_of_food')
         @parents=Parent.find(:all, :order=>'rgb DESC')
         @makeups=Makeup.find(:all, :order=>'vital DESC')
+        @ings1=Ingredient.all
         
         #create array of ings with id as hash
         @ings=Array.new
