@@ -880,51 +880,70 @@ function buttons()
     //add an item to cart
     $(".add_to_cart").live('click', function()
     {
-      var par=$(this).val();
-      var flag=false;
-      var value, parent, parent1;
-      var items=new Array;
-      // see if order is not empty
-      $('.pub_ings_in_itms').each(function()
-        {
-          if(!flag)
-            parent1=$(this).attr('id').split(" ");
-          parent=$(this).attr('id').split(" ")[0];
-          value=$(this).val();
-          if(par==parent)
-          {
-            if (value!=0) {
-              flag=true;
-              items.push($(this).attr('name')+" x " + value);
-            }
-          }
-        });
-      
-      if (flag)
-      {
-        cart.push(parent1.toString().replace(/,/gi, " ")+": "+items.join(", "));
-        $("#" + $(this).val()).html('<button class="clean-gray remove_from_cart"  value=' + $(this).val()+'>Remove Item</button>');
-        update_cart($(this).val());
-      }
-      else
-        alert("You Have not Selected Anything");
+      add_to_cart($(this).val(), 1);
+    });
+    
+    //update values for an existing item in cart
+    $(".update_cart").live('click', function()
+    {
+      remove_from_cart($(this).val());
+      add_to_cart($(this).val(), 0);
     });
     
     //remove an item from cart
     $(".remove_from_cart").live('click', function()
     {
-      $("#" + $(this).val()).html('<button class="clean-gray add_to_cart" value=' + $(this).val()+'>Add Item</button>');
-      for(var i=0; i<cart.length; i++)
-      {
-        if(cart[i].split(":")[0].split(" ")[0]==$(this).val())
-          cart.splice(i,1);
-      }
-      update_cart($(this).val());
+      remove_from_cart($(this).val());
+      update_cart();
     });
 }
 
+function add_to_cart(val, add)
+{
+  var par=val;
+  var flag=false;
+  var value, parent, parent1;
+  var items=new Array;
+  // see if order is not empty
+  $('.pub_ings_in_itms').each(function()
+    {
+      if(!flag)
+        parent1=$(this).attr('id').split(" ");
+      parent=$(this).attr('id').split(" ")[0];
+      value=$(this).val();
+      if(par==parent)
+      {
+        if (value!=0) {
+          flag=true;
+          items.push($(this).attr('name')+" x " + value);
+        }
+      }
+    });
+   
+  if (flag)
+  {
+    cart.push(parent1.toString().replace(/,/gi, " ")+": "+items.join(", "));
+    $("#" + val).html('<button class="clean-gray update_cart"  value=' + val+'>Update Cart</button>'+ '<button class="clean-gray remove_from_cart"  value=' + val+'>Remove Item</button>');
+    update_cart();
+  }
+  else if(!add) {
+    remove_from_cart(val);
+    update_cart();
+  }
+  else
+    alert("You Have not Selected Anything");
+}
+function remove_from_cart(val)
+{
+  $("#" + val).html('<button class="clean-gray add_to_cart" value=' + val+'>Add Item</button>');
+    for(var i=0; i<cart.length; i++)
+    {
+      if(cart[i].split(":")[0].split(" ")[0]==val)
+        cart.splice(i,1);
+    }
+}
 //update shopping cart view
-function update_cart(name)
+function update_cart()
 {
   var to_become_html=new Array(), i, j, tmp1=new Array; tmp=cart;
   for(i in cart) {
